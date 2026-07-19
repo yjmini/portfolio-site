@@ -4,12 +4,13 @@ import {
   Download, Github, Mail, MapPin, Menu, Search, Send, X,
 } from 'lucide-react'
 import { awards, certifications, experience, profile, projects, toolGroups } from './data'
+import PrintPortfolio from './PrintPortfolio'
 
 const publicAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
 const routeLabel = {
   '/': 'Home', '/projects': 'Projects', '/work': 'Work', '/about': 'About',
-  '/resume': 'Résumé', '/contact': 'Contact',
+  '/resume': 'Résumé', '/portfolio-pdf': 'PDF Portfolio', '/contact': 'Contact',
 }
 
 function normalizeHash() {
@@ -371,7 +372,7 @@ function AboutPage() {
 function ResumePage() {
   return <main id="main-content" tabIndex="-1" className="page-standard page-enter"><div className="container">
     <div className="resume-top"><div><Eyebrow>Résumé</Eyebrow><h1 className="page-title">경험을 한 장의<br/>실행 흐름으로.</h1><p className="page-lead">공개용 이력서에는 연락 가능한 이메일과 GitHub만 포함하며 상세 주소와 전화번호는 제외했습니다.</p></div>
-      <div className="resume-actions"><CTA to="resume/yoon-jeongmin-resume-public.pdf" asset download>PDF 다운로드</CTA><CTA to="resume/yoon-jeongmin-resume-public.pdf" asset secondary external>새 탭에서 열기</CTA></div></div>
+      <div className="resume-actions"><CTA to="/portfolio-pdf">제출용 포트폴리오</CTA><CTA to="resume/yoon-jeongmin-resume-public.pdf" asset download>이력서 PDF</CTA><CTA to="resume/yoon-jeongmin-resume-public.pdf" asset secondary external>새 탭에서 열기</CTA></div></div>
     <div className="resume-preview"><img src={publicAsset('resume/yoon-jeongmin-resume-page-1.png')} alt="윤정민 공개용 이력서 1페이지 미리보기"/></div>
   </div></main>
 }
@@ -421,6 +422,7 @@ function App() {
     const key = e => { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setPaletteOpen(v => !v) } }
     window.addEventListener('keydown', key); return () => window.removeEventListener('keydown', key)
   }, [])
+  if (route === '/portfolio-pdf') return <PrintPortfolio/>
   let page
   if (route === '/') page = <HomePage/>
   else if (route === '/projects') page = <ProjectsPage/>
