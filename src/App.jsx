@@ -4,6 +4,7 @@ import {
   Download, Github, Mail, MapPin, Menu, Search, Send, X,
 } from 'lucide-react'
 import { awards, certifications, experience, profile, projects, toolGroups } from './data'
+import { hideCursor, positionCursor } from './cursor'
 import PrintPortfolio from './PrintPortfolio'
 
 const publicAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
@@ -260,13 +261,13 @@ function CustomCursor() {
   const dot = useRef(null), ring = useRef(null)
   useEffect(() => {
     if (!matchMedia('(pointer:fine)').matches || matchMedia('(prefers-reduced-motion:reduce)').matches) return
-    let rx = 0, ry = 0, x = 0, y = 0, raf
-    const move = e => { x = e.clientX; y = e.clientY; dot.current.style.transform = `translate3d(${x}px,${y}px,0)` }
-    const loop = () => { rx += (x-rx)*.16; ry += (y-ry)*.16; ring.current.style.transform = `translate3d(${rx}px,${ry}px,0)`; raf = requestAnimationFrame(loop) }
+    const move = e => positionCursor(dot.current, ring.current, e.clientX, e.clientY)
+    const hide = () => hideCursor(dot.current, ring.current)
     const over = e => ring.current?.classList.toggle('hover', Boolean(e.target.closest('a,button,[data-cursor]')))
-    window.addEventListener('mousemove', move); document.addEventListener('mouseover', over); loop()
+    window.addEventListener('pointermove', move, { passive: true }); document.addEventListener('pointerover', over)
+    document.documentElement.addEventListener('mouseleave', hide); window.addEventListener('blur', hide)
     document.documentElement.classList.add('has-cursor')
-    return () => { cancelAnimationFrame(raf); window.removeEventListener('mousemove', move); document.removeEventListener('mouseover', over); document.documentElement.classList.remove('has-cursor') }
+    return () => { window.removeEventListener('pointermove', move); document.removeEventListener('pointerover', over); document.documentElement.removeEventListener('mouseleave', hide); window.removeEventListener('blur', hide); document.documentElement.classList.remove('has-cursor') }
   }, [])
   return <><span ref={dot} className="cursor-dot"/><span ref={ring} className="cursor-ring"/></>
 }
