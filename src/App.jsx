@@ -263,11 +263,11 @@ function CustomCursor() {
     if (!matchMedia('(pointer:fine)').matches || matchMedia('(prefers-reduced-motion:reduce)').matches) return
     const move = e => positionCursor(dot.current, ring.current, e.clientX, e.clientY)
     const hide = () => hideCursor(dot.current, ring.current)
-    const over = e => ring.current?.classList.toggle('hover', Boolean(e.target.closest('a,button,[data-cursor]')))
+    const over = e => ring.current?.classList.toggle('hover', Boolean(e.target instanceof Element && e.target.closest('a,button,[data-cursor]')))
     window.addEventListener('pointermove', move, { passive: true }); document.addEventListener('pointerover', over)
-    document.documentElement.addEventListener('mouseleave', hide); window.addEventListener('blur', hide)
+    document.documentElement.addEventListener('pointerleave', hide); window.addEventListener('blur', hide)
     document.documentElement.classList.add('has-cursor')
-    return () => { window.removeEventListener('pointermove', move); document.removeEventListener('pointerover', over); document.documentElement.removeEventListener('mouseleave', hide); window.removeEventListener('blur', hide); document.documentElement.classList.remove('has-cursor') }
+    return () => { window.removeEventListener('pointermove', move); document.removeEventListener('pointerover', over); document.documentElement.removeEventListener('pointerleave', hide); window.removeEventListener('blur', hide); document.documentElement.classList.remove('has-cursor') }
   }, [])
   return <><span ref={dot} className="cursor-dot"/><span ref={ring} className="cursor-ring"/></>
 }

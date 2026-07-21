@@ -8,8 +8,8 @@ function cursorElement() {
   return {
     style: {},
     classList: {
-      add: value => classes.add(value),
-      remove: value => classes.delete(value),
+      add: (...values) => values.forEach(value => classes.add(value)),
+      remove: (...values) => values.forEach(value => classes.delete(value)),
       contains: value => classes.has(value),
     },
   }
@@ -27,13 +27,15 @@ test('positionCursor places the dot and ring at the exact pointer coordinates', 
   assert.equal(ring.classList.contains('is-visible'), true)
 })
 
-test('hideCursor hides both cursor elements', () => {
+test('hideCursor hides both cursor elements and clears hover state', () => {
   const dot = cursorElement()
   const ring = cursorElement()
   positionCursor(dot, ring, 10, 20)
+  ring.classList.add('hover')
 
   hideCursor(dot, ring)
 
   assert.equal(dot.classList.contains('is-visible'), false)
   assert.equal(ring.classList.contains('is-visible'), false)
+  assert.equal(ring.classList.contains('hover'), false)
 })

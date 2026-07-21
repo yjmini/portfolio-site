@@ -9,5 +9,5 @@ export function positionCursor(dot, ring, x, y) {
 
 export function hideCursor(dot, ring) {
   dot?.classList.remove('is-visible')
-  ring?.classList.remove('is-visible')
+  ring?.classList.remove('is-visible', 'hover')
 }
