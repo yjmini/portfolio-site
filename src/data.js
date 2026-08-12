@@ -10,8 +10,31 @@ export const profile = {
 
 export const projects = [
   {
-    slug: 'hydraulic-robot-rl',
+    slug: 'thing-robot-hand',
     index: '01',
+    year: '2026',
+    title: 'THING · 7축 텐던 로봇 손',
+    shortTitle: 'THING Robot Hand',
+    tagline: '사람의 손동작을 안전한 7축 명령과 실험 데이터로 연결',
+    summary: 'MediaPipe Hands가 검출한 21개 손 landmark를 7축 명령으로 변환해 텐던 구동 로봇 손이 실시간으로 모방하고, landmark·명령·모터 상태를 Session ID 단위로 기록하는 ROS2 시스템을 팀으로 개발했습니다.',
+    image: 'assets/projects/thing-highlights.webp',
+    printImage: 'assets/projects/thing-overview.jpg',
+    imagePosition: 'center',
+    status: 'SSAFY 팀 프로젝트',
+    featured: true,
+    private: true,
+    stack: ['ROS2 Humble', 'Python', 'C++', 'DYNAMIXEL', 'Jetson Orin Nano', 'Raspberry Pi 5', 'MediaPipe'],
+    metrics: [{ value: '5 Nodes', label: 'control + safety' }, { value: '2,000×', label: 'race test · 0 failures' }],
+    role: 'Command Manager·Command Guard·8상태 Safety Manager·Manual Executor·GPIO E-Stop 구현 및 Motor Driver 통합',
+    period: '2026.07 — 2026.08',
+    problem: '모방·수동·원격 제어 입력이 동시에 들어오거나 통신이 끊기면, 오래되거나 현재 제어권과 맞지 않는 명령이 실제 7축 모터로 전달될 위험이 있었습니다.',
+    decision: '제어권과 lease를 중재하는 Command Manager, timestamp·sequence·범위·변화율을 검사하는 Command Guard, 8상태 전이와 heartbeat·STOP barrier를 담당하는 Safety Manager로 책임을 분리하고 모든 일반 명령이 Motor Driver 전에 fail-closed 검증을 통과하도록 구성했습니다.',
+    result: '5개 제어·안전 노드를 실제 Motor Driver 앞단에 통합하고, 17개 테스트 파일로 상태 전이·timeout·STOP·복구 경계를 검증했습니다. STOP과 제어권 획득이 겹치는 경합 시험 2,000회에서도 실패 0건을 확인했습니다.',
+    highlights: ['5개 ROS2 제어·안전 런타임 노드 직접 구현', 'Manager → Guard → Motor Driver fail-closed 파이프라인', '17개 테스트 파일과 경합 시험 2,000회 실패 0건'],
+  },
+  {
+    slug: 'hydraulic-robot-rl',
+    index: '02',
     year: '2025',
     title: '유압식 고하중 로봇 PPO 제어',
     shortTitle: 'Hydraulic Robot RL',
@@ -33,7 +56,7 @@ export const projects = [
   },
   {
     slug: 'smart-assembly-transport',
-    index: '02',
+    index: '03',
     year: '2026',
     title: '스마트 조립·무인 운송 시스템',
     shortTitle: 'Smart Assembly & Transport',
@@ -55,7 +78,7 @@ export const projects = [
   },
   {
     slug: 'go1-remote-inspection',
-    index: '03',
+    index: '04',
     year: '2025',
     title: 'Unitree Go1 원격 점검 시스템',
     shortTitle: 'Go1 Remote Inspection',
@@ -76,7 +99,7 @@ export const projects = [
   },
   {
     slug: 'hazardous-process-automation',
-    index: '04',
+    index: '05',
     year: '2025',
     title: '고위험 작업 로봇 공정 자동화',
     shortTitle: 'Process Automation',
@@ -97,7 +120,7 @@ export const projects = [
   },
   {
     slug: 'ros2-control-ui',
-    index: '05',
+    index: '06',
     year: '2025',
     title: 'ROS2 고하중 로봇 제어 UI',
     shortTitle: 'ROS2 Control UI',
@@ -117,7 +140,7 @@ export const projects = [
   },
   {
     slug: 'yolov10-ros',
-    index: '06',
+    index: '07',
     year: '2025',
     title: 'YOLOv10 ROS Integration',
     shortTitle: 'YOLOv10 ROS',
@@ -137,7 +160,7 @@ export const projects = [
   },
   {
     slug: 'yolo-head-tracking',
-    index: '07',
+    index: '08',
     year: '2026',
     title: 'YOLO Head Tracking',
     shortTitle: 'Head Tracking',
@@ -157,7 +180,7 @@ export const projects = [
   },
   {
     slug: 'robot-study',
-    index: '08',
+    index: '09',
     year: '2026',
     title: 'Robot Study Lab',
     shortTitle: 'Robot Study',
@@ -177,7 +200,7 @@ export const projects = [
   },
   {
     slug: 'websocket-live-streaming',
-    index: '09',
+    index: '10',
     year: '2026',
     title: 'WebSocket Live Streaming',
     shortTitle: 'Live Streaming',
@@ -196,7 +219,7 @@ export const projects = [
   },
   {
     slug: 'langchain-todo',
-    index: '10',
+    index: '11',
     year: '2026',
     title: 'Natural-language Todo',
     shortTitle: 'LangChain Todo',
@@ -215,7 +238,7 @@ export const projects = [
   },
   {
     slug: 'langgraph-cuso',
-    index: '11',
+    index: '12',
     year: '2026',
     title: 'CuSo Cooking Supporter',
     shortTitle: 'CuSo',
@@ -234,7 +257,7 @@ export const projects = [
   },
   {
     slug: 'early-software-projects',
-    index: '12',
+    index: '13',
     year: '2022—24',
     title: '초기 소프트웨어 프로젝트',
     shortTitle: 'Software Foundations',
@@ -264,7 +287,7 @@ export const experience = [
     location: 'Gwangju · Full-time training',
     current: true,
     summary: 'C/C++, Python, Linux, ROS2와 센서·비전·제어를 실제 장비 및 Mock 환경에서 연결하고 있습니다.',
-    bullets: ['스마트 조립·무인 운송 통합 프로젝트', 'ROS2·Dobot·TurtleBot·Raspberry Pi 실습', '삼성 SW 역량 테스트 A형 취득 · 내부 평가 평균 약 90점'],
+    bullets: ['THING 로봇 손의 Command Manager·Guard·Safety Manager 등 제어·안전 계층 구현', '17개 테스트 파일과 STOP·제어권 경합 2,000회 실패 0건 검증', '삼성 SW 역량 테스트 A형 취득 · 내부 평가 평균 약 90점'],
   },
   {
     period: '2025.06 — 2025.12',

@@ -303,7 +303,7 @@ function HomePage() {
       </div>
     </div></section>
 
-    <section className="section currently"><div className="container current-row"><div><Eyebrow>Currently</Eyebrow><h2>SSAFY Embedded Robotics Track</h2><p>스마트 조립·검사·무인 운송을 하나의 ROS2 시스템으로 통합하고 있습니다.</p></div><CTA to="/work" secondary>전체 경로 보기</CTA></div></section>
+    <section className="section currently"><div className="container current-row"><div><Eyebrow>Recently completed</Eyebrow><h2>THING · 7축 텐던 로봇 손</h2><p>손동작 인식부터 fail-closed 제어·안전 검증, 실제 모터 구동과 데이터 기록까지 하나의 ROS2 시스템으로 통합했습니다.</p></div><CTA to="/projects/thing-robot-hand" secondary>Case study</CTA></div></section>
     <ClosingCTA/>
   </main>
 }
@@ -364,7 +364,7 @@ function AboutPage() {
       <dl className="facts"><div><dt>Based</dt><dd>Gwangju, Korea</dd></div><div><dt>Focus</dt><dd>Robot software</dd></div><div><dt>Languages</dt><dd>Korean / English</dd></div><div><dt>GitHub</dt><dd><Link to={profile.github}>@yjmini</Link></dd></div></dl></aside>
       <article className="about-story"><h1>로봇이 <em>왜 멈췄는지</em><br/>설명할 수 있게 만듭니다.</h1>
         <div className="story"><p>저는 새로운 모델을 붙이는 것보다, 그 모델이 센서 입력과 제어 명령 사이에서 어떻게 동작하는지 끝까지 확인하는 일을 좋아합니다. PPO 정책이 제자리에서 보상을 얻었을 때는 reward 항목을 분리했고, 원격 로봇의 화면이 멈췄을 때는 네트워크부터 ROS topic, 시각화까지 계층별로 좁혔습니다.</p><p>그래서 제 프로젝트에는 늘 실행 흐름이 있습니다. 입력과 출력, 상태 전이, 실패 조건을 먼저 적고 Mock에서 검증한 뒤 실장비로 옮깁니다. <em>기능을 만들었다는 말보다 재현 가능한 확인 절차</em>를 남기는 로봇 소프트웨어 엔지니어가 되고자 합니다.</p></div>
-        <div className="now"><Eyebrow>Now</Eyebrow><ul><li>ROS2 기반 스마트 조립·무인 운송 시스템 고도화</li><li>Isaac Sim/Lab과 휴머노이드 강화학습 학습</li><li>C++/Python 로봇 소프트웨어 역량 강화</li></ul></div>
+        <div className="now"><Eyebrow>Now</Eyebrow><ul><li>THING 로봇 손 제어·안전 계층 통합 경험 정리</li><li>Isaac Sim/Lab과 휴머노이드 강화학습 학습</li><li>C++/Python 로봇 소프트웨어 역량 강화</li></ul></div>
       </article></div>
     <section className="tools-section"><Eyebrow>Tools</Eyebrow><div className="tools-grid">{toolGroups.map(g => <div key={g.name}><h3><span/>{g.name}</h3><div className="tool-chips">{g.tools.map(t => <span key={t}>{t}</span>)}</div></div>)}</div></section>
   </div></main>

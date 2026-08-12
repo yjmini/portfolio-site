@@ -7,6 +7,32 @@ const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
 
 const detailBlueprints = [
   {
+    slug: 'thing-robot-hand',
+    eyebrow: 'ROS2 CONTROL & SAFETY · SSAFY',
+    type: '6인 팀 프로젝트 · 제어·안전 담당',
+    flow: ['21개 손 landmark', '7축 HandCommand', 'Manager·Guard', 'Safety Manager', 'DYNAMIXEL ×7'],
+    contribution: [
+      'Command Manager·Command Guard·8상태 Safety Manager·Manual Executor·GPIO E-Stop의 5개 ROS2 런타임 노드를 직접 구현했습니다.',
+      '모방·수동·원격 입력을 제어권과 lease로 중재하고, timestamp·sequence·범위·변화율·상태 freshness를 검사하는 fail-closed 경계를 만들었습니다.',
+      'STOP barrier, command·E-Stop·MotorStatus heartbeat, reset·torque-off 조건을 Motor Driver와 통합하고 운영 인터페이스를 문서화했습니다.',
+    ],
+    evidence: ['실제 7축 텐던 로봇 손', '17개 테스트 파일', 'STOP 경합 2,000회 실패 0건', '손동작 모방·파지 시연'],
+    troubleshooting: [
+      {
+        title: '제어권 전환 중 이전 명령이 다시 살아날 수 있는 경합',
+        problem: 'STOP과 새 제어권 획득이 겹치면 queue에 남은 이전 명령이나 늦게 도착한 명령이 Motor Driver로 전달될 가능성이 있었습니다.',
+        action: 'mode·owner·lease와 generation을 기준으로 이전 queue를 폐기하고, STOP barrier ACK 전에는 새 실행을 허용하지 않도록 상태 경계를 고정했습니다.',
+        result: 'STOP·제어권 획득 동시성 시험 2,000회에서 실패 0건을 확인했습니다.',
+      },
+      {
+        title: '통신 단절과 비정상 입력을 안전 상태로 수렴시키는 문제',
+        problem: 'stale·future·replay 명령, NaN/Inf, heartbeat 단절을 각 노드가 다르게 처리하면 로봇이 모호한 상태에 남을 수 있었습니다.',
+        action: 'Guard와 Safety Manager의 책임을 분리해 명령 유효성은 차단하고, 상태 freshness와 timeout은 HOLD·SAFE·FAULT·ESTOP 전이 및 torque-off 조건으로 수렴시켰습니다.',
+        result: '정상 명령만 Motor Driver로 전달되고 통신·입력 이상은 fail-closed 상태로 전환되는 통합 경로를 검증했습니다.',
+      },
+    ],
+  },
+  {
     slug: 'hydraulic-robot-rl',
     eyebrow: 'ROBOT INTELLIGENCE · KAERI',
     type: '개인 과제',
@@ -239,7 +265,7 @@ function DetailPage({ project, page }) {
     </header>
 
     <div className="detail-visual">
-      <img src={asset(project.image)} alt={`${project.title} 프로젝트 이미지`} style={{ objectPosition: project.imagePosition || 'center' }} />
+      <img src={asset(project.printImage || project.image)} alt={`${project.title} 프로젝트 이미지`} style={{ objectPosition: project.imagePosition || 'center' }} />
       <div className="visual-caption"><b>{project.index}</b><span>{project.stack.slice(0, 4).join(' / ')}</span></div>
     </div>
 
