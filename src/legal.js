@@ -37,7 +37,28 @@ export const copyrightPolicy = {
       license: 'Apache-2.0',
       source: 'https://github.com/SeMinKong/THING',
       licenseUrl: 'https://github.com/SeMinKong/THING/blob/main/LICENSE',
+      noticeUrl: 'assets/projects/thing/NOTICE.txt',
       note: 'THING 공동 프로젝트 시연 미디어와 제작 이미지는 C103 Team 공동 산출물이며, 프로젝트 저장소의 Apache-2.0 표시와 출처를 함께 제공합니다.',
+    },
+    {
+      project: '스마트 조립·무인 운송 시스템',
+      rightsHolder: '윤정민 및 프로젝트 팀',
+      license: '소스 코드: MIT · 미디어: 권리 유보',
+      source: 'https://github.com/yjmini/smart-assembly-transport',
+      licenseUrl: 'https://github.com/yjmini/smart-assembly-transport/blob/main/LICENSE',
+      noticeUrl: 'assets/projects/smart-assembly/NOTICE.txt',
+      note: '소스 코드는 MIT License로 공개되어 있습니다. 사진·화면 캡처·발표 자료는 팀 공동 산출물이며, 포트폴리오 표시 외 복제·수정·재배포 권한은 별도로 부여하지 않습니다.',
+    },
+  ],
+  assetNotices: [
+    {
+      asset: '경기천년제목',
+      rightsHolder: '경기도',
+      license: '공공누리 제1유형 · 경기도 서체 이용 조건',
+      source: 'https://www.gg.go.kr/contents/contents.do?ciIdx=679&menuId=2457',
+      licenseUrl: 'https://www.kogl.or.kr/info/licenseType1.do',
+      noticeUrl: 'assets/fonts/gyeonggi-title/NOTICE.txt',
+      note: '경기도가 배포한 공식 WOFF를 자체 호스팅합니다. 웹·인쇄·영상·프로그램 탑재에 사용할 수 있으며, 폰트 자체의 판매 또는 유료 양도는 허용되지 않습니다.',
     },
   ],
 }
