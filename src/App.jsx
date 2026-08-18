@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import { awards, certifications, experience, profile, projects, toolGroups } from './data'
 import { hideCursor, positionCursor } from './cursor'
+import { copyrightPolicy } from './legal'
 import PrintPortfolio from './PrintPortfolio'
 
 const publicAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
@@ -12,6 +13,7 @@ const publicAsset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/,
 const routeLabel = {
   '/': 'Home', '/projects': 'Projects', '/work': 'Work', '/about': 'About',
   '/resume': 'Résumé', '/portfolio-pdf': 'PDF Portfolio', '/contact': 'Contact',
+  '/copyright': 'Copyright & Use',
 }
 
 function normalizeHash() {
@@ -331,7 +333,81 @@ function ProjectsPage() {
   </div></main>
 }
 
+function ThingProjectDetail({ project }) {
+  const current = projects.indexOf(project), next = projects[(current + 1) % projects.length]
+  return <main id="main-content" tabIndex="-1" className="detail-page thing-detail page-enter">
+    <div className="container">
+      <Link to="/projects" className="back-link"><ArrowLeft size={15}/> 프로젝트 목록</Link>
+      <header className="thing-hero">
+        <div className="thing-hero-copy">
+          <div className="detail-meta"><b>{project.year}</b><i/>{project.period}<i/>{project.status}</div>
+          <Eyebrow>Human-mimetic hand · control & safety</Eyebrow>
+          <h1>{project.title}</h1>
+          <p className="detail-lead">{project.summary}</p>
+          <div className="detail-links">
+            <CTA to={project.repository.href} secondary external>팀 저장소</CTA>
+            <button type="button" className="source-inline" onClick={() => document.getElementById('thing-demos')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>시연 보기 <ChevronDown size={15}/></button>
+          </div>
+        </div>
+        <figure className="thing-hero-media">
+          <video src={publicAsset(project.heroVideo.src)} poster={publicAsset(project.heroVideo.poster)} controls playsInline preload="metadata" aria-label={project.heroVideo.caption}/>
+          <figcaption><span>{project.heroVideo.label}</span>{project.heroVideo.caption}</figcaption>
+        </figure>
+      </header>
+
+      <dl className="thing-facts" aria-label="THING 핵심 수치">
+        {project.facts.map(fact => <div key={fact.label}><dt>{fact.value}</dt><dd>{fact.label}</dd></div>)}
+      </dl>
+
+      <section className="thing-intro thing-section">
+        <div><Eyebrow>My contribution</Eyebrow><h2>제어권부터 실제 모터 직전까지,<br/>안전 경계를 구현했습니다.</h2></div>
+        <div className="thing-intro-copy">
+          <p>{project.role}</p>
+          <div className="thing-pdr"><article><span>Problem</span><p>{project.problem}</p></article><article><span>Decision</span><p>{project.decision}</p></article><article><span>Result</span><p>{project.result}</p></article></div>
+        </div>
+      </section>
+
+      <section className="thing-section" id="thing-demos">
+        <div className="thing-section-head"><div><Eyebrow>Shared project demos</Eyebrow><h2>명령이 실제 움직임으로<br/>이어지는 장면.</h2></div><p>팀 공동 산출물인 시연 미디어를 C103 Team과 Apache-2.0 출처를 유지해 제공합니다.</p></div>
+        <ol className="thing-demo-grid">
+          {project.demos.map((demo, index) => <li key={demo.title}><figure className="thing-demo-card">
+            <div className="thing-demo-media"><span>{String(index + 1).padStart(2, '0')}</span><video src={publicAsset(demo.src)} poster={publicAsset(demo.poster)} controls playsInline preload="none" aria-label={`${demo.title} 시연 영상`}/></div>
+            <figcaption><small>{demo.meta}</small><h3>{demo.title}</h3><p>{demo.description}</p></figcaption>
+          </figure></li>)}
+        </ol>
+      </section>
+
+      <section className="thing-section">
+        <div className="thing-section-head"><div><Eyebrow>Prototype evidence</Eyebrow><h2>시뮬레이션이 아니라<br/>실제 장치에서 확인했습니다.</h2></div><p>텐던 라우팅이 적용된 통합 로봇 손과 Jetson 기반 landmark 인식 시험 환경입니다.</p></div>
+        <div className="thing-evidence-grid">
+          {project.evidence.map(item => <figure key={item.src}><img src={publicAsset(item.src)} alt={item.alt} loading="lazy" decoding="async"/><figcaption>{item.caption}</figcaption></figure>)}
+        </div>
+      </section>
+
+      <section className="thing-section thing-pipeline-section">
+        <div className="thing-section-head"><div><Eyebrow>Control pipeline</Eyebrow><h2>Perception에서<br/>safe actuation까지.</h2></div><p>Vision 출력은 유지하고, 제어 계층에서 명령의 소유권·유효성·안전 상태를 단계별로 검증했습니다.</p></div>
+        <ol className="thing-pipeline">
+          {project.pipeline.map((step, index) => <li key={step.title}><span>{String(index + 1).padStart(2, '0')}</span><h3>{step.title}</h3><p>{step.description}</p></li>)}
+        </ol>
+      </section>
+
+      <section className="thing-section thing-proof-grid">
+        <article><Eyebrow>Architecture</Eyebrow><h2>책임 경계를<br/>노드로 분리.</h2><ul>{project.architecture.map(item => <li key={item}>{item}</li>)}</ul></article>
+        <article className="thing-verification"><Eyebrow>Verification</Eyebrow><h2>정상 동작보다<br/>실패 경계를 반복 검증.</h2><ul>{project.verification.map(item => <li key={item}>{item}</li>)}</ul></article>
+      </section>
+
+      <aside className="thing-license" aria-label="THING 공동 프로젝트 미디어 출처">
+        <div><span>Shared project material</span><strong>{project.repository.notice} · {project.repository.license}</strong><p>이 페이지의 THING 시연 영상과 제작·시험 이미지는 팀 공동 산출물입니다. 정민님의 제어·안전 담당 범위를 설명하며 팀 출처와 저장소 라이선스를 우선 적용합니다.</p></div>
+        <nav><Link to={project.repository.href}>THING repository <ArrowUpRight size={14}/></Link><Link to={project.repository.licenseHref}>Team license <ArrowUpRight size={14}/></Link><a href={publicAsset('assets/projects/thing/LICENSE.txt')} target="_blank" rel="noreferrer">Apache-2.0 copy <ArrowUpRight size={14}/></a><a href={publicAsset('assets/projects/thing/NOTICE.txt')} target="_blank" rel="noreferrer">Media notice <ArrowUpRight size={14}/></a></nav>
+      </aside>
+
+      <Link to={`/projects/${next.slug}`} className="next-project"><span>Next project</span><strong>{next.title}</strong><ArrowUpRight/></Link>
+    </div>
+  </main>
+}
+
 function ProjectDetail({ project }) {
+  if (project.slug === 'thing-robot-hand') return <ThingProjectDetail project={project}/>
   const current = projects.indexOf(project), next = projects[(current+1)%projects.length]
   return <main id="main-content" tabIndex="-1" className="detail-page page-enter"><div className="container">
     <Link to="/projects" className="back-link"><ArrowLeft size={15}/> 프로젝트 목록</Link>
@@ -409,12 +485,31 @@ function Field({ name, label, error, textarea = false, ...props }) {
   return <label className="field"><span>{label}</span><Tag name={name} rows={textarea ? 5 : undefined} aria-invalid={Boolean(error)} aria-describedby={error ? `${name}-error` : undefined} {...props}/>{error && <small id={`${name}-error`}>{error}</small>}</label>
 }
 
+function CopyrightPage() {
+  return <main id="main-content" tabIndex="-1" className="legal-page page-enter">
+    <div className="container">
+      <header className="legal-hero">
+        <div><Eyebrow>Copyright & use</Eyebrow><h1>저작권과<br/>이용 안내.</h1></div>
+        <div className="legal-summary"><p>{copyrightPolicy.introduction}</p><dl><div><dt>Effective</dt><dd><time dateTime={copyrightPolicy.effectiveDate}>{copyrightPolicy.effectiveLabel}</time></dd></div><div><dt>Contact</dt><dd><Link to={`mailto:${copyrightPolicy.email}`}>{copyrightPolicy.email}</Link></dd></div></dl></div>
+      </header>
+
+      <article className="legal-content" aria-label="포트폴리오 콘텐츠 이용 조건">
+        <section className="legal-section legal-section-allow"><div><span>01</span><h2>허용 범위</h2></div><div><p>별도 표시가 없는 정민님의 글·편집 구성·그래픽·사진·영상은 저작권의 보호를 받습니다.</p><ul>{copyrightPolicy.permissions.map(item => <li key={item}>{item}</li>)}</ul></div></section>
+        <section className="legal-section"><div><span>02</span><h2>사전 허락이 필요한 이용</h2></div><div><p>관련 법령이나 별도 라이선스가 허용하는 경우를 제외하면 아래 이용에는 사전 허락이 필요합니다.</p><ul>{copyrightPolicy.restrictions.map(item => <li key={item}>{item}</li>)}</ul></div></section>
+        <section className="legal-section"><div><span>03</span><h2>별도 라이선스와 공동 권리</h2></div><div><p>{copyrightPolicy.separateLicenses}</p><div className="project-notices">{copyrightPolicy.projectNotices.map(item => <article key={item.project}><strong>{item.project}</strong><span>{item.rightsHolder} · {item.license}</span><p>{item.note}</p><nav><Link to={item.source}>Source <ArrowUpRight size={13}/></Link><Link to={item.licenseUrl}>License <ArrowUpRight size={13}/></Link></nav></article>)}</div></div></section>
+        <section className="legal-section legal-contact"><div><span>04</span><h2>이용 문의</h2></div><div><p>{copyrightPolicy.contact}</p><CTA to={`mailto:${copyrightPolicy.email}`}>이용 문의</CTA></div></section>
+        <section className="legal-english" lang="en"><Eyebrow>English summary</Eyebrow><h2>Usage terms</h2><p>{copyrightPolicy.english}</p><strong>{copyrightPolicy.notice}</strong></section>
+      </article>
+    </div>
+  </main>
+}
+
 function ClosingCTA() {
   return <section className="closing-cta section"><div className="container"><h2>시뮬레이션을 넘어,<br/>실제로 움직이는 로봇까지.</h2><p>제가 맡은 범위와 검증 과정을 더 자세히 이야기해 보겠습니다.</p><CTA to="/contact">연락하기</CTA></div></section>
 }
 
 function Footer() {
-  return <footer><div className="container"><div className="footer-top"><div><Link to="/" className="logo">jeongmin<span>.</span>yoon</Link><p>{profile.location}</p></div><nav aria-label="하단 메뉴"><Link to="/projects">Projects</Link><Link to="/work">Work</Link><Link to="/about">About</Link></nav><div className="footer-social"><Link to={profile.github}>GitHub</Link><Link to={`mailto:${profile.email}`}>Email</Link></div></div><div className="footer-bottom"><span>© {new Date().getFullYear()} Yoon Jeongmin</span><span>Built with React · Deployed on GitHub Pages</span></div></div></footer>
+  return <footer><div className="container"><div className="footer-top"><div><Link to="/" className="logo">jeongmin<span>.</span>yoon</Link><p>{profile.location}</p></div><nav aria-label="하단 메뉴"><Link to="/projects">Projects</Link><Link to="/work">Work</Link><Link to="/about">About</Link><Link to="/copyright">Copyright</Link></nav><div className="footer-social"><Link to={profile.github}>GitHub</Link><Link to={`mailto:${profile.email}`}>Email</Link></div></div><div className="footer-bottom"><span>{copyrightPolicy.notice}</span><span>Built with React · Deployed on GitHub Pages</span></div></div></footer>
 }
 
 function App() {
@@ -433,6 +528,7 @@ function App() {
   else if (route === '/about') page = <AboutPage/>
   else if (route === '/resume') page = <ResumePage/>
   else if (route === '/contact') page = <ContactPage/>
+  else if (route === '/copyright') page = <CopyrightPage/>
   else page = <NotFound/>
   return <><a className="skip-link" href="#main-content">본문으로 건너뛰기</a><Header route={route} onSearch={() => setPaletteOpen(true)}/><CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)}/><CustomCursor/>{page}<Footer/></>
 }
