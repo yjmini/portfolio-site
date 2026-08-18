@@ -461,6 +461,17 @@
   line-height: 1.75;
 }
 
+.legal-section p.attribution-format {
+  margin: 24px 0;
+  padding: 18px 20px;
+  border: 1px solid color-mix(in srgb, var(--ember) 45%, var(--line));
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--ember) 7%, var(--surface));
+  color: var(--bone);
+  font: 500 14px/1.7 "Geist Mono Variable", monospace;
+  overflow-wrap: anywhere;
+}
+
 .legal-section ul {
   margin: 28px 0 0;
   padding: 0;

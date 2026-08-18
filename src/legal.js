@@ -17,9 +17,19 @@ export const copyrightPolicy = {
     '콘텐츠를 데이터셋 구성, 자동 수집 또는 AI 모델 학습에 사용하는 행위',
     '판매·광고·유료 교육·기업 홍보 등 영리 목적으로 사용하는 행위',
   ],
+  automatedAccess: [
+    '사전 허가 없는 크롤링·스크래핑·미러링·대량 다운로드·검색 색인·웹 아카이빙을 허용하지 않습니다.',
+    '포트폴리오 콘텐츠를 검색·추천·생성형 AI·기계학습용 데이터셋 또는 임베딩에 수집하거나 사용하는 행위를 허용하지 않습니다.',
+    'robots.txt, robots meta, TDMRep와 llms.txt는 이러한 권리 유보 의사를 기계 판독 가능한 형태로 표시하며, 이를 우회해도 이용 허가가 부여되지 않습니다.',
+  ],
+  attribution: {
+    required: '별도 사전 서면 허가를 받아 콘텐츠를 인용·재사용하는 경우에도 저작자, 포트폴리오명, 원본 URL을 결과물과 관련 작업물에 명확히 표시해야 합니다.',
+    format: '출처: 윤정민 포트폴리오 — https://yjmini.github.io/portfolio-site/',
+    warning: '출처 표시는 이용 허가를 의미하지 않으며, 출처를 남겼다는 이유만으로 복제·재배포·2차적저작물 작성이 허용되지 않습니다.',
+  },
   separateLicenses: '프로젝트 저장소나 개별 파일에 별도 라이선스 또는 출처가 표시된 경우 해당 조건이 우선합니다. 팀 프로젝트 공동 산출물과 제3자 자료의 권리는 각 팀·원저작자·권리자에게 귀속됩니다.',
   contact: '발표, 기사, 교육 자료, 협업 제안 등 단순 열람을 넘어서는 이용이 필요하면 사용 목적과 범위를 적어 먼저 문의해 주세요.',
-  english: 'Unless otherwise noted, original copy, editorial composition, graphics, photographs, and videos owned by Yoon Jeongmin are protected. Separate project licenses take precedence. Team-project materials and third-party content remain the property of their respective rights holders. Reproduction, modification, redistribution, AI training, and commercial use require prior permission unless applicable law or a separate license allows them.',
+  english: 'Unless otherwise noted, original copy, editorial composition, graphics, photographs, and videos owned by Yoon Jeongmin are protected. Separate project licenses take precedence. Team-project materials and third-party content remain the property of their respective rights holders. Reproduction, modification, redistribution, automated crawling, dataset collection, AI training, and commercial use require prior written permission unless applicable law or a separate license allows them. Authorized reuse must credit Yoon Jeongmin, this portfolio, and the canonical URL; attribution alone does not grant permission.',
   projectNotices: [
     {
       project: 'THING',

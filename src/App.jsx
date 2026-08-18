@@ -4,6 +4,7 @@ import {
   Download, Github, Mail, MapPin, Menu, Search, Send, X,
 } from 'lucide-react'
 import { awards, certifications, experience, profile, projects, toolGroups } from './data'
+import { installCopyAttribution } from './attribution'
 import { hideCursor, positionCursor } from './cursor'
 import { copyrightPolicy } from './legal'
 import PrintPortfolio from './PrintPortfolio'
@@ -496,8 +497,10 @@ function CopyrightPage() {
       <article className="legal-content" aria-label="포트폴리오 콘텐츠 이용 조건">
         <section className="legal-section legal-section-allow"><div><span>01</span><h2>허용 범위</h2></div><div><p>별도 표시가 없는 정민님의 글·편집 구성·그래픽·사진·영상은 저작권의 보호를 받습니다.</p><ul>{copyrightPolicy.permissions.map(item => <li key={item}>{item}</li>)}</ul></div></section>
         <section className="legal-section"><div><span>02</span><h2>사전 허락이 필요한 이용</h2></div><div><p>관련 법령이나 별도 라이선스가 허용하는 경우를 제외하면 아래 이용에는 사전 허락이 필요합니다.</p><ul>{copyrightPolicy.restrictions.map(item => <li key={item}>{item}</li>)}</ul></div></section>
-        <section className="legal-section"><div><span>03</span><h2>별도 라이선스와 공동 권리</h2></div><div><p>{copyrightPolicy.separateLicenses}</p><div className="project-notices">{copyrightPolicy.projectNotices.map(item => <article key={item.project}><strong>{item.project}</strong><span>{item.rightsHolder} · {item.license}</span><p>{item.note}</p><nav><Link to={item.source}>Source <ArrowUpRight size={13}/></Link><Link to={item.licenseUrl}>License <ArrowUpRight size={13}/></Link></nav></article>)}</div></div></section>
-        <section className="legal-section legal-contact"><div><span>04</span><h2>이용 문의</h2></div><div><p>{copyrightPolicy.contact}</p><CTA to={`mailto:${copyrightPolicy.email}`}>이용 문의</CTA></div></section>
+        <section className="legal-section"><div><span>03</span><h2>자동 수집·AI 이용 금지</h2></div><div><p>사람이 직접 열람하는 범위를 넘어선 자동 접근과 데이터 이용에 대한 권리를 명시적으로 유보합니다.</p><ul>{copyrightPolicy.automatedAccess.map(item => <li key={item}>{item}</li>)}</ul></div></section>
+        <section className="legal-section legal-attribution"><div><span>04</span><h2>허가된 이용의 출처 표시</h2></div><div><p>{copyrightPolicy.attribution.required}</p><p className="attribution-format">{copyrightPolicy.attribution.format}</p><p>{copyrightPolicy.attribution.warning}</p></div></section>
+        <section className="legal-section"><div><span>05</span><h2>별도 라이선스와 공동 권리</h2></div><div><p>{copyrightPolicy.separateLicenses}</p><div className="project-notices">{copyrightPolicy.projectNotices.map(item => <article key={item.project}><strong>{item.project}</strong><span>{item.rightsHolder} · {item.license}</span><p>{item.note}</p><nav><Link to={item.source}>Source <ArrowUpRight size={13}/></Link><Link to={item.licenseUrl}>License <ArrowUpRight size={13}/></Link></nav></article>)}</div></div></section>
+        <section className="legal-section legal-contact"><div><span>06</span><h2>이용 문의</h2></div><div><p>{copyrightPolicy.contact}</p><CTA to={`mailto:${copyrightPolicy.email}`}>이용 문의</CTA></div></section>
         <section className="legal-english" lang="en"><Eyebrow>English summary</Eyebrow><h2>Usage terms</h2><p>{copyrightPolicy.english}</p><strong>{copyrightPolicy.notice}</strong></section>
       </article>
     </div>
@@ -514,6 +517,7 @@ function Footer() {
 
 function App() {
   const route = useRoute(), [paletteOpen, setPaletteOpen] = useState(false)
+  useEffect(() => installCopyAttribution(), [])
   useEffect(() => {
     const key = e => { if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); setPaletteOpen(v => !v) } }
     window.addEventListener('keydown', key); return () => window.removeEventListener('keydown', key)
