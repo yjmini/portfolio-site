@@ -11,6 +11,7 @@ const detailBlueprints = [
     eyebrow: 'ROS2 CONTROL & SAFETY · SSAFY',
     type: '6인 팀 프로젝트 · 제어·안전 담당',
     flow: ['21개 손 landmark', '7축 HandCommand', 'Manager·Guard', 'Safety Manager', 'DYNAMIXEL ×7'],
+    emphasis: ['5개 ROS2 런타임 노드', 'fail-closed 경계', 'Motor Driver와 통합'],
     contribution: [
       'Command Manager·Command Guard·8상태 Safety Manager·Manual Executor·GPIO E-Stop의 5개 ROS2 런타임 노드를 직접 구현했습니다.',
       '모방·수동·원격 입력을 제어권과 lease로 중재하고, timestamp·sequence·범위·변화율·상태 freshness를 검사하는 fail-closed 경계를 만들었습니다.',
@@ -37,6 +38,7 @@ const detailBlueprints = [
     eyebrow: 'ROBOT INTELLIGENCE · KAERI',
     type: '개인 과제',
     flow: ['로봇 모델·환경 구성', 'PPO 정책 학습', 'reward·영상 분석', '정책 export 검토', '실로봇 제약 점검'],
+    emphasis: ['observation/action space', '로그와 rollout 영상', '실제 적용 체크 항목'],
     contribution: [
       'Isaac Lab에서 observation/action space와 전진·자세·관절 움직임 reward를 나누어 학습 환경을 구성했습니다.',
       'W&B·TensorBoard 로그와 rollout 영상을 함께 보며 정책이 실제로 어떤 행동으로 보상을 얻는지 확인했습니다.',
@@ -63,6 +65,7 @@ const detailBlueprints = [
     eyebrow: 'ROBOT SYSTEM · GRADUATION PROJECT',
     type: '5인 팀 프로젝트',
     flow: ['RealSense RGB-D', 'RTAB-Map·YOLO', 'Jetson/GCS 연산 분산', 'OpenVPN·ROS', 'RViz 원격 시각화'],
+    emphasis: ['단계별 확인 절차', '파이프라인을 통합', '연산 역할을 나누어'],
     contribution: [
       'OpenVPN 기반 원격 ROS 통신을 구성하고, 네트워크부터 topic과 RViz까지 단계별 확인 절차를 만들었습니다.',
       'RealSense·RTAB-Map의 3D 지도와 YOLOv10 탐지 결과가 원격 GCS에 전달되는 파이프라인을 통합했습니다.',
@@ -89,6 +92,7 @@ const detailBlueprints = [
     eyebrow: 'ROS2 INTEGRATION · SSAFY',
     type: '팀 프로젝트 · 통합 담당',
     flow: ['음성 작업 지시', 'ROS2 FSM', '조립·비전 검사', 'Nav2 무인 배송', 'Django·Vue 관제'],
+    emphasis: ['ROS2 FSM의 상태 전이', '로봇/웹 경계', 'Mock을 먼저 구성'],
     contribution: [
       'STT, 컨베이어, Dobot, YOLO/OpenCV 검사, TurtleBot/Nav2 배송을 ROS2 FSM의 상태 전이로 연결했습니다.',
       'Django API·WebSocket·Vue 관제 화면에서 작업 상태와 로봇 이벤트를 확인하도록 로봇/웹 경계를 설계했습니다.',
@@ -115,6 +119,7 @@ const detailBlueprints = [
     eyebrow: 'ROBOT AUTOMATION · KAERI',
     type: '개인 과제',
     flow: ['수작업 공정 분석', '로봇 동작 분해', '작업물 정렬 조건', 'MoveIt 경로 검토', '가이드 구조 보정'],
+    emphasis: ['로봇 동작 단위', '반복 실행 조건', '제어 코드와 기구 오차'],
     contribution: [
       '반복적이고 위험한 수작업을 접근·정렬·결합·후퇴의 로봇 동작 단위로 분해했습니다.',
       'MoveIt 경로와 end-effector 접근 방향, 작업물 기준 위치를 비교해 반복 실행 조건을 정리했습니다.',
@@ -141,6 +146,7 @@ const detailBlueprints = [
     eyebrow: 'CONTROL SOFTWARE · KAERI',
     type: '개인 과제',
     flow: ['robot_to_ui 수신', '상태 표시', '조작 조건 확인', 'ui_action 발행', '상태 재확인'],
+    emphasis: ['ROS2 상태 구독과 명령 발행', '안전 조작 조건', '실제 상태를 다시 확인'],
     contribution: [
       'PyQt5/Qt Designer 기반 UI에서 ROS2 상태 구독과 명령 발행 흐름을 분석했습니다.',
       'hold·preset·master mode와 로봇 연결 상태에 따라 버튼이 활성화되는 안전 조작 조건을 정리했습니다.',
@@ -180,6 +186,50 @@ function SkillGroup({ name, tools }) {
   return <div className="portfolio-skill-group"><strong>{name}</strong><p>{tools.join(' · ')}</p></div>
 }
 
+function RecognitionList({ items }) {
+  return <ul className="recognition-list">
+    {items.map(([name, meta]) => <li key={`${name}-${meta}`}><b>{name}</b><span>{meta}</span></li>)}
+  </ul>
+}
+
+function EmphasizedText({ text, phrases = [] }) {
+  const matches = phrases
+    .map((phrase) => ({ phrase, start: text.indexOf(phrase) }))
+    .filter(({ start }) => start >= 0)
+    .sort((a, b) => a.start - b.start)
+
+  if (!matches.length) return text
+
+  const parts = []
+  let cursor = 0
+  matches.forEach(({ phrase, start }, index) => {
+    if (start < cursor) return
+    if (start > cursor) parts.push(text.slice(cursor, start))
+    parts.push(<strong className="contribution-highlight" key={`${phrase}-${index}`}>{phrase}</strong>)
+    cursor = start + phrase.length
+  })
+  if (cursor < text.length) parts.push(text.slice(cursor))
+  return parts
+}
+
+function ProjectGallery({ project }) {
+  const gallery = project.printGallery?.length
+    ? project.printGallery
+    : [{ src: project.printImage || project.image, alt: `${project.title} 프로젝트 이미지`, caption: project.title }]
+
+  const galleryCount = Math.min(gallery.length, 5)
+
+  return <div className={`detail-media-gallery media-count-${galleryCount}`}>
+    <div className={`gallery-grid gallery-count-${galleryCount}`}>
+      {gallery.map((media) => <figure key={media.src}>
+        <img src={asset(media.src)} alt={media.alt} />
+        <figcaption>{media.caption}</figcaption>
+      </figure>)}
+    </div>
+    <div className="visual-caption"><b>{project.index}</b><span>{project.stack.slice(0, 4).join(' / ')}</span></div>
+  </div>
+}
+
 function CoverPage() {
   return <section className="portfolio-sheet portfolio-cover" aria-label="프로필, 기술, 경험">
     <div className="cover-mark">ROBOT SOFTWARE<br/>PORTFOLIO / 2026</div>
@@ -208,7 +258,7 @@ function CoverPage() {
       <div>
         <div className="portfolio-section-title"><span>02</span><h3>Experience & Education</h3></div>
         <div className="cover-timeline">
-          {experience.slice(0, 3).map((item) => <article key={item.period}>
+          {experience.map((item) => <article key={item.period}>
             <time>{item.period}</time>
             <h4>{item.role}</h4>
             <p>{item.place}</p>
@@ -218,8 +268,8 @@ function CoverPage() {
       </div>
     </div>
     <div className="cover-recognition">
-      <div><strong>Recognition</strong><p>{awards.map(([name]) => name).join(' · ')}</p></div>
-      <div><strong>Certification</strong><p>{certifications.map(([name]) => name).join(' · ')}</p></div>
+      <div><strong>Recognition</strong><RecognitionList items={awards} /></div>
+      <div><strong>Certification</strong><RecognitionList items={certifications} /></div>
     </div>
     <PageFooter page={1} />
   </section>
@@ -264,10 +314,7 @@ function DetailPage({ project, page }) {
       <div className="detail-meta"><strong>{project.tagline}</strong><span>{project.type}</span><span>{project.period}</span></div>
     </header>
 
-    <div className="detail-visual">
-      <img src={asset(project.printImage || project.image)} alt={`${project.title} 프로젝트 이미지`} style={{ objectPosition: project.imagePosition || 'center' }} />
-      <div className="visual-caption"><b>{project.index}</b><span>{project.stack.slice(0, 4).join(' / ')}</span></div>
-    </div>
+    <ProjectGallery project={project} />
 
     <div className="detail-overview">
       <div><h3>개요</h3><p>{project.summary}</p></div>
@@ -279,8 +326,8 @@ function DetailPage({ project, page }) {
     <div className="detail-body">
       <div>
         <h3>기여한 부분 및 성과</h3>
-        <ul className="contribution-list">{project.contribution.map((item) => <li key={item}>{item}</li>)}</ul>
-        <div className="evidence-box"><strong>검증 근거</strong><p>{project.evidence.join(' · ')}</p></div>
+        <ul className="contribution-list">{project.contribution.map((item) => <li key={item}><EmphasizedText text={item} phrases={project.emphasis} /></li>)}</ul>
+        <div className="evidence-box"><strong>검증 근거</strong><ul>{project.evidence.map((item) => <li key={item}>{item}</li>)}</ul></div>
       </div>
       <div>
         <h3>트러블슈팅 <small>문제 → 조치 → 결과</small></h3>
@@ -293,8 +340,10 @@ function DetailPage({ project, page }) {
       </div>
     </div>
 
-    <div className="detail-stack"><strong>사용 기술</strong>{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
-    {project.links?.[0] && <a className="detail-repo" href={project.links[0].href}><Github size={14}/>{project.links[0].href.replace('https://', '')}<ExternalLink size={12}/></a>}
+    <div className="detail-bottom">
+      <div className="detail-stack"><strong>사용 기술</strong>{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
+      {project.links?.[0] && <a className="detail-repo" href={project.links[0].href}><Github size={14}/>{project.links[0].href.replace('https://', '')}<ExternalLink size={12}/></a>}
+    </div>
     <PageFooter page={page} />
   </section>
 }

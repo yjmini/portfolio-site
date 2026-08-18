@@ -19,6 +19,11 @@ export const projects = [
     summary: 'MediaPipe Hands가 검출한 21개 손 landmark를 7축 명령으로 변환해 텐던 구동 로봇 손이 실시간으로 모방하고, landmark·명령·모터 상태를 Session ID 단위로 기록하는 ROS2 시스템을 팀으로 개발했습니다.',
     image: 'assets/projects/thing-highlights.webp',
     printImage: 'assets/projects/thing-overview.jpg',
+    printGallery: [
+      { src: 'assets/projects/thing-overview.jpg', alt: '텐던 구동 THING 로봇 손 전체 구성', caption: '7축 텐던 로봇 손' },
+      { src: 'assets/projects/thing/integrated-robot-hand.webp', alt: '오렌지색 텐던과 액추에이터가 연결된 로봇 손 통합 시제품', caption: '통합 시제품' },
+      { src: 'assets/projects/thing/jetson-landmarks.webp', alt: 'Jetson에서 MediaPipe Hands가 손의 21개 landmark를 추적하는 화면', caption: '21-landmark 추적' },
+    ],
     imagePosition: 'center',
     status: 'SSAFY 팀 프로젝트',
     featured: true,
@@ -89,6 +94,9 @@ export const projects = [
     tagline: 'Isaac Lab 정책 학습에서 실제 ROS2 적용 제약까지',
     summary: 'Isaac Lab에서 유압식 고하중 로봇의 전진 정책을 학습하고, reward cheating과 자세 불안정을 로그·영상으로 분석했습니다. 정책 export 이후 실제 로봇의 명령 범위, 제어 주기, 유압 응답 지연과 안전 조건까지 연결해 적용 가능성을 검토했습니다.',
     image: 'assets/projects/hydraulic-robot.jpg',
+    printGallery: [
+      { src: 'assets/projects/hydraulic-robot.jpg', alt: '유압식 고하중 로봇 실기체', caption: '유압식 로봇 실기체' },
+    ],
     imagePosition: 'center 18%',
     status: 'KAERI 개인 과제',
     featured: true,
@@ -111,6 +119,13 @@ export const projects = [
     tagline: '음성 작업 지시부터 조립·검사·배송까지 연결한 ROS2 시스템',
     summary: 'STT 작업 지시, ROS2 FSM, 컨베이어, YOLO/OpenCV 검사, Dobot 조립, TurtleBot/Nav2 배송, Django API와 Vue 관제 화면을 하나의 실행 흐름으로 통합했습니다. 실제 장비 없이도 검증할 수 있도록 Mock 우선 구조와 단계별 테스트를 함께 설계했습니다.',
     image: 'assets/projects/smart-assembly.svg',
+    printGallery: [
+      { src: 'assets/projects/smart-assembly/assembly-cell.webp', alt: 'Dobot과 컨베이어가 배치된 스마트 조립 셀 전체', caption: 'Dobot·컨베이어 조립 셀' },
+      { src: 'assets/projects/smart-assembly/vision-inspection.webp', alt: 'YOLO와 RealSense를 이용한 부품 비전 검사 결과', caption: 'YOLO·RealSense 검사' },
+      { src: 'assets/projects/smart-assembly/conveyor-hardware.webp', alt: 'Raspberry Pi로 제어한 실제 컨베이어 장치', caption: '컨베이어 실장비' },
+      { src: 'assets/projects/smart-assembly/turtlebot-hardware.webp', alt: 'TurtleBot 하부 구동 및 센서 구조', caption: 'TurtleBot 배송 장치' },
+      { src: 'assets/projects/smart-assembly/control-dashboard.webp', alt: 'Vue와 Django 기반 스마트 조립 통합 관제 대시보드', caption: '통합 관제 대시보드' },
+    ],
     imagePosition: 'center',
     status: 'Actively maintained',
     featured: true,
@@ -133,6 +148,10 @@ export const projects = [
     tagline: 'RGB-D SLAM·객체 인식·원격 ROS 통신을 하나의 현장 흐름으로',
     summary: 'Jetson Orin NX와 RealSense, RTAB-Map, YOLOv10, OpenVPN을 연결해 접근 제한 환경의 원격 점검 로봇을 구현했습니다. 온보드와 GCS의 연산을 나누고 RViz에서 3D 지도와 탐지 결과를 확인할 수 있게 구성했습니다.',
     image: 'assets/projects/go1-remote.png',
+    printGallery: [
+      { src: 'assets/projects/go1-remote.png', alt: 'Unitree Go1 실기체와 원격 GCS의 3D 지도 화면', caption: '실기체·GCS 통합' },
+      { src: 'assets/projects/go1-demo.jpg', alt: '원격 조종 화면과 3D SLAM 결과를 함께 표시한 데모', caption: '원격 주행·SLAM' },
+    ],
     imagePosition: 'center',
     status: '2× 우수상',
     featured: true,
@@ -154,6 +173,9 @@ export const projects = [
     tagline: '제어 코드만이 아니라 작업물 정렬과 전용 가이드까지 함께 설계',
     summary: '반복적이고 위험한 수작업을 로봇 공정으로 전환하기 위해 작업을 동작 단위로 분해하고, MoveIt 경로·작업물 기준 위치·전용 가이드 구조를 함께 검토했습니다.',
     image: 'assets/projects/process-automation.png',
+    printGallery: [
+      { src: 'assets/projects/process-automation.png', alt: '고위험 작업 자동화를 검토한 로봇 실기체', caption: '자동화 대상 로봇' },
+    ],
     imagePosition: 'center',
     status: 'KAERI 개인 과제',
     featured: true,
@@ -175,6 +197,10 @@ export const projects = [
     tagline: '상태 구독과 명령 발행을 분리한 안전 중심 제어 화면',
     summary: 'PyQt5/Qt Designer로 고하중 로봇의 상태 모니터링과 명령 발행 흐름을 분석하고, hold·preset·master mode 조건에 따라 버튼이 활성화되도록 제어 로직을 정리했습니다.',
     image: 'assets/projects/robot-ui.png',
+    printGallery: [
+      { src: 'assets/projects/robot-ui.png', alt: 'ROS2 고하중 로봇 상태 중심 제어 화면', caption: '상태 기반 제어 화면' },
+      { src: 'assets/projects/ui-demo.jpg', alt: 'ROS2 고하중 로봇 제어 UI의 설정 dialog', caption: '설정·명령 입력' },
+    ],
     imagePosition: 'center',
     status: 'KAERI 개인 과제',
     stack: ['ROS2 Humble', 'rclpy', 'Python', 'PyQt5', 'Qt Designer'],
@@ -371,6 +397,7 @@ export const toolGroups = [
 ]
 
 export const awards = [
+  ['삼성 청년 SW 아카데미 공통 프로젝트 우수상(1등)', 'SSAFY · 2026'],
   ['AI Festa 경진대회 우수상', 'KOREATECH · 2025'],
   ['졸업연구작품 우수상', 'KOREATECH · 2025'],
   ['충청권 AI 전문가 멘토링 최우수상', 'DICIA · 2022'],
