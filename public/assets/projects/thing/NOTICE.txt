@@ -1,0 +1,28 @@
+THING project media attribution and modification notice
+
+Original work
+- Project: THING — Tendon-driven robot Hand with Intelligent Neural Grasp
+- Source repository: https://github.com/SeMinKong/THING
+- Rights holder: Copyright 2026 C103 Team
+- Repository license notice: Apache License 2.0
+- Repository license source: https://github.com/SeMinKong/THING/blob/main/LICENSE
+- Full Apache-2.0 text distributed with this portfolio: ./LICENSE.txt
+
+Upstream source mapping
+- live-mimic.mp4 <- media/videos/모방시연.mp4
+- motion-range.mp4 <- media/videos/최종시연.mp4
+- finger-wave.mp4 <- media/videos/파도타기.mp4
+- can-grasp.mp4 <- media/videos/모방캔파지.mp4
+- soft-grasp.mp4 <- media/videos/파지말랑이.mp4
+- integrated-robot-hand.webp <- docs/daily-reports/2026-07-31/images/integrated-robot-hand.jpg
+- jetson-landmarks.webp <- docs/daily-reports/2026-07-28/images/jetson-mediapipe-hands-test.jpg
+
+Modifications for this portfolio
+Prepared for Yoon Jeongmin's portfolio on 2026-08-18 directly from the C103 Team repository originals:
+- Videos were re-encoded to H.264, yuv420p, maximum width 720 px, CRF 27, with faststart enabled.
+- Audio tracks were removed for silent web demonstrations.
+- WebP poster frames were newly extracted at approximately one second from each re-encoded video.
+- Source JPEG photographs were resized to a maximum width of 1600 px and converted to WebP quality 84.
+- File names were changed to concise English web paths.
+
+The media remain shared C103 Team project materials. These derivatives are displayed only to document Yoon Jeongmin's own control and safety contribution. The C103 Team attribution and repository license take precedence over the portfolio site's general copyright terms.

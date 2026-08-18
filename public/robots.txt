@@ -1,0 +1,32 @@
+# Yoon Jeongmin Portfolio crawler policy
+# Normal search engines may index this recruiting portfolio.
+User-agent: *
+Allow: /
+
+# AI training and large-scale dataset crawlers are not permitted.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: Meta-ExternalAgent
+Disallow: /
+
+User-agent: cohere-ai
+Disallow: /
+
+# Rights and usage terms:
+# https://yjmini.github.io/portfolio-site/#/copyright

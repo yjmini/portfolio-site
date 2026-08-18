@@ -1,0 +1,20 @@
+YOON JEONGMIN PORTFOLIO — COPYRIGHT AND SOURCE NOTICE
+
+© 2026 Yoon Jeongmin. All rights reserved except where a separate license applies.
+
+Canonical source
+출처: 윤정민 포트폴리오 — https://yjmini.github.io/portfolio-site/
+
+The original writing, editorial arrangement, visual design, graphics, photographs, videos, and portfolio-specific presentation owned by Yoon Jeongmin may not be copied, republished, mirrored, redistributed, modified, used for AI or machine-learning datasets, or used commercially without prior written permission.
+
+Normal human viewing and sharing the canonical URL without reproducing the content are permitted. When reuse is separately authorized in writing, the author, portfolio name, and canonical URL above must remain clearly visible in the resulting work and related materials. Attribution alone does not grant permission.
+
+Automated access
+Rights for text and data mining are expressly reserved. AI-training, dataset, scraping, mirroring, archiving, and bulk-download agents are not authorized unless written permission or a separate license applies.
+
+Separate rights
+Team-project and third-party materials remain the property of their respective rights holders. THING project media is a C103 Team shared work; its upstream repository and Apache-2.0 notice take precedence for those materials:
+https://github.com/SeMinKong/THING
+
+Full terms and contact
+https://yjmini.github.io/portfolio-site/#/copyright

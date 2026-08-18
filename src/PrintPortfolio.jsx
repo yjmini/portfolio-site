@@ -16,13 +16,13 @@ const detailBlueprints = [
       '모방·수동·원격 입력을 제어권과 lease로 중재하고, timestamp·sequence·범위·변화율·상태 freshness를 검사하는 fail-closed 경계를 만들었습니다.',
       'STOP barrier, command·E-Stop·MotorStatus heartbeat, reset·torque-off 조건을 Motor Driver와 통합하고 운영 인터페이스를 문서화했습니다.',
     ],
-    evidence: ['실제 7축 텐던 로봇 손', '17개 테스트 파일', 'STOP 경합 2,000회 실패 0건', '손동작 모방·파지 시연'],
+    evidence: ['실제 7축 텐던 로봇 손', '공개 제어 테스트 16개', 'STOP·제어권 경합 경로 검증', '손동작 모방·파지 시연'],
     troubleshooting: [
       {
         title: '제어권 전환 중 이전 명령이 다시 살아날 수 있는 경합',
         problem: 'STOP과 새 제어권 획득이 겹치면 queue에 남은 이전 명령이나 늦게 도착한 명령이 Motor Driver로 전달될 가능성이 있었습니다.',
         action: 'mode·owner·lease와 generation을 기준으로 이전 queue를 폐기하고, STOP barrier ACK 전에는 새 실행을 허용하지 않도록 상태 경계를 고정했습니다.',
-        result: 'STOP·제어권 획득 동시성 시험 2,000회에서 실패 0건을 확인했습니다.',
+        result: 'STOP·제어권 획득 동시성 경로를 통합 테스트로 반복 검증했습니다.',
       },
       {
         title: '통신 단절과 비정상 입력을 안전 상태로 수렴시키는 문제',

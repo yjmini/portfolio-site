@@ -1,0 +1,15 @@
+# Yoon Jeongmin Portfolio — AI and automated-use policy
+
+Canonical site: https://yjmini.github.io/portfolio-site/
+Rights and contact: https://yjmini.github.io/portfolio-site/#/copyright
+
+Do not crawl, scrape, index, archive, mirror, bulk-download, embed, or use this site's original content for AI training, machine learning, retrieval datasets, or generated derivatives without prior written permission from Yoon Jeongmin.
+
+Normal human viewing and ordinary search-engine discovery are permitted. Sharing the canonical page URL without reproducing its content is permitted.
+
+If reuse is separately authorized in writing, retain this credit in the resulting work and related materials:
+Source: Yoon Jeongmin Portfolio — https://yjmini.github.io/portfolio-site/
+
+Attribution does not grant permission. A source citation by itself does not authorize copying, modification, redistribution, model training, or commercial use.
+
+Separate licenses and third-party rights take precedence. THING team-project media remains attributed to C103 Team and the upstream Apache-2.0 project notice.
