@@ -527,7 +527,7 @@ function ClosingCTA() {
 }
 
 function Footer() {
-  return <footer><div className="container"><div className="footer-top"><div><Link to="/" className="logo">jeongmin<span>.</span>yoon</Link><p>{profile.location}</p></div><nav aria-label="하단 메뉴"><Link to="/projects">Projects</Link><Link to="/work">Work</Link><Link to="/about">About</Link><Link to="/copyright">Copyright</Link></nav><div className="footer-social"><Link to={profile.github}>GitHub</Link><Link to={`mailto:${profile.email}`}>Email</Link></div></div><div className="footer-bottom"><span>{copyrightPolicy.notice}</span><span>Built with React · Deployed on GitHub Pages</span></div></div></footer>
+  return <footer className="site-footer"><div className="container"><div className="footer-top"><div><Link to="/" className="logo">jeongmin<span>.</span>yoon</Link><p>{profile.location}</p></div><nav aria-label="하단 메뉴"><Link to="/projects">Projects</Link><Link to="/work">Work</Link><Link to="/about">About</Link><Link to="/copyright">Copyright</Link></nav><div className="footer-social"><Link to={profile.github}>GitHub</Link><Link to={`mailto:${profile.email}`}>Email</Link></div></div><div className="footer-bottom"><span>{copyrightPolicy.notice}</span><span>Built with React · Deployed on GitHub Pages</span></div></div></footer>
 }
 
 function App() {

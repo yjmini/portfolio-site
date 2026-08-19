@@ -397,7 +397,7 @@ export const toolGroups = [
 ]
 
 export const awards = [
-  ['삼성 청년 SW 아카데미 공통 프로젝트 우수상(1등)', 'SSAFY · 2026'],
+  ['삼성 청년 SW 아카데미 공통 프로젝트 우수상(1등)', 'Samsung · 2026'],
   ['AI Festa 경진대회 우수상', 'KOREATECH · 2025'],
   ['졸업연구작품 우수상', 'KOREATECH · 2025'],
   ['충청권 AI 전문가 멘토링 최우수상', 'DICIA · 2022'],
