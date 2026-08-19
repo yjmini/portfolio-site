@@ -406,6 +406,7 @@ export const awards = [
 export const certifications = [
   ['정보처리기사', '2026'],
   ['Samsung SW Competency A', '2026'],
+  ['TOEIC Speaking', 'IH'],
   ['SQLD', '2023'],
   ['ADsP', '2023'],
 ]
