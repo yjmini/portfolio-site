@@ -16,6 +16,13 @@ test('recognition and certification render as structured lists', () => {
   assert.doesNotMatch(printSource, /experience\.slice\(/u)
 })
 
+test('TOEIC Speaking IH is included in the shared certifications data', () => {
+  assert.deepEqual(
+    certifications.find(([name]) => name === 'TOEIC Speaking'),
+    ['TOEIC Speaking', 'IH'],
+  )
+})
+
 test('print portfolio uses uncropped multi-image project galleries', () => {
   const thing = projects.find((project) => project.slug === 'thing-robot-hand')
   const smartAssembly = projects.find((project) => project.slug === 'smart-assembly-transport')
