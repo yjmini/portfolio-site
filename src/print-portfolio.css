@@ -23,29 +23,29 @@
 .portfolio-kicker{margin:0;color:var(--rust);font:750 8pt "Geist Mono Variable",monospace;letter-spacing:.18em;text-transform:uppercase}
 
 /* Cover */
-.portfolio-cover{padding-top:18mm}
+.portfolio-cover{padding-top:18mm;padding-bottom:20mm}
 .cover-mark{position:absolute;right:15mm;top:15mm;color:#7a817f;text-align:right;font:600 7pt/1.45 "Geist Mono Variable",monospace;letter-spacing:.12em}
-.cover-header{display:grid;grid-template-columns:34mm 1fr;gap:9mm;align-items:center;padding-bottom:7mm;border-bottom:.45mm solid var(--ink)}
+.cover-header{display:grid;grid-template-columns:34mm 1fr;gap:9mm;align-items:center;padding-bottom:6mm;border-bottom:.45mm solid var(--ink)}
 .cover-header img{width:34mm;height:37mm;padding:1mm;object-fit:contain;object-position:center;border:.25mm solid var(--line);border-radius:2mm;background:#fff;filter:saturate(.88) contrast(1.02)}
 .cover-header h1{margin:2.5mm 0 0;font:760 29pt/.95 "Geist Variable",sans-serif;letter-spacing:-.04em}
 .cover-header h1 small{display:block;margin-top:2.2mm;color:#6b747b;font:600 8.5pt "Geist Mono Variable",monospace;letter-spacing:.12em;text-transform:uppercase}
 .cover-header h2{max-width:112mm;margin:4mm 0 0;font:680 16pt/1.25 "Geist Variable",sans-serif;letter-spacing:-.025em}
-.cover-summary{max-width:171mm;margin:6mm 0 0;color:var(--ink-soft);font-size:11pt;line-height:1.68}
+.cover-summary{max-width:171mm;margin:5mm 0 0;color:var(--ink-soft);font-size:11pt;line-height:1.68}
 .cover-summary b{color:var(--rust);font-weight:700}
-.cover-contact{display:flex;align-items:center;gap:6mm;margin-top:4mm;padding:3mm 0;border-top:.25mm solid var(--line);border-bottom:.25mm solid var(--line);color:#53606a;font:600 8.4pt "Geist Mono Variable",monospace}
+.cover-contact{display:flex;align-items:center;gap:6mm;margin-top:3mm;padding:2.5mm 0;border-top:.25mm solid var(--line);border-bottom:.25mm solid var(--line);color:#53606a;font:600 8.4pt "Geist Mono Variable",monospace}
 .cover-contact span,.cover-contact a{display:inline-flex;align-items:center;gap:1.7mm}
 .cover-contact a{color:var(--blue)}
-.cover-columns{display:grid;grid-template-columns:.86fr 1.14fr;gap:9mm;margin-top:7mm}
-.portfolio-section-title{display:flex;align-items:baseline;gap:3mm;margin-bottom:4mm}
+.cover-columns{display:grid;grid-template-columns:.86fr 1.14fr;gap:9mm;margin-top:3.5mm}
+.portfolio-section-title{display:flex;align-items:baseline;gap:3mm;margin-bottom:3.5mm}
 .portfolio-section-title span{color:var(--rust);font:700 8pt "Geist Mono Variable",monospace}
 .portfolio-section-title h3{margin:0;font:720 14pt "Geist Variable",sans-serif;letter-spacing:-.02em}
-.portfolio-skill-list{display:grid;gap:4mm}
+.portfolio-skill-list{display:grid;gap:3.5mm}
 .portfolio-skill-group{padding-bottom:3mm;border-bottom:.25mm solid var(--line)}
 .portfolio-skill-group:last-child{border-bottom:0}
 .portfolio-skill-group strong{display:block;color:var(--blue);font:750 8.2pt "Geist Mono Variable",monospace;text-transform:uppercase;letter-spacing:.07em}
 .portfolio-skill-group p{margin:1.3mm 0 0;color:var(--ink-soft);font-size:9.2pt;line-height:1.55}
 .cover-timeline{position:relative;padding-left:5mm;border-left:.3mm solid var(--line)}
-.cover-timeline article{position:relative;padding:0 0 4.5mm}
+.cover-timeline article{position:relative;padding:0 0 3.2mm}
 .cover-timeline article:last-child{padding-bottom:0}
 .cover-timeline article::before{content:"";position:absolute;left:-6.05mm;top:1.2mm;width:1.8mm;height:1.8mm;border:.5mm solid var(--paper);border-radius:50%;background:var(--rust);box-shadow:0 0 0 .25mm var(--rust)}
 .cover-timeline time{color:var(--rust);font:700 7.5pt "Geist Mono Variable",monospace}
@@ -54,7 +54,7 @@
 .cover-timeline ul{margin:0;padding:0;list-style:none}
 .cover-timeline li{position:relative;margin:.8mm 0;padding-left:3mm;color:var(--ink-soft);font-size:8.35pt;line-height:1.45}
 .cover-timeline li::before{content:"—";position:absolute;left:0;color:var(--rust)}
-.cover-recognition{display:grid;grid-template-columns:1.12fr .88fr;gap:8mm;margin-top:5mm;padding:3.5mm 0 0;border-top:.45mm solid var(--ink)}
+.cover-recognition{display:grid;grid-template-columns:1.12fr .88fr;gap:8mm;margin-top:4mm;padding:2.5mm 0 0;border-top:.45mm solid var(--ink)}
 .cover-recognition strong{color:var(--rust);font:750 8pt "Geist Mono Variable",monospace;text-transform:uppercase;letter-spacing:.09em}
 .recognition-list{display:grid;gap:1.5mm;margin:2mm 0 0;padding:0;list-style:none}
 .recognition-list li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3mm;align-items:baseline;padding-bottom:1.2mm;border-bottom:.2mm solid var(--line)}
