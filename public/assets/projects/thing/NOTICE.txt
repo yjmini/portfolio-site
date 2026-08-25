@@ -2,10 +2,10 @@ THING project media attribution and modification notice
 
 Original work
 - Project: THING — Tendon-driven robot Hand with Intelligent Neural Grasp
-- Source repository: https://github.com/SeMinKong/THING
+- Source repository: https://github.com/yjmini/THING
 - Rights holder: Copyright 2026 C103 Team
 - Repository license notice: Apache License 2.0
-- Repository license source: https://github.com/SeMinKong/THING/blob/main/LICENSE
+- Repository license source: https://github.com/yjmini/THING/blob/main/LICENSE
 - Full Apache-2.0 text distributed with this portfolio: ./LICENSE.txt
 
 Upstream source mapping

@@ -36,10 +36,10 @@ export const projects = [
     decision: '제어권과 lease를 중재하는 Command Manager, timestamp·sequence·범위·변화율을 검사하는 Command Guard, 8상태 전이와 heartbeat·STOP barrier를 담당하는 Safety Manager로 책임을 분리하고 모든 일반 명령이 Motor Driver 전에 fail-closed 검증을 통과하도록 구성했습니다.',
     result: '5개 제어·안전 노드를 실제 Motor Driver 앞단에 통합하고, 공개 저장소의 thing_control 테스트 파일 16개로 상태 전이·timeout·STOP·복구 경계를 검증했습니다. STOP과 제어권 획득이 겹치는 경합 경로도 통합 테스트로 확인했습니다.',
     highlights: ['5개 ROS2 제어·안전 런타임 노드 직접 구현', 'Manager → Guard → Motor Driver fail-closed 파이프라인', '공개 제어 테스트 16개와 STOP·제어권 경합 경로 검증'],
-    links: [{ label: 'THING Team Repository', href: 'https://github.com/SeMinKong/THING' }],
+    links: [{ label: 'THING Repository', href: 'https://github.com/yjmini/THING' }],
     repository: {
-      href: 'https://github.com/SeMinKong/THING',
-      licenseHref: 'https://github.com/SeMinKong/THING/blob/main/LICENSE',
+      href: 'https://github.com/yjmini/THING',
+      licenseHref: 'https://github.com/yjmini/THING/blob/main/LICENSE',
       license: 'Apache-2.0',
       notice: '© 2026 C103 Team',
     },

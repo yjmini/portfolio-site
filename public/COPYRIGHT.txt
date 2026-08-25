@@ -14,7 +14,7 @@ Rights for text and data mining are expressly reserved. AI-training, dataset, sc
 
 Separate rights
 Team-project and third-party materials remain the property of their respective rights holders. THING project media is a C103 Team shared work; its upstream repository and Apache-2.0 notice take precedence for those materials:
-https://github.com/SeMinKong/THING
+https://github.com/yjmini/THING
 
 Full terms and contact
 https://yjmini.github.io/portfolio-site/#/copyright

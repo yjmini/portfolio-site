@@ -21,7 +21,8 @@ test('copyright policy attributes THING team media and its Apache license', () =
   assert.ok(thing)
   assert.equal(thing.rightsHolder, 'C103 Team')
   assert.equal(thing.license, 'Apache-2.0')
-  assert.equal(thing.source, 'https://github.com/SeMinKong/THING')
+  assert.equal(thing.source, 'https://github.com/yjmini/THING')
+  assert.equal(thing.licenseUrl, 'https://github.com/yjmini/THING/blob/main/LICENSE')
 })
 
 test('copyright policy separates Smart Assembly source-code and team-media rights', () => {
@@ -37,17 +38,18 @@ test('copyright policy separates Smart Assembly source-code and team-media right
   assert.match(notice, /EXIF.*GPS.*제거/u)
 })
 
-test('copyright policy links the official GyeonggiTitle notice publicly', () => {
-  const font = copyrightPolicy.assetNotices.find((item) => item.asset === '경기천년제목')
-  const notice = readFileSync(new URL(`../public/${font.noticeUrl}`, import.meta.url), 'utf8')
-
+test('copyright policy links the official Nanum Gothic notice and OFL text publicly', () => {
+  const font = copyrightPolicy.assetNotices.find((item) => item.asset === 'Nanum Gothic')
   assert.ok(font)
-  assert.equal(font.rightsHolder, '경기도')
-  assert.match(font.license, /공공누리 제1유형/u)
-  assert.match(font.noticeUrl, /gyeonggi-title\/NOTICE\.txt$/u)
-  assert.match(notice, /제작·배포: 경기도청/u)
-  assert.match(notice, /공공누리 제1유형/u)
-  assert.match(notice, /판매하거나 유료로 양도.*허용되지 않/u)
+  const notice = readFileSync(new URL(`../public/${font.noticeUrl}`, import.meta.url), 'utf8')
+  const license = readFileSync(new URL('../public/assets/fonts/nanum-gothic/LICENSE.txt', import.meta.url), 'utf8')
+
+  assert.equal(font.rightsHolder, 'NAVER Corporation')
+  assert.equal(font.license, 'SIL Open Font License 1.1')
+  assert.equal(font.source, 'https://hangeul.naver.com/font')
+  assert.match(font.noticeUrl, /^assets\/fonts\/nanum-gothic\/NOTICE\.txt$/u)
+  assert.match(notice, /NAVER.*Nanum Gothic/u)
+  assert.match(license, /SIL OPEN FONT LICENSE Version 1\.1/u)
 })
 
 test('technology icons expose bundled licenses and a pinned Hermes Agent source', () => {
@@ -73,7 +75,7 @@ test('copyright UI renders every project and asset notice with a base-safe publi
     assert.doesNotThrow(() => readFileSync(new URL(`../public/${item.noticeUrl}`, import.meta.url), 'utf8'))
   }
   assert.equal(resolvePublicAsset('./', '/assets/projects/smart-assembly/NOTICE.txt'), './assets/projects/smart-assembly/NOTICE.txt')
-  assert.equal(resolvePublicAsset('/portfolio-site/', 'assets/fonts/gyeonggi-title/NOTICE.txt'), '/portfolio-site/assets/fonts/gyeonggi-title/NOTICE.txt')
+  assert.equal(resolvePublicAsset('/portfolio-site/', 'assets/fonts/nanum-gothic/NOTICE.txt'), '/portfolio-site/assets/fonts/nanum-gothic/NOTICE.txt')
   assert.match(appSource, /\.\.\.copyrightPolicy\.projectNotices, \.\.\.copyrightPolicy\.assetNotices/u)
   assert.match(appSource, /href=\{publicAsset\(item\.noticeUrl\)\}/u)
 })

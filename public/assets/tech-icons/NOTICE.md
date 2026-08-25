@@ -2,7 +2,7 @@
 
 ## Simple Icons
 
-The SVG brand icons in this directory, except `hermes-agent.svg`, are from Simple Icons 16.28.0.
+The SVG brand icons in this directory, except `hermes-agent.svg`, are from Simple Icons 16.28.0. Each SVG uses the corresponding brand HEX published in the same Simple Icons metadata; `django.svg` and `vuedotjs.svg` are included for the web stack cards.
 
 - Official project: https://simpleicons.org/
 - Official repository: https://github.com/simple-icons/simple-icons

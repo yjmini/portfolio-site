@@ -1,61 +1,61 @@
 @page{size:A4 portrait;margin:0}
 
-.print-portfolio-active{background:#eef0f1;color:#17202a;color-scheme:light;overflow-x:auto}
-.print-portfolio-active #root{background:#eef0f1;color:#17202a;min-width:210mm}
-.print-portfolio-page{--paper:#fffdf8;--paper-2:#f5f1e8;--ink:#17202a;--ink-soft:#46525e;--line:#d8d5cc;--rust:#b94f2d;--rust-soft:#f4e2d8;--blue:#36566f;min-height:100vh;background:#eef0f1;color:var(--ink);font-family:"GyeonggiTitle","Noto Sans KR","Apple SD Gothic Neo",sans-serif;font-size:12pt;line-height:1.45;word-break:keep-all;-webkit-font-smoothing:antialiased}
+.print-portfolio-active{background:#e9eeea;color:#17231c;color-scheme:light;overflow-x:auto}
+.print-portfolio-active #root{background:#e9eeea;color:#17231c;min-width:210mm}
+.print-portfolio-page{--paper:#fafbf9;--paper-2:#eef3ef;--ink:#17231c;--ink-soft:#4b5c52;--line:#ccd8d0;--rust:#5f8068;--rust-soft:#e1e9e3;--blue:#315c43;min-height:100vh;background:#e9eeea;color:var(--ink);font-family:"NanumGothic","Noto Sans KR","Apple SD Gothic Neo",sans-serif;font-size:12pt;line-height:1.45;word-break:keep-all;-webkit-font-smoothing:antialiased}
 .print-portfolio-page *{box-sizing:border-box}
 .print-portfolio-page a{color:inherit;text-decoration:none}
 
 .portfolio-toolbar{position:sticky;top:0;z-index:20;width:min(100%,980px);min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin:0 auto 24px;padding:10px 18px;border:1px solid #d7dbde;border-top:0;border-radius:0 0 12px 12px;background:rgba(255,255,255,.94);box-shadow:0 12px 35px rgba(23,32,42,.08);backdrop-filter:blur(14px)}
-.portfolio-toolbar>a,.portfolio-toolbar button{min-height:42px;display:inline-flex;align-items:center;gap:8px;border-radius:7px;font:700 10.5pt "Geist Mono Variable",monospace}
+.portfolio-toolbar>a,.portfolio-toolbar button{min-height:42px;display:inline-flex;align-items:center;gap:8px;border-radius:7px;font:700 10.5pt "NanumGothic",sans-serif}
 .portfolio-toolbar>a{padding:0 8px;color:#58636c}
-.portfolio-toolbar>a:hover{color:#17202a}
-.portfolio-toolbar button{border:0;background:#17202a;color:#fff;padding:0 17px;cursor:pointer;box-shadow:0 7px 18px rgba(23,32,42,.16)}
-.portfolio-toolbar button:hover{background:#b94f2d}
+.portfolio-toolbar>a:hover{color:#17231c}
+.portfolio-toolbar button{border:0;background:#17231c;color:#fff;padding:0 17px;cursor:pointer;box-shadow:0 7px 18px rgba(23,32,42,.16)}
+.portfolio-toolbar button:hover{background:#5f8068}
 .print-guidance{display:flex;align-items:center;gap:12px;color:#5d6870}
-.print-guidance strong{color:#17202a;font:700 10pt "Geist Mono Variable",monospace}
+.print-guidance strong{color:#17231c;font:700 10pt "NanumGothic",sans-serif}
 .print-guidance span{font-size:10pt}
 
 .portfolio-document{width:210mm;margin:0 auto 34px}
 .portfolio-sheet{position:relative;width:210mm;height:297mm;margin:0 0 12mm;padding:14mm 15mm 14mm;overflow:hidden;background:var(--paper);box-shadow:0 18px 55px rgba(23,32,42,.12);break-after:page;page-break-after:always}
 .portfolio-sheet:last-child{break-after:auto;page-break-after:auto}
-.portfolio-page-footer{position:absolute;left:15mm;right:15mm;bottom:7mm;display:flex;justify-content:space-between;margin:0;padding:2.5mm 0 0!important;border:.25mm solid transparent;border-top-color:var(--line);color:#7b8388;font:500 7.5pt "Geist Mono Variable",monospace;letter-spacing:.05em}
-.portfolio-kicker{margin:0;color:var(--rust);font:750 8pt "Geist Mono Variable",monospace;letter-spacing:.18em;text-transform:uppercase}
+.portfolio-page-footer{position:absolute;left:15mm;right:15mm;bottom:7mm;display:flex;justify-content:space-between;margin:0;padding:2.5mm 0 0!important;border:.25mm solid transparent;border-top-color:var(--line);color:#7b8388;font:500 7.5pt "NanumGothic",sans-serif;letter-spacing:.05em}
+.portfolio-kicker{margin:0;color:var(--rust);font:750 8pt "NanumGothic",sans-serif;letter-spacing:.18em;text-transform:uppercase}
 
 /* Cover */
 .portfolio-cover{padding-top:18mm;padding-bottom:20mm}
-.cover-mark{position:absolute;right:15mm;top:15mm;color:#7a817f;text-align:right;font:600 7pt/1.45 "Geist Mono Variable",monospace;letter-spacing:.12em}
+
 .cover-header{display:grid;grid-template-columns:34mm 1fr;gap:9mm;align-items:center;padding-bottom:6mm;border-bottom:.45mm solid var(--ink)}
 .cover-header img{width:34mm;height:37mm;padding:1mm;object-fit:contain;object-position:center;border:.25mm solid var(--line);border-radius:2mm;background:#fff;filter:saturate(.88) contrast(1.02)}
-.cover-header h1{margin:2.5mm 0 0;font:760 29pt/.95 "Geist Variable",sans-serif;letter-spacing:-.04em}
-.cover-header h1 small{display:block;margin-top:2.2mm;color:#6b747b;font:600 8.5pt "Geist Mono Variable",monospace;letter-spacing:.12em;text-transform:uppercase}
-.cover-header h2{max-width:112mm;margin:4mm 0 0;font:680 16pt/1.25 "Geist Variable",sans-serif;letter-spacing:-.025em}
+.cover-header h1{margin:2.5mm 0 0;font:760 29pt/.95 "NanumGothic",sans-serif;letter-spacing:-.04em}
+.cover-header h1 small{display:block;margin-top:2.2mm;color:#6b747b;font:600 8.5pt "NanumGothic",sans-serif;letter-spacing:.12em;text-transform:uppercase}
+.cover-header h2{max-width:112mm;margin:4mm 0 0;font:680 16pt/1.25 "NanumGothic",sans-serif;letter-spacing:-.025em}
 .cover-summary{max-width:171mm;margin:5mm 0 0;color:var(--ink-soft);font-size:11pt;line-height:1.68}
 .cover-summary b{color:var(--rust);font-weight:700}
-.cover-contact{display:flex;align-items:center;gap:6mm;margin-top:3mm;padding:2.5mm 0;border-top:.25mm solid var(--line);border-bottom:.25mm solid var(--line);color:#53606a;font:600 8.4pt "Geist Mono Variable",monospace}
+.cover-contact{display:flex;align-items:center;gap:6mm;margin-top:3mm;padding:2.5mm 0;border-top:.25mm solid var(--line);border-bottom:.25mm solid var(--line);color:#53606a;font:600 8.4pt "NanumGothic",sans-serif}
 .cover-contact span,.cover-contact a{display:inline-flex;align-items:center;gap:1.7mm}
 .cover-contact a{color:var(--blue)}
 .cover-columns{display:grid;grid-template-columns:.86fr 1.14fr;gap:9mm;margin-top:3.5mm}
 .portfolio-section-title{display:flex;align-items:baseline;gap:3mm;margin-bottom:3.5mm}
-.portfolio-section-title span{color:var(--rust);font:700 8pt "Geist Mono Variable",monospace}
-.portfolio-section-title h3{margin:0;font:720 14pt "Geist Variable",sans-serif;letter-spacing:-.02em}
+.portfolio-section-title span{color:var(--rust);font:700 8pt "NanumGothic",sans-serif}
+.portfolio-section-title h3{margin:0;font:720 14pt "NanumGothic",sans-serif;letter-spacing:-.02em}
 .portfolio-skill-list{display:grid;gap:3.5mm}
 .portfolio-skill-group{padding-bottom:3mm;border-bottom:.25mm solid var(--line)}
 .portfolio-skill-group:last-child{border-bottom:0}
-.portfolio-skill-group strong{display:block;color:var(--blue);font:750 8.2pt "Geist Mono Variable",monospace;text-transform:uppercase;letter-spacing:.07em}
+.portfolio-skill-group strong{display:block;color:var(--blue);font:750 8.2pt "NanumGothic",sans-serif;text-transform:uppercase;letter-spacing:.07em}
 .portfolio-skill-group p{margin:1.3mm 0 0;color:var(--ink-soft);font-size:9.2pt;line-height:1.55}
 .cover-timeline{position:relative;padding-left:5mm;border-left:.3mm solid var(--line)}
 .cover-timeline article{position:relative;padding:0 0 3.2mm}
 .cover-timeline article:last-child{padding-bottom:0}
 .cover-timeline article::before{content:"";position:absolute;left:-6.05mm;top:1.2mm;width:1.8mm;height:1.8mm;border:.5mm solid var(--paper);border-radius:50%;background:var(--rust);box-shadow:0 0 0 .25mm var(--rust)}
-.cover-timeline time{color:var(--rust);font:700 7.5pt "Geist Mono Variable",monospace}
-.cover-timeline h4{margin:1mm 0 0;font:720 10.3pt/1.25 "Geist Variable",sans-serif}
+.cover-timeline time{color:var(--rust);font:700 7.5pt "NanumGothic",sans-serif}
+.cover-timeline h4{margin:1mm 0 0;font:720 10.3pt/1.25 "NanumGothic",sans-serif}
 .cover-timeline>article>p{margin:.5mm 0 1.5mm;color:#65707a;font-size:8.4pt}
 .cover-timeline ul{margin:0;padding:0;list-style:none}
 .cover-timeline li{position:relative;margin:.8mm 0;padding-left:3mm;color:var(--ink-soft);font-size:8.35pt;line-height:1.45}
 .cover-timeline li::before{content:"—";position:absolute;left:0;color:var(--rust)}
 .cover-recognition{display:grid;grid-template-columns:1.12fr .88fr;gap:8mm;margin-top:4mm;padding:2.5mm 0 0;border-top:.45mm solid var(--ink)}
-.cover-recognition strong{color:var(--rust);font:750 8pt "Geist Mono Variable",monospace;text-transform:uppercase;letter-spacing:.09em}
+.cover-recognition strong{color:var(--rust);font:750 8pt "NanumGothic",sans-serif;text-transform:uppercase;letter-spacing:.09em}
 .recognition-list{display:grid;gap:1.5mm;margin:2mm 0 0;padding:0;list-style:none}
 .recognition-list li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3mm;align-items:baseline;padding-bottom:1.2mm;border-bottom:.2mm solid var(--line)}
 .recognition-list li:last-child{padding-bottom:0;border-bottom:0}
@@ -64,17 +64,17 @@
 
 /* Cover positioning */
 .cover-capabilities{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:10mm}
-.cover-capabilities article{min-height:49mm;padding:6mm 5mm;border:.25mm solid var(--line);background:linear-gradient(145deg,#fff,#f4f0e7)}
-.cover-capabilities article>span{color:var(--rust);font:750 8pt "Geist Mono Variable",monospace;letter-spacing:.12em}
-.cover-capabilities h3{margin:4mm 0 0;font:730 13pt "Geist Variable",sans-serif}
+.cover-capabilities article{min-height:49mm;padding:6mm 5mm;border:.25mm solid var(--line);background:linear-gradient(145deg,#fff,#eef3ef)}
+.cover-capabilities article>span{color:var(--rust);font:750 8pt "NanumGothic",sans-serif;letter-spacing:.12em}
+.cover-capabilities h3{margin:4mm 0 0;font:730 13pt "NanumGothic",sans-serif}
 .cover-capabilities p{margin:3mm 0 0;color:var(--ink-soft);font-size:9.2pt;line-height:1.62}
 .cover-evidence-strip{display:grid;grid-template-columns:repeat(4,1fr);margin-top:8mm;border-top:.45mm solid var(--ink);border-bottom:.45mm solid var(--ink)}
 .cover-evidence-strip article{display:flex;min-height:27mm;flex-direction:column;justify-content:center;padding:3mm 4mm;border-right:.25mm solid var(--line)}
 .cover-evidence-strip article:last-child{border-right:0}
-.cover-evidence-strip strong{color:var(--rust);font:760 22pt/1 "Geist Variable",sans-serif}
-.cover-evidence-strip span{margin-top:2mm;color:#667078;font:650 7pt/1.35 "Geist Mono Variable",monospace;text-transform:uppercase}
+.cover-evidence-strip strong{color:var(--rust);font:760 22pt/1 "NanumGothic",sans-serif}
+.cover-evidence-strip span{margin-top:2mm;color:#667078;font:650 7pt/1.35 "NanumGothic",sans-serif;text-transform:uppercase}
 .cover-ai{min-height:64mm;margin-top:7mm;padding:6mm 5mm 7mm;background:var(--ink);color:#fff}
-.cover-ai>.portfolio-kicker{color:#ef8b66}
+.cover-ai>.portfolio-kicker{color:#9ab7a0}
 .cover-ai>div{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:4.5mm}
 .cover-ai article{min-width:0;padding-left:3.5mm;border-left:.25mm solid #59666f}
 .cover-ai article:first-child{padding-left:0;border-left:0}
@@ -85,44 +85,44 @@
 
 /* Experience & education */
 .profile-page-header{display:grid;grid-template-columns:1fr 70mm;gap:9mm;align-items:end;padding-bottom:5mm;border-bottom:.45mm solid var(--ink)}
-.profile-page-header h2{margin:1.5mm 0 0;font:740 24pt/1 "Geist Variable",sans-serif;letter-spacing:-.035em}
+.profile-page-header h2{margin:1.5mm 0 0;font:740 24pt/1 "NanumGothic",sans-serif;letter-spacing:-.035em}
 .profile-page-header>p{margin:0;color:var(--ink-soft);font-size:9.2pt;line-height:1.55}
 .profile-page-header>p b{color:var(--rust)}
 .experience-foundation{display:grid;grid-template-columns:.86fr 1.14fr;gap:4mm;margin-top:5mm}
 .experience-foundation article{min-height:31mm;padding:4mm;border:.25mm solid var(--line);background:var(--paper-2)}
-.experience-foundation article>span{color:var(--rust);font:750 7pt "Geist Mono Variable",monospace;letter-spacing:.11em}
-.experience-foundation time{float:right;color:#69737a;font:650 7pt "Geist Mono Variable",monospace}
-.experience-foundation h3{margin:3mm 0 0;font:720 10.6pt/1.35 "Geist Variable",sans-serif}
+.experience-foundation article>span{color:var(--rust);font:750 7pt "NanumGothic",sans-serif;letter-spacing:.11em}
+.experience-foundation time{float:right;color:#69737a;font:650 7pt "NanumGothic",sans-serif}
+.experience-foundation h3{margin:3mm 0 0;font:720 10.6pt/1.35 "NanumGothic",sans-serif}
 .experience-foundation p{margin:2mm 0 0;color:var(--ink-soft);font-size:8.3pt;line-height:1.5}
 .education-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-top:5mm}
 .education-card{min-height:79mm;padding:4.8mm;border:.25mm solid var(--line);background:#fff}
 .education-card header{display:flex;align-items:flex-start;justify-content:space-between;gap:3mm;padding-bottom:3mm;border-bottom:.25mm solid var(--line)}
-.education-card time{color:var(--rust);font:700 7pt "Geist Mono Variable",monospace}
-.education-card h3{margin:1.5mm 0 0;font:720 10.6pt/1.3 "Geist Variable",sans-serif}
-.education-card header>span{max-width:34mm;color:#6a747b;font:650 6.6pt/1.35 "Geist Mono Variable",monospace;text-align:right}
+.education-card time{color:var(--rust);font:700 7pt "NanumGothic",sans-serif}
+.education-card h3{margin:1.5mm 0 0;font:720 10.6pt/1.3 "NanumGothic",sans-serif}
+.education-card header>span{max-width:34mm;color:#6a747b;font:650 6.6pt/1.35 "NanumGothic",sans-serif;text-align:right}
 .education-card>p{display:grid;grid-template-columns:15mm 1fr;gap:2mm;margin:3.2mm 0 0;color:var(--ink-soft);font-size:8.2pt;line-height:1.52}
-.education-card>p>b{color:var(--rust);font:750 7pt "Geist Mono Variable",monospace}
+.education-card>p>b{color:var(--rust);font:750 7pt "NanumGothic",sans-serif}
 
 /* Skills, certifications & awards */
 .skills-page-header{grid-template-columns:1fr 78mm}
 .skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:5mm}
 .skills-column{display:flex;min-height:140mm;flex-direction:column;padding:3.8mm;border:.25mm solid var(--line);background:#fff}
-.skills-column>h3{margin:0 0 2mm;padding-bottom:2.5mm;border-bottom:.4mm solid var(--ink);color:var(--rust);font:750 7.6pt "Geist Mono Variable",monospace;letter-spacing:.05em;text-transform:uppercase}
+.skills-column>h3{margin:0 0 2mm;padding-bottom:2.5mm;border-bottom:.4mm solid var(--ink);color:var(--rust);font:750 7.6pt "NanumGothic",sans-serif;letter-spacing:.05em;text-transform:uppercase}
 .portfolio-skill-card{display:flex;flex:1;flex-direction:column;justify-content:center;padding:2.5mm 0;border-bottom:.2mm solid var(--line)}
 .portfolio-skill-card:last-child{border-bottom:0}
 .skill-card-heading{display:flex;align-items:center;justify-content:space-between;gap:2mm}
-.portfolio-skill-card>strong{margin-top:1.2mm;font:720 8.8pt/1.25 "Geist Variable",sans-serif}
+.portfolio-skill-card>strong{margin-top:1.2mm;font:720 8.8pt/1.25 "NanumGothic",sans-serif}
 .skill-icons{display:flex;flex:0 0 auto;align-items:center;gap:.7mm}
-.skill-icons img{width:5.5mm;height:5.5mm;padding:1mm;border:.2mm solid var(--line);border-radius:1.2mm;background:var(--paper-2);object-fit:contain}
+.skill-icons img{width:5.5mm;height:5.5mm;padding:1mm;border:.2mm solid var(--line);border-radius:1.2mm;background:var(--paper-2);object-fit:contain;filter:none}
 .skill-meter{display:grid;flex:0 0 auto;grid-template-columns:repeat(5,2.8mm);gap:.55mm}
 .skill-meter i{height:2.1mm;border:.25mm solid #b4bcc0;background:#fff}
 .skill-meter i.filled{border-color:var(--rust);background:var(--rust)}
 .skill-description{margin:1.4mm 0 0;color:var(--ink-soft);font-size:7.7pt;line-height:1.46}
 .skills-recognition{display:grid;grid-template-columns:1.15fr 1fr;gap:4mm;margin-top:5mm;padding-top:4mm;border-top:.45mm solid var(--ink)}
 .skills-recognition>section,.skills-recognition>aside{padding:3.5mm;border:.25mm solid var(--line);background:var(--paper-2)}
-.skills-recognition h3{margin:0 0 2mm;color:var(--rust);font:750 7.5pt "Geist Mono Variable",monospace;text-transform:uppercase;letter-spacing:.08em}
+.skills-recognition h3{margin:0 0 2.5mm;color:var(--rust);font:700 10.5pt "NanumGothic",sans-serif;letter-spacing:-.01em}
 .skills-recognition .recognition-list{gap:1mm;margin-top:0}
-.skills-recognition .recognition-list li{gap:2mm;padding-bottom:.8mm}
+.skills-recognition .recognition-list li{min-height:8mm;gap:2mm;align-items:center;padding:1mm 0}
 .skills-recognition .recognition-list b{font-size:7.2pt}
 .skills-recognition .recognition-list span{font-size:6.5pt}
 .skills-recognition aside p{margin:1.3mm 0;color:var(--ink-soft);font-size:7pt;line-height:1.4}
@@ -130,33 +130,33 @@
 
 /* Summary */
 .portfolio-page-header{display:grid;grid-template-columns:1fr 75mm;gap:10mm;align-items:end;padding-bottom:6mm;border-bottom:.45mm solid var(--ink)}
-.portfolio-page-header h2{margin:1.5mm 0 0;font:740 24pt/1 "Geist Variable",sans-serif;letter-spacing:-.035em}
+.portfolio-page-header h2{margin:1.5mm 0 0;font:740 24pt/1 "NanumGothic",sans-serif;letter-spacing:-.035em}
 .portfolio-page-header>p{margin:0;color:var(--ink-soft);font-size:9.4pt;line-height:1.58}
 .summary-list{margin-top:4.5mm}
-.summary-project{display:grid;grid-template-columns:13mm 1fr;gap:4mm;padding:0 0 2.6mm;margin-bottom:2.6mm;border-bottom:.3mm solid var(--line)}
+.summary-project{display:grid;grid-template-columns:10mm 1fr;gap:2.5mm;padding:0 0 2.6mm;margin-bottom:2.6mm;border-bottom:.3mm solid var(--line)}
 .summary-project:last-child{margin-bottom:0;border-bottom:0}
-.summary-number{padding-top:.5mm;color:var(--rust);font:750 10pt "Geist Mono Variable",monospace}
-.summary-title{display:flex;align-items:baseline;justify-content:space-between;gap:5mm}
-.summary-title h3{margin:0;font:720 11.5pt/1.2 "Geist Variable",sans-serif;letter-spacing:-.015em}
-.summary-title span{flex:0 0 auto;color:var(--rust);font:700 7.5pt "Geist Mono Variable",monospace}
+.summary-number{padding-top:.5mm;color:var(--rust);font:750 10pt "NanumGothic",sans-serif}
+.summary-title{display:flex;align-items:baseline;justify-content:space-between;gap:5mm;margin-bottom:2mm}
+.summary-title h3{margin:0;font:720 11.5pt/1.2 "NanumGothic",sans-serif;letter-spacing:-.015em}
+.summary-title span{flex:0 0 auto;color:var(--rust);font:700 7.5pt "NanumGothic",sans-serif}
 .summary-main dl{display:grid;grid-template-columns:1fr 1fr;margin:0;border-top:.25mm solid var(--line);border-left:.25mm solid var(--line)}
 .summary-main dl>div{display:grid;grid-template-columns:19mm 1fr;min-height:6.4mm;border-right:.25mm solid var(--line);border-bottom:.25mm solid var(--line)}
 .summary-main dl>div.wide{grid-column:1/-1}
 .summary-main dt,.summary-main dd{margin:0;padding:1.05mm 2mm}
-.summary-main dt{display:flex;align-items:center;justify-content:center;background:var(--paper-2);color:#58636c;font:700 7.3pt "Geist Mono Variable",monospace;text-align:center}
+.summary-main dt{display:flex;align-items:center;justify-content:center;background:var(--paper-2);color:#58636c;font:700 7.3pt "NanumGothic",sans-serif;text-align:center}
 .summary-main dd{display:flex;align-items:center;color:var(--ink-soft);font-size:7.9pt;line-height:1.38}
 
 /* Detail pages */
 .detail-header{padding-bottom:4.5mm;border-bottom:.45mm solid var(--ink)}
-.detail-header h2{margin:2mm 0 0;font:750 24pt/1.05 "Geist Variable",sans-serif;letter-spacing:-.035em}
+.detail-header h2{margin:2mm 0 0;font:750 24pt/1.05 "NanumGothic",sans-serif;letter-spacing:-.035em}
 .detail-meta{display:flex;align-items:center;flex-wrap:wrap;gap:2.5mm 5mm;margin-top:2.5mm;color:#59656e;font-size:8.8pt}
 .detail-meta strong{color:var(--blue);font-size:9.2pt}
-.detail-meta span{position:relative;padding-left:4mm;font:600 8pt "Geist Mono Variable",monospace}
+.detail-meta span{position:relative;padding-left:4mm;font:600 8pt "NanumGothic",sans-serif}
 .detail-meta span::before{content:"";position:absolute;left:0;top:50%;width:1.5mm;height:1.5mm;border-radius:50%;background:var(--rust);transform:translateY(-50%)}
 .detail-media-gallery{height:82mm;display:grid;grid-template-rows:minmax(0,1fr) auto;margin-top:4mm;overflow:hidden;border:.25mm solid var(--line);background:#e8e8e5}
 .detail-media-gallery.media-count-1,.detail-media-gallery.media-count-2{height:100mm}
 .detail-media-gallery.media-count-5{height:86mm}
-.gallery-grid{display:grid;min-height:0;gap:.8mm;padding:.8mm;background:#efeee9}
+.gallery-grid{display:grid;min-height:0;gap:0;padding:0;background:#eef3ef}
 .gallery-count-1{grid-template-columns:1fr}
 .gallery-count-2{grid-template-columns:1fr 1fr}
 .gallery-count-3{grid-template-columns:1.35fr 1fr;grid-template-rows:1fr 1fr}
@@ -165,46 +165,50 @@
 .gallery-count-5{grid-template-columns:1.25fr .8fr .8fr;grid-template-rows:1fr 1fr}
 .gallery-count-5 figure:first-child{grid-row:1/3}
 .gallery-grid figure{display:grid;grid-template-rows:minmax(0,1fr) auto;min-width:0;min-height:0;margin:0;overflow:hidden;border:.2mm solid var(--line);background:#fff}
-.gallery-grid img{width:100%;height:100%;min-height:0;object-fit:contain;object-position:center;background:linear-gradient(135deg,#e3e6e4,#f5f4ef);filter:saturate(.93) contrast(1.02)}
-.media-count-1 .gallery-grid img,.media-count-2 .gallery-grid img{padding:.6mm}
+.gallery-grid img{width:100%;height:100%;min-height:0;object-fit:cover;object-position:center;padding:0;background:#eef3ef;filter:none}
 .project-media-hydraulic-robot-rl .gallery-grid,.project-media-hazardous-process-automation .gallery-grid{grid-template-columns:72mm 1fr}
-.single-media-context{display:flex;min-width:0;flex-direction:column;justify-content:center;padding:8mm;background:linear-gradient(145deg,#17202a,#2c4658);color:#fff}
-.single-media-context>span{color:#ef8b66;font:750 7pt "Geist Mono Variable",monospace;letter-spacing:.12em}
-.single-media-context strong{margin-top:4mm;font:720 13pt/1.35 "Geist Variable",sans-serif}
+.single-media-context{display:flex;min-width:0;flex-direction:column;justify-content:center;padding:8mm;background:linear-gradient(145deg,#17231c,#335a43);color:#fff}
+.single-media-context>span{color:#9ab7a0;font:750 7pt "NanumGothic",sans-serif;letter-spacing:.12em}
+.single-media-context strong{margin-top:4mm;font:720 13pt/1.35 "NanumGothic",sans-serif}
 .single-media-context p{margin:4mm 0 0;color:#dfe5e8;font-size:8.3pt;line-height:1.55}
 .gallery-grid figcaption{overflow:hidden;padding:1mm 1.3mm;background:#fff;color:#5f6971;font-size:6.5pt;line-height:1;white-space:nowrap;text-overflow:ellipsis}
-.visual-caption{display:flex;align-items:center;justify-content:space-between;padding:2mm 3mm;background:#17202a;color:#fff}
-.visual-caption b{color:#ef8b66;font:700 8pt "Geist Mono Variable",monospace}
-.visual-caption span{font:500 7.3pt "Geist Mono Variable",monospace;letter-spacing:.04em}
+.visual-caption{display:flex;align-items:center;justify-content:space-between;padding:2mm 3mm;background:#17231c;color:#fff}
+.visual-caption b{color:#9ab7a0;font:700 8pt "NanumGothic",sans-serif}
+.visual-caption span{font:500 7.3pt "NanumGothic",sans-serif;letter-spacing:.04em}
 .detail-overview{display:grid;grid-template-columns:1.4fr .6fr;gap:7mm;margin-top:4mm}
-.detail-overview h3,.detail-body h3{margin:0 0 2mm;font:720 11pt "Geist Variable",sans-serif;letter-spacing:-.015em}
+.detail-overview h3,.detail-body h3{margin:0 0 2mm;font:720 11pt "NanumGothic",sans-serif;letter-spacing:-.015em}
 .detail-overview h3::before,.detail-body h3::before{content:"";display:inline-block;width:2mm;height:4.3mm;margin-right:2mm;border-radius:.5mm;background:var(--rust);vertical-align:-.7mm}
 .detail-overview p{margin:0;color:var(--ink-soft);font-size:9pt;line-height:1.58}
+.project-role-list{display:grid;gap:.8mm;margin:0;padding:0;list-style:none;color:var(--ink-soft);font-size:8.5pt;line-height:1.42}
+.project-role-list li{position:relative;padding-left:3mm}
+.project-role-list li::before{content:"•";position:absolute;left:0;color:var(--rust);font-weight:700}
+.project-role-list.compact{display:flex;flex-wrap:wrap;gap:.4mm 2.6mm;font-size:7.7pt;line-height:1.32}
+.project-role-list.compact li{padding-left:2.4mm}
 .project-flow{display:flex;align-items:center;justify-content:space-between;gap:1mm;margin-top:3.5mm;padding:2.3mm 3mm;border-top:.3mm solid var(--ink);border-bottom:.3mm solid var(--ink);background:var(--paper-2)}
-.project-flow div{display:flex;align-items:center;gap:1.5mm;color:var(--blue);font:700 7.1pt "Geist Mono Variable",monospace;text-align:center}
+.project-flow div{display:flex;align-items:center;gap:1.5mm;color:var(--blue);font:700 7.1pt "NanumGothic",sans-serif;text-align:center}
 .project-flow b{color:var(--rust);font-weight:500}
 .detail-body{display:grid;grid-template-columns:.86fr 1.14fr;gap:7mm;margin-top:4mm}
 .contribution-list{margin:0;padding:0;list-style:none}
 .contribution-list li{position:relative;margin:0 0 2.2mm;padding-left:4mm;color:var(--ink-soft);font-size:8.5pt;line-height:1.52}
 .contribution-list li::before{content:"";position:absolute;left:0;top:1.7mm;width:1.5mm;height:1.5mm;background:var(--rust)}
-.contribution-highlight{color:var(--ink);font-weight:800}
+.contribution-highlight{color:var(--ink);font-weight:700}
 .evidence-box{margin-top:3mm;padding:3mm;background:var(--paper-2)}
-.evidence-box strong{color:var(--rust);font:750 7.5pt "Geist Mono Variable",monospace;text-transform:uppercase;letter-spacing:.08em}
+.evidence-box strong{color:var(--rust);font:750 7.5pt "NanumGothic",sans-serif;text-transform:uppercase;letter-spacing:.08em}
 .evidence-box ul{display:grid;grid-template-columns:1fr 1fr;gap:1mm 2mm;margin:1.4mm 0 0;padding:0;list-style:none}
 .evidence-box li{position:relative;padding-left:2.6mm;color:var(--ink-soft);font-size:7.4pt;line-height:1.34}
-.evidence-box li::before{content:"✓";position:absolute;left:0;color:var(--rust);font-weight:800}
-.detail-body h3 small{margin-left:2mm;color:var(--rust);font:700 7pt "Geist Mono Variable",monospace}
+.evidence-box li::before{content:"✓";position:absolute;left:0;color:var(--rust);font-weight:700}
+.detail-body h3 small{margin-left:2mm;color:var(--rust);font:700 7pt "NanumGothic",sans-serif}
 .troubleshooting-list{display:grid;gap:2.8mm}
 .troubleshooting-list article{padding-bottom:2.8mm;border-bottom:.25mm solid var(--line)}
 .troubleshooting-list article:last-child{padding-bottom:0;border-bottom:0}
-.troubleshooting-list h4{margin:0 0 1.4mm;font:720 9.2pt/1.35 "Geist Variable",sans-serif}
+.troubleshooting-list h4{margin:0 0 1.4mm;font:720 9.2pt/1.35 "NanumGothic",sans-serif}
 .troubleshooting-list p{display:grid;grid-template-columns:10mm 1fr;gap:1mm;margin:.7mm 0;color:var(--ink-soft);font-size:7.75pt;line-height:1.42}
-.troubleshooting-list p b{color:var(--rust);font:750 7.2pt "Geist Mono Variable",monospace}
+.troubleshooting-list p b{color:var(--rust);font:750 7.2pt "NanumGothic",sans-serif}
 .detail-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:4mm;margin-top:3.5mm;padding-top:2.5mm;border-top:.25mm solid var(--line)}
 .detail-stack{display:flex;align-items:center;flex-wrap:wrap;gap:1.5mm}
-.detail-stack>strong{margin-right:1.5mm;color:var(--rust);font:750 7.5pt "Geist Mono Variable",monospace;text-transform:uppercase;letter-spacing:.08em}
-.detail-stack span{padding:1.2mm 2.4mm;border:.25mm solid #bbc2c5;border-radius:99mm;color:#46545f;font:650 7.3pt "Geist Mono Variable",monospace}
-.detail-repo{display:flex;flex:0 0 auto;align-items:center;gap:1.2mm;color:var(--blue);font:650 7.5pt "Geist Mono Variable",monospace}
+.detail-stack>strong{margin-right:1.5mm;color:var(--rust);font:750 7.5pt "NanumGothic",sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.detail-stack span{padding:1.2mm 2.4mm;border:.25mm solid #bbc2c5;border-radius:99mm;color:#46545f;font:650 7.3pt "NanumGothic",sans-serif}
+.detail-repo{display:flex;flex:0 0 auto;align-items:center;gap:1.2mm;color:var(--blue);font:650 7.5pt "NanumGothic",sans-serif}
 
 @media(max-width:900px){
   .portfolio-toolbar{width:calc(100% - 24px);margin-bottom:16px}.print-guidance span{display:none}

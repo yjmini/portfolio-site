@@ -181,7 +181,7 @@ const educationActivities = [
     title: 'SSAFY 15기 · Embedded Robotics Track',
     organizer: 'Samsung Software AI Academy for Youth',
     purpose: 'C/C++ 언어 및 알고리즘 역량을 강화하고, Python, Linux, ROS2와 같은 임베디드 소프트웨어 기술을 학습하여 로봇 및 시스템 소프트웨어 개발 역량을 높이는 것을 목표로 참여했습니다.',
-    achievement: '삼성 SW 역량 테스트 A형 취득 및 B형 대비 문제풀이 경험을 통해 C/C++ 알고리즘 역량을 강화했습니다. 중간·최종 관통 프로젝트에서 각각 1등·2등을 기록했으며, 공통 프로젝트 우수상(1등)을 수상했습니다.',
+    achievement: '삼성 SW 역량 테스트 A형 취득 및 B형 대비 문제풀이를 통해 C/C++ 알고리즘 역량을 강화했습니다. 공통 프로젝트 우수상(1등)을 수상했습니다.',
   },
   {
     period: '2024.12 — 2025.02',
@@ -208,34 +208,31 @@ const educationActivities = [
 
 const skillColumns = [
   {
-    name: 'Robot / RL / Programming',
+    name: 'Robotics / Simulation / RL',
     items: [
       { name: 'ROS2 Humble', level: 4, icons: [['ros', 'ROS']], description: '노드·토픽·서비스·launch와 실제 장비 통합 및 테스트 경험' },
       { name: 'Isaac Lab / Isaac Sim', level: 4, icons: [['nvidia', 'NVIDIA']], description: '로봇 모델·환경·reward를 구성하고 PPO 학습과 rollout 분석 수행' },
       { name: 'RSL-RL / PPO / PyTorch', level: 4, icons: [['pytorch', 'PyTorch'], ['weightsandbiases', 'Weights & Biases']], description: '정책 학습, W&B·TensorBoard 로그와 실패 행동을 함께 분석' },
       { name: 'MoveIt / Nav2 / RoboDK', level: 3, icons: [['ros', 'ROS']], description: '경로 계획, ROS2 이동, 로봇 공정 시뮬레이션에 적용' },
+      { name: 'SLAM / RTAB-Map / RViz', level: 4, icons: [['ros', 'ROS']], description: '3D 지도 생성, 센서 통합, 원격 GCS 시각화 경험' },
+    ],
+  },
+  {
+    name: 'Programming / Vision / UI',
+    items: [
       { name: 'Python', level: 4, icons: [['python', 'Python']], description: 'ROS2, 강화학습, 비전, 자동화 스크립트의 주 개발 언어' },
       { name: 'C / C++', level: 3, icons: [['c', 'C'], ['cplusplus', 'C++']], description: '임베디드 제어와 알고리즘 문제풀이, ROS2 구성 요소 구현 경험' },
-    ],
-  },
-  {
-    name: 'Vision / Control / Systems',
-    items: [
       { name: 'PyQt5 / Qt Designer', level: 4, icons: [['qt', 'Qt']], description: 'ROS2 상태 구독·명령 발행과 안전 조건을 반영한 제어 UI 구현' },
       { name: 'YOLO / OpenCV / Roboflow', level: 4, icons: [['yolo', 'YOLO'], ['opencv', 'OpenCV'], ['roboflow', 'Roboflow']], description: '탐지·추적·영상 처리·데이터셋 관리 파이프라인 구성' },
-      { name: 'RGB-D / RealSense', level: 4, icons: [['intel', 'Intel RealSense']], description: 'D435i·D455 입력을 SLAM·검사·원격 점검에 연결' },
-      { name: 'SLAM / RTAB-Map / RViz', level: 4, icons: [['ros', 'ROS']], description: '3D 지도 생성, 센서 통합, 원격 GCS 시각화 경험' },
-      { name: 'Linux / Ubuntu', level: 4, icons: [['linux', 'Linux'], ['ubuntu', 'Ubuntu']], description: '로봇 개발 환경, 장치 권한, 네트워크 및 런타임 진단' },
-      { name: 'Docker / NVIDIA Container', level: 3, icons: [['docker', 'Docker'], ['nvidia', 'NVIDIA']], description: 'GPU·ROS2 개발 환경 재현과 Jetson 배포 구성' },
+      { name: 'RGB-D / Point Cloud', level: 4, icons: [['intel', 'Intel RealSense'], ['opencv', 'OpenCV']], description: 'RGB-D 입력과 3D 좌표를 SLAM·검사·원격 점검에 연결' },
     ],
   },
   {
-    name: 'Hardware / Web / GitHub',
+    name: 'Infrastructure / Web / AI',
     items: [
-      { name: 'Unitree / Jetson', level: 4, icons: [['nvidia', 'NVIDIA Jetson']], description: 'Go1·Jetson Orin NX 기반 SLAM·비전·원격 운용 통합' },
-      { name: 'Raspberry Pi / DYNAMIXEL', level: 3, icons: [['raspberrypi', 'Raspberry Pi']], description: 'Pi·LattePanda와 7축 액추에이터 제어·안전 계층 연동' },
-      { name: 'TurtleBot3 / Dobot / WebSocket', level: 3, icons: [['ros', 'ROS']], description: 'Nav2 배송·조립 장비를 Vue·Django 관제와 연결' },
-      { name: 'SolidWorks / Onshape', level: 3, icons: [['dassaultsystemes', 'Dassault Systèmes']], description: '전용 가이드·브래킷과 로봇 기구 설계 및 수정' },
+      { name: 'Linux / Ubuntu', level: 4, icons: [['linux', 'Linux'], ['ubuntu', 'Ubuntu']], description: '로봇 개발 환경, 장치 권한, 네트워크 및 런타임 진단' },
+      { name: 'Docker / NVIDIA Container', level: 3, icons: [['docker', 'Docker'], ['nvidia', 'NVIDIA']], description: 'GPU·ROS2 개발 환경 재현과 배포 구성' },
+      { name: 'Django / Vue / WebSocket', level: 3, icons: [['django', 'Django'], ['vuedotjs', 'Vue.js']], description: '로봇 상태 API·실시간 이벤트·관제 화면을 연결' },
       { name: 'Git / GitHub / GitLab / Jira', level: 3, icons: [['git', 'Git'], ['github', 'GitHub'], ['gitlab', 'GitLab']], description: '공개 저장소, 협업 이력, 문서·이슈 기반 개발 관리' },
       { name: 'Qwen-VL / Hugging Face / LangGraph', level: 3, icons: [['qwen', 'Qwen'], ['huggingface', 'Hugging Face'], ['langchain', 'LangChain']], description: 'VLM·모델 허브·에이전트 워크플로 실습 및 공개 프로젝트 경험' },
     ],
@@ -302,6 +299,13 @@ function RecognitionList({ items }) {
   </ul>
 }
 
+function ProjectRoleList({ role, compact = false }) {
+  const items = role.split('·').map((item) => item.trim()).filter(Boolean)
+  return <ul className={`project-role-list${compact ? ' compact' : ''}`}>
+    {items.map((item) => <li key={item}>{item}</li>)}
+  </ul>
+}
+
 function EmphasizedText({ text, phrases = [] }) {
   const matches = phrases
     .map((phrase) => ({ phrase, start: text.indexOf(phrase) }))
@@ -333,13 +337,13 @@ function ProjectGallery({ project }) {
     ? {
         eyebrow: 'SIM-TO-REAL CHECK',
         title: project.tagline,
-        body: '학습 화면만 확대하지 않고, 실제 유압 로봇과 policy 적용 전 확인해야 할 command limit·제어 주기·응답 지연을 함께 제시합니다.',
+        body: '실제 유압 로봇과 policy 적용 전 확인해야 할 command limit·제어 주기·응답 지연을 함께 제시합니다.',
       }
     : project.slug === 'hazardous-process-automation'
       ? {
           eyebrow: 'SOFTWARE + FIXTURE',
           title: '경로 코드와 전용 가이드를 함께 보정했습니다.',
-          body: '실기체 사진을 과도하게 잘라 채우지 않고, 접근 방향·작업물 기준 위치·SolidWorks 가이드가 함께 반복성을 만든다는 핵심을 설명합니다.',
+          body: '접근 방향·작업물 기준 위치·SolidWorks 가이드가 함께 반복성을 만든다는 핵심을 설명합니다.',
         }
       : null
 
@@ -361,7 +365,6 @@ function ProjectGallery({ project }) {
 
 function CoverPage() {
   return <section className="portfolio-sheet portfolio-cover" aria-label="프로필과 포트폴리오 방향">
-    <div className="cover-mark">ROBOT SOFTWARE<br/>PORTFOLIO / 2026</div>
     <header className="cover-header">
       <img src={asset('assets/profile/yoon-jeongmin.png')} alt="윤정민 프로필" />
       <div>
@@ -469,7 +472,7 @@ function SummaryPage() {
             <div><dt>참여</dt><dd>{project.type}</dd></div>
             <div className="wide"><dt>개요</dt><dd>{project.tagline}</dd></div>
             <div className="wide"><dt>기술 환경</dt><dd>{project.stack.join(', ')}</dd></div>
-            <div className="wide"><dt>담당 역할</dt><dd>{project.role}</dd></div>
+            <div className="wide"><dt>담당 역할</dt><dd><ProjectRoleList role={project.role} compact /></dd></div>
           </dl>
         </div>
       </article>)}
@@ -496,7 +499,7 @@ function DetailPage({ project, page }) {
 
     <div className="detail-overview">
       <div><h3>개요</h3><p>{project.summary}</p></div>
-      <div><h3>담당 범위</h3><p>{project.role}</p></div>
+      <div><h3>담당 범위</h3><ProjectRoleList role={project.role} /></div>
     </div>
 
     <Flow items={project.flow} />
