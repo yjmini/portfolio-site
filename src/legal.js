@@ -60,5 +60,23 @@ export const copyrightPolicy = {
       noticeUrl: 'assets/fonts/gyeonggi-title/NOTICE.txt',
       note: '경기도가 배포한 공식 WOFF를 자체 호스팅합니다. 웹·인쇄·영상·프로그램 탑재에 사용할 수 있으며, 폰트 자체의 판매 또는 유료 양도는 허용되지 않습니다.',
     },
+    {
+      asset: 'Simple Icons 기술 브랜드 아이콘',
+      rightsHolder: 'Simple Icons contributors · 각 브랜드 상표권자',
+      license: 'CC0-1.0 · 개별 상표권은 각 권리자에게 귀속',
+      source: 'https://github.com/simple-icons/simple-icons',
+      licenseUrl: 'https://github.com/simple-icons/simple-icons/blob/16.28.0/LICENSE.md',
+      noticeUrl: 'assets/tech-icons/NOTICE.md',
+      note: 'Simple Icons 16.28.0의 SVG를 자체 호스팅해 기술 식별 목적으로 사용합니다. 아이콘 사용은 해당 기업의 후원·보증을 의미하지 않으며, 상표권은 각 권리자에게 귀속됩니다.',
+    },
+    {
+      asset: 'Hermes Agent 아이콘',
+      rightsHolder: 'Nous Research',
+      license: 'MIT License',
+      source: 'https://github.com/NousResearch/hermes-agent/blob/4c94396206965580e808ceb39ae1fe007511a898/acp_registry/icon.svg',
+      licenseUrl: 'https://github.com/NousResearch/hermes-agent/blob/4c94396206965580e808ceb39ae1fe007511a898/LICENSE',
+      noticeUrl: 'assets/tech-icons/LICENSE-hermes-agent.txt',
+      note: 'Hermes Agent 공식 저장소의 아이콘을 사용하며, 배포본에 Nous Research의 MIT 저작권·허가 고지 원문을 함께 제공합니다.',
+    },
   ],
 }

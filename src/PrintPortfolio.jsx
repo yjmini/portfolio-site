@@ -184,18 +184,18 @@ const educationActivities = [
     achievement: '삼성 SW 역량 테스트 A형 취득 및 B형 대비 문제풀이 경험을 통해 C/C++ 알고리즘 역량을 강화했습니다. 중간·최종 관통 프로젝트에서 각각 1등·2등을 기록했으며, 공통 프로젝트 우수상(1등)을 수상했습니다.',
   },
   {
-    period: '2025.12.16 — 2025.12.19',
+    period: '2024.12 — 2025.02',
     title: '심층강화학습 윈터스쿨',
-    organizer: '한국로봇학회',
-    purpose: '강화학습의 이론적 기반을 체계적으로 학습하고, 최신 시뮬레이터와 알고리즘을 활용한 실습 경험을 쌓기 위해 참여했습니다.',
-    achievement: 'MuJoCo, Isaac Sim, Isaac Lab, ManiSkill 등 대표 시뮬레이터를 활용한 환경 구축과 PPO 기반 학습 실습을 수행했습니다.',
+    organizer: '한국기술교육대학교',
+    purpose: 'PPO, 보상 설계, observation/action space를 로봇 제어 문제에 적용하기 위해 교내 겨울 집중 과정에 참여했습니다.',
+    achievement: 'Unity ML-Agents와 Hugging Face Deep RL Course를 기반으로 강화학습 구조를 발표하고, 이후 졸업작품과 Isaac Lab 프로젝트로 연결했습니다.',
   },
   {
-    period: '2022.06 — 2022.12',
-    title: 'KAIST 메타버스 아카데미 1기',
-    organizer: 'KAIST · 메타버스 인재양성 과정',
-    purpose: 'AI와 메타버스 기술을 프로젝트 형태로 적용하며 협업 개발 경험을 확장하기 위해 참여했습니다.',
-    achievement: 'Unity·VQA·Web 기술을 활용한 팀 프로젝트를 수행했고, 충청권 AI 전문가 멘토링에서 대전정보문화산업진흥원장상(최우수상)을 수상했습니다.',
+    period: '2022.05 — 2022.12',
+    title: '메타버스 아카데미 1기 · 콘텐츠 창작자 과정',
+    organizer: '한국전파진흥협회',
+    purpose: '3D 콘텐츠 제작과 실시간 인터랙티브 구현 경험을 확보하고 가상환경 제작 흐름을 익히기 위해 참여했습니다.',
+    achievement: '3ds Max, Unity, The Sandbox 기반 3D 에셋 구성과 인터랙션 구현 흐름을 학습해 시뮬레이션·가상환경 이해의 기반을 확보했습니다.',
   },
   {
     period: '2020.01 — 2022.03',
@@ -210,34 +210,34 @@ const skillColumns = [
   {
     name: 'Robot / RL / Programming',
     items: [
-      { name: 'ROS2 Humble', level: 4, description: '노드·토픽·서비스·launch와 실제 장비 통합 및 테스트 경험' },
-      { name: 'Isaac Lab / Isaac Sim', level: 4, description: '로봇 모델·환경·reward를 구성하고 PPO 학습과 rollout 분석 수행' },
-      { name: 'RSL-RL / PPO / PyTorch', level: 4, description: '정책 학습, W&B·TensorBoard 로그와 실패 행동을 함께 분석' },
-      { name: 'MoveIt / Nav2 / RoboDK', level: 3, description: '경로 계획, ROS2 이동, 로봇 공정 시뮬레이션에 적용' },
-      { name: 'Python', level: 4, description: 'ROS2, 강화학습, 비전, 자동화 스크립트의 주 개발 언어' },
-      { name: 'C / C++', level: 3, description: '임베디드 제어와 알고리즘 문제풀이, ROS2 구성 요소 구현 경험' },
+      { name: 'ROS2 Humble', level: 4, icons: [['ros', 'ROS']], description: '노드·토픽·서비스·launch와 실제 장비 통합 및 테스트 경험' },
+      { name: 'Isaac Lab / Isaac Sim', level: 4, icons: [['nvidia', 'NVIDIA']], description: '로봇 모델·환경·reward를 구성하고 PPO 학습과 rollout 분석 수행' },
+      { name: 'RSL-RL / PPO / PyTorch', level: 4, icons: [['pytorch', 'PyTorch'], ['weightsandbiases', 'Weights & Biases']], description: '정책 학습, W&B·TensorBoard 로그와 실패 행동을 함께 분석' },
+      { name: 'MoveIt / Nav2 / RoboDK', level: 3, icons: [['ros', 'ROS']], description: '경로 계획, ROS2 이동, 로봇 공정 시뮬레이션에 적용' },
+      { name: 'Python', level: 4, icons: [['python', 'Python']], description: 'ROS2, 강화학습, 비전, 자동화 스크립트의 주 개발 언어' },
+      { name: 'C / C++', level: 3, icons: [['c', 'C'], ['cplusplus', 'C++']], description: '임베디드 제어와 알고리즘 문제풀이, ROS2 구성 요소 구현 경험' },
     ],
   },
   {
     name: 'Vision / Control / Systems',
     items: [
-      { name: 'PyQt5 / Qt Designer', level: 4, description: 'ROS2 상태 구독·명령 발행과 안전 조건을 반영한 제어 UI 구현' },
-      { name: 'YOLO / OpenCV / Roboflow', level: 4, description: '탐지·추적·영상 처리·데이터셋 관리 파이프라인 구성' },
-      { name: 'RGB-D / RealSense', level: 4, description: 'D435i·D455 입력을 SLAM·검사·원격 점검에 연결' },
-      { name: 'SLAM / RTAB-Map / RViz', level: 4, description: '3D 지도 생성, 센서 통합, 원격 GCS 시각화 경험' },
-      { name: 'Linux / Ubuntu', level: 4, description: '로봇 개발 환경, 장치 권한, 네트워크 및 런타임 진단' },
-      { name: 'Docker / NVIDIA Container', level: 3, description: 'GPU·ROS2 개발 환경 재현과 Jetson 배포 구성' },
+      { name: 'PyQt5 / Qt Designer', level: 4, icons: [['qt', 'Qt']], description: 'ROS2 상태 구독·명령 발행과 안전 조건을 반영한 제어 UI 구현' },
+      { name: 'YOLO / OpenCV / Roboflow', level: 4, icons: [['yolo', 'YOLO'], ['opencv', 'OpenCV'], ['roboflow', 'Roboflow']], description: '탐지·추적·영상 처리·데이터셋 관리 파이프라인 구성' },
+      { name: 'RGB-D / RealSense', level: 4, icons: [['intel', 'Intel RealSense']], description: 'D435i·D455 입력을 SLAM·검사·원격 점검에 연결' },
+      { name: 'SLAM / RTAB-Map / RViz', level: 4, icons: [['ros', 'ROS']], description: '3D 지도 생성, 센서 통합, 원격 GCS 시각화 경험' },
+      { name: 'Linux / Ubuntu', level: 4, icons: [['linux', 'Linux'], ['ubuntu', 'Ubuntu']], description: '로봇 개발 환경, 장치 권한, 네트워크 및 런타임 진단' },
+      { name: 'Docker / NVIDIA Container', level: 3, icons: [['docker', 'Docker'], ['nvidia', 'NVIDIA']], description: 'GPU·ROS2 개발 환경 재현과 Jetson 배포 구성' },
     ],
   },
   {
     name: 'Hardware / Web / GitHub',
     items: [
-      { name: 'Unitree / Jetson', level: 4, description: 'Go1·Jetson Orin NX 기반 SLAM·비전·원격 운용 통합' },
-      { name: 'Raspberry Pi / DYNAMIXEL', level: 3, description: 'Pi·LattePanda와 7축 액추에이터 제어·안전 계층 연동' },
-      { name: 'TurtleBot3 / Dobot / WebSocket', level: 3, description: 'Nav2 배송·조립 장비를 Vue·Django 관제와 연결' },
-      { name: 'SolidWorks / Onshape', level: 3, description: '전용 가이드·브래킷과 로봇 기구 설계 및 수정' },
-      { name: 'Git / GitHub / GitLab / Jira', level: 3, description: '공개 저장소, 협업 이력, 문서·이슈 기반 개발 관리' },
-      { name: 'Qwen-VL / Hugging Face / LangGraph', level: 3, description: 'VLM·모델 허브·에이전트 워크플로 실습 및 공개 프로젝트 경험' },
+      { name: 'Unitree / Jetson', level: 4, icons: [['nvidia', 'NVIDIA Jetson']], description: 'Go1·Jetson Orin NX 기반 SLAM·비전·원격 운용 통합' },
+      { name: 'Raspberry Pi / DYNAMIXEL', level: 3, icons: [['raspberrypi', 'Raspberry Pi']], description: 'Pi·LattePanda와 7축 액추에이터 제어·안전 계층 연동' },
+      { name: 'TurtleBot3 / Dobot / WebSocket', level: 3, icons: [['ros', 'ROS']], description: 'Nav2 배송·조립 장비를 Vue·Django 관제와 연결' },
+      { name: 'SolidWorks / Onshape', level: 3, icons: [['dassaultsystemes', 'Dassault Systèmes']], description: '전용 가이드·브래킷과 로봇 기구 설계 및 수정' },
+      { name: 'Git / GitHub / GitLab / Jira', level: 3, icons: [['git', 'Git'], ['github', 'GitHub'], ['gitlab', 'GitLab']], description: '공개 저장소, 협업 이력, 문서·이슈 기반 개발 관리' },
+      { name: 'Qwen-VL / Hugging Face / LangGraph', level: 3, icons: [['qwen', 'Qwen'], ['huggingface', 'Hugging Face'], ['langchain', 'LangChain']], description: 'VLM·모델 허브·에이전트 워크플로 실습 및 공개 프로젝트 경험' },
     ],
   },
 ]
@@ -246,6 +246,24 @@ const coverCapabilities = [
   ['Robot Intelligence', 'Isaac Lab에서 PPO 정책을 학습하고 reward·rollout·실기체 적용 제약을 함께 검토합니다.'],
   ['Robot Software', 'ROS2 제어권·명령 검증·안전 상태와 UI를 실제 모터 직전 경계까지 구현합니다.'],
   ['System Integration', 'RGB-D·SLAM·비전·로봇·웹 관제를 하나의 실행 흐름과 검증 절차로 연결합니다.'],
+]
+
+const aiUsage = [
+  {
+    name: 'Hermes Agent',
+    icons: [['hermes-agent', 'Hermes Agent']],
+    description: 'Discord에서 조사 → 파일 수정 → 테스트·빌드 → 브라우저·PDF 검증을 도구 호출로 연결하고, 메모리와 스킬로 반복 작업의 맥락을 유지합니다.',
+  },
+  {
+    name: 'Codex · AI-assisted coding',
+    icons: [['openai.png', 'OpenAI']],
+    description: '기능 구현, 오류 원인 분리, 테스트 우선 변경과 코드 리뷰에 활용한 뒤 실제 명령 실행과 렌더링 결과로 다시 검증합니다.',
+  },
+  {
+    name: 'Qwen-VL · Hugging Face · LangGraph',
+    icons: [['qwen', 'Qwen'], ['huggingface', 'Hugging Face'], ['langchain', 'LangChain']],
+    description: 'VLM 실험, 모델 허브 활용, 상태 기반 에이전트 워크플로를 공개 프로젝트와 실습으로 경험했습니다.',
+  },
 ]
 
 function PageFooter({ page }) {
@@ -261,9 +279,19 @@ function SkillMeter({ level }) {
   </span>
 }
 
-function SkillCard({ name, level, description }) {
+function SkillIcons({ icons }) {
+  return <span className="skill-icons">
+    {icons.map(([file, label]) => {
+      const filename = file.includes('.') ? file : `${file}.svg`
+      return <img src={asset(`assets/tech-icons/${filename}`)} alt="" aria-hidden="true" title={label} key={file} />
+    })}
+  </span>
+}
+
+function SkillCard({ name, level, icons, description }) {
   return <article className="portfolio-skill-card">
-    <div><strong>{name}</strong><SkillMeter level={level} /></div>
+    <div className="skill-card-heading"><SkillIcons icons={icons} /><SkillMeter level={level} /></div>
+    <strong>{name}</strong>
     <p className="skill-description">{description}</p>
   </article>
 }
@@ -360,9 +388,13 @@ function CoverPage() {
       <article><strong>16</strong><span>Public control test files</span></article>
       <article><strong>{awards.length}</strong><span>Project awards</span></article>
     </div>
-    <div className="cover-method">
-      <p className="portfolio-kicker">WORKING METHOD</p>
-      <div><span>환경·입력 정의</span><b>→</b><span>구현·학습</span><b>→</b><span>실패 원인 분리</span><b>→</b><span>실장비·E2E 검증</span></div>
+    <div className="cover-ai">
+      <p className="portfolio-kicker">AI-ASSISTED ENGINEERING · AI 활용 방식</p>
+      <div>{aiUsage.map((item) => <article key={item.name}>
+        <SkillIcons icons={item.icons} />
+        <strong>{item.name}</strong>
+        <p>{item.description}</p>
+      </article>)}</div>
     </div>
     <PageFooter page={1} />
   </section>
@@ -378,8 +410,8 @@ function ExperienceEducationPage() {
     <div className="experience-foundation">
       <article>
         <span>ACADEMIC</span><time>2020.03 — 2026.02</time>
-        <h3>한국기술교육대학교 메카트로닉스공학부</h3>
-        <p>학사 졸업 · 학점 3.62 / 4.5</p>
+        <h3>한국기술교육대학교 컴퓨터공학부</h3>
+        <p>학사 졸업 · 학점 4.12 / 4.5</p>
       </article>
       <article>
         <span>RESEARCH EXPERIENCE</span><time>2025.06 — 2025.12</time>
@@ -403,7 +435,7 @@ function SkillsRecognitionPage() {
   return <section className="portfolio-sheet portfolio-skills-page" aria-label="스킬, 자격증과 수상">
     <header className="profile-page-header skills-page-header">
       <div><p className="portfolio-kicker">SKILLS · CERTIFICATIONS · AWARDS</p><h2>Skills · 자격증 · 수상</h2></div>
-      <p>5칸은 단순 선호도가 아니라 <b>직접 구현·통합·검증한 경험 밀도</b>입니다. GitHub 공개 프로젝트의 사용 기술도 함께 반영했습니다.</p>
+      <p>GitHub 공개 프로젝트의 사용 기술과 <b>직접 구현·통합·검증한 경험</b>을 함께 반영했습니다.</p>
     </header>
 
     <div className="skills-columns">
@@ -416,7 +448,6 @@ function SkillsRecognitionPage() {
     <div className="skills-recognition">
       <section><h3>수상</h3><RecognitionList items={awards} /></section>
       <section><h3>자격 · 어학</h3><RecognitionList items={certifications} /></section>
-      <aside><h3>5칸 기준</h3><p><b>4칸</b> 프로젝트에서 직접 구현·통합</p><p><b>3칸</b> 기능 단위 실습·적용</p></aside>
     </div>
     <PageFooter page={3} />
   </section>

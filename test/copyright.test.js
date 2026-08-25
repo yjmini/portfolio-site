@@ -50,10 +50,24 @@ test('copyright policy links the official GyeonggiTitle notice publicly', () => 
   assert.match(notice, /판매하거나 유료로 양도.*허용되지 않/u)
 })
 
-test('copyright UI renders every project and font notice with a base-safe public URL', () => {
+test('technology icons expose bundled licenses and a pinned Hermes Agent source', () => {
+  const simpleIcons = copyrightPolicy.assetNotices.find((item) => item.asset === 'Simple Icons 기술 브랜드 아이콘')
+  const hermesIcon = copyrightPolicy.assetNotices.find((item) => item.asset === 'Hermes Agent 아이콘')
+  const hermesLicense = readFileSync(new URL(`../public/${hermesIcon.noticeUrl}`, import.meta.url), 'utf8')
+
+  assert.ok(simpleIcons)
+  assert.match(simpleIcons.license, /CC0-1\.0/u)
+  assert.ok(hermesIcon)
+  assert.match(hermesIcon.source, /4c94396206965580e808ceb39ae1fe007511a898\/acp_registry\/icon\.svg$/u)
+  assert.match(hermesIcon.license, /MIT/u)
+  assert.match(hermesLicense, /Copyright \(c\) 2025 Nous Research/u)
+  assert.match(hermesLicense, /Permission is hereby granted/u)
+})
+
+test('copyright UI renders every project and asset notice with a base-safe public URL', () => {
   const notices = [...copyrightPolicy.projectNotices, ...copyrightPolicy.assetNotices]
 
-  assert.equal(notices.length, 3)
+  assert.ok(notices.length >= 5)
   for (const item of notices) {
     assert.ok(item.noticeUrl)
     assert.doesNotThrow(() => readFileSync(new URL(`../public/${item.noticeUrl}`, import.meta.url), 'utf8'))

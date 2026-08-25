@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { readFileSync } from 'node:fs'
+import { existsSync, readFileSync } from 'node:fs'
 import { awards, certifications, projects } from '../src/data.js'
 
 const printSource = readFileSync(new URL('../src/PrintPortfolio.jsx', import.meta.url), 'utf8')
@@ -91,16 +91,34 @@ test('education activities include participation purpose and achievement evidenc
   assert.match(printSource, /참여 목적/u)
   assert.match(printSource, /성취/u)
   assert.match(printSource, /삼성 SW 역량 테스트 A형 취득/u)
-  assert.match(printSource, /대표 시뮬레이터를 활용한 환경 구축/u)
+  assert.match(printSource, /Hugging Face Deep RL Course/u)
   assert.match(printSource, /국방부 장관 명의 수료증/u)
-  assert.match(printSource, /대전정보문화산업진흥원장상/u)
+  assert.match(printSource, /3ds Max, Unity, The Sandbox/u)
 })
 
 test('education activities are presented in reverse chronological order', () => {
   const winterSchool = printSource.indexOf("title: '심층강화학습 윈터스쿨'")
-  const metaverse = printSource.indexOf("title: 'KAIST 메타버스 아카데미 1기'")
+  const metaverse = printSource.indexOf("title: '메타버스 아카데미 1기 · 콘텐츠 창작자 과정'")
   const military = printSource.indexOf("title: '군 AI·SW 전문인력 양성교육'")
   assert.ok(winterSchool >= 0 && metaverse > winterSchool && military > metaverse)
+})
+
+test('academic and education facts match the corrected source records', () => {
+  assert.match(printSource, /한국기술교육대학교 컴퓨터공학부/u)
+  assert.match(printSource, /학점 4\.12 \/ 4\.5/u)
+  assert.match(printSource, /period: '2024\.12 — 2025\.02'[\s\S]*title: '심층강화학습 윈터스쿨'[\s\S]*organizer: '한국기술교육대학교'/u)
+  assert.match(printSource, /title: '메타버스 아카데미 1기 · 콘텐츠 창작자 과정'[\s\S]*organizer: '한국전파진흥협회'/u)
+  assert.doesNotMatch(printSource, /메카트로닉스공학부|학점 3\.62|한국로봇학회|KAIST 메타버스/u)
+})
+
+test('cover explains concrete AI usage instead of the working method strip', () => {
+  assert.match(printSource, /AI 활용 방식/u)
+  assert.match(printSource, /className="cover-ai"/u)
+  assert.match(printCss, /\.cover-ai\{[^}]*min-height\s*:\s*64mm/u)
+  assert.match(printSource, /Hermes Agent/u)
+  assert.match(printSource, /Codex/u)
+  assert.match(printSource, /Qwen-VL/u)
+  assert.doesNotMatch(printSource, /WORKING METHOD/u)
 })
 
 test('skills page uses five-cell meters with short evidence descriptions', () => {
@@ -111,6 +129,31 @@ test('skills page uses five-cell meters with short evidence descriptions', () =>
   assert.match(printSource, /TurtleBot3/u)
   assert.match(printSource, /WebSocket/u)
   assert.match(printSource, /Qwen-VL/u)
+})
+
+test('each skill card renders local brand icons and omits the meter legend block', () => {
+  assert.match(printSource, /function SkillIcons\(/u)
+  assert.match(printSource, /className="skill-icons"/u)
+  assert.match(printSource, /alt="" aria-hidden="true"/u)
+  assert.match(printSource, /assets\/tech-icons\//u)
+
+  const skillsBlock = printSource.match(/const skillColumns = \[([\s\S]*?)\n\]\n\nconst coverCapabilities/u)?.[1]
+  const skillCards = [...skillsBlock.matchAll(/\{\s*name: '([^']+)',\s*level: \d,\s*icons: \[(.*?)\],\s*description:/gsu)]
+
+  assert.equal(skillCards.length, 18)
+  for (const [, skillName, icons] of skillCards) {
+    const iconFiles = [...icons.matchAll(/\['([^']+)',/gu)].map((match) => match[1])
+    assert.ok(iconFiles.length > 0, `${skillName} must declare at least one icon`)
+    for (const iconFile of iconFiles) {
+      const filename = iconFile.includes('.') ? iconFile : `${iconFile}.svg`
+      assert.ok(existsSync(new URL(`../public/assets/tech-icons/${filename}`, import.meta.url)), `${skillName} references missing ${filename}`)
+    }
+  }
+
+  assert.doesNotMatch(printSource, /5칸은 단순 선호도/u)
+  assert.doesNotMatch(printSource, /5칸 기준/u)
+  assert.doesNotMatch(printSource, /4칸 프로젝트에서 직접 구현·통합/u)
+  assert.doesNotMatch(printSource, /3칸 기능 단위 실습·적용/u)
 })
 
 test('print galleries minimize framing whitespace without cropping source images', () => {
