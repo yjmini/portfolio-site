@@ -62,6 +62,65 @@
 .recognition-list b{color:var(--ink);font-size:8.1pt;line-height:1.32}
 .recognition-list span{color:#6f787f;font-size:7.2pt;line-height:1.3;white-space:nowrap}
 
+/* Cover positioning */
+.cover-capabilities{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:10mm}
+.cover-capabilities article{min-height:49mm;padding:6mm 5mm;border:.25mm solid var(--line);background:linear-gradient(145deg,#fff,#f4f0e7)}
+.cover-capabilities article>span{color:var(--rust);font:750 8pt "Geist Mono Variable",monospace;letter-spacing:.12em}
+.cover-capabilities h3{margin:4mm 0 0;font:730 13pt "Geist Variable",sans-serif}
+.cover-capabilities p{margin:3mm 0 0;color:var(--ink-soft);font-size:9.2pt;line-height:1.62}
+.cover-evidence-strip{display:grid;grid-template-columns:repeat(4,1fr);margin-top:8mm;border-top:.45mm solid var(--ink);border-bottom:.45mm solid var(--ink)}
+.cover-evidence-strip article{display:flex;min-height:27mm;flex-direction:column;justify-content:center;padding:3mm 4mm;border-right:.25mm solid var(--line)}
+.cover-evidence-strip article:last-child{border-right:0}
+.cover-evidence-strip strong{color:var(--rust);font:760 22pt/1 "Geist Variable",sans-serif}
+.cover-evidence-strip span{margin-top:2mm;color:#667078;font:650 7pt/1.35 "Geist Mono Variable",monospace;text-transform:uppercase}
+.cover-method{margin-top:10mm;padding:5mm;background:var(--ink);color:#fff}
+.cover-method .portfolio-kicker{color:#ef8b66}
+.cover-method>div{display:flex;align-items:center;justify-content:space-between;margin-top:4mm;font-size:9.4pt}
+.cover-method b{color:#ef8b66;font-weight:500}
+
+/* Experience & education */
+.profile-page-header{display:grid;grid-template-columns:1fr 70mm;gap:9mm;align-items:end;padding-bottom:5mm;border-bottom:.45mm solid var(--ink)}
+.profile-page-header h2{margin:1.5mm 0 0;font:740 24pt/1 "Geist Variable",sans-serif;letter-spacing:-.035em}
+.profile-page-header>p{margin:0;color:var(--ink-soft);font-size:9.2pt;line-height:1.55}
+.profile-page-header>p b{color:var(--rust)}
+.experience-foundation{display:grid;grid-template-columns:.86fr 1.14fr;gap:4mm;margin-top:5mm}
+.experience-foundation article{min-height:31mm;padding:4mm;border:.25mm solid var(--line);background:var(--paper-2)}
+.experience-foundation article>span{color:var(--rust);font:750 7pt "Geist Mono Variable",monospace;letter-spacing:.11em}
+.experience-foundation time{float:right;color:#69737a;font:650 7pt "Geist Mono Variable",monospace}
+.experience-foundation h3{margin:3mm 0 0;font:720 10.6pt/1.35 "Geist Variable",sans-serif}
+.experience-foundation p{margin:2mm 0 0;color:var(--ink-soft);font-size:8.3pt;line-height:1.5}
+.education-grid{display:grid;grid-template-columns:1fr 1fr;gap:4mm;margin-top:5mm}
+.education-card{min-height:79mm;padding:4.8mm;border:.25mm solid var(--line);background:#fff}
+.education-card header{display:flex;align-items:flex-start;justify-content:space-between;gap:3mm;padding-bottom:3mm;border-bottom:.25mm solid var(--line)}
+.education-card time{color:var(--rust);font:700 7pt "Geist Mono Variable",monospace}
+.education-card h3{margin:1.5mm 0 0;font:720 10.6pt/1.3 "Geist Variable",sans-serif}
+.education-card header>span{max-width:34mm;color:#6a747b;font:650 6.6pt/1.35 "Geist Mono Variable",monospace;text-align:right}
+.education-card>p{display:grid;grid-template-columns:15mm 1fr;gap:2mm;margin:3.2mm 0 0;color:var(--ink-soft);font-size:8.2pt;line-height:1.52}
+.education-card>p>b{color:var(--rust);font:750 7pt "Geist Mono Variable",monospace}
+
+/* Skills, certifications & awards */
+.skills-page-header{grid-template-columns:1fr 78mm}
+.skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:5mm}
+.skills-column{display:flex;min-height:140mm;flex-direction:column;padding:3.8mm;border:.25mm solid var(--line);background:#fff}
+.skills-column>h3{margin:0 0 2mm;padding-bottom:2.5mm;border-bottom:.4mm solid var(--ink);color:var(--rust);font:750 7.6pt "Geist Mono Variable",monospace;letter-spacing:.05em;text-transform:uppercase}
+.portfolio-skill-card{display:flex;flex:1;flex-direction:column;justify-content:center;padding:2.5mm 0;border-bottom:.2mm solid var(--line)}
+.portfolio-skill-card:last-child{border-bottom:0}
+.portfolio-skill-card>div{display:flex;align-items:center;justify-content:space-between;gap:2mm}
+.portfolio-skill-card strong{font:720 8.8pt/1.25 "Geist Variable",sans-serif}
+.skill-meter{display:grid;flex:0 0 auto;grid-template-columns:repeat(5,2.8mm);gap:.55mm}
+.skill-meter i{height:2.1mm;border:.25mm solid #b4bcc0;background:#fff}
+.skill-meter i.filled{border-color:var(--rust);background:var(--rust)}
+.skill-description{margin:1.4mm 0 0;color:var(--ink-soft);font-size:7.7pt;line-height:1.46}
+.skills-recognition{display:grid;grid-template-columns:1.2fr 1fr .62fr;gap:4mm;margin-top:5mm;padding-top:4mm;border-top:.45mm solid var(--ink)}
+.skills-recognition>section,.skills-recognition>aside{padding:3.5mm;border:.25mm solid var(--line);background:var(--paper-2)}
+.skills-recognition h3{margin:0 0 2mm;color:var(--rust);font:750 7.5pt "Geist Mono Variable",monospace;text-transform:uppercase;letter-spacing:.08em}
+.skills-recognition .recognition-list{gap:1mm;margin-top:0}
+.skills-recognition .recognition-list li{gap:2mm;padding-bottom:.8mm}
+.skills-recognition .recognition-list b{font-size:7.2pt}
+.skills-recognition .recognition-list span{font-size:6.5pt}
+.skills-recognition aside p{margin:1.3mm 0;color:var(--ink-soft);font-size:7pt;line-height:1.4}
+.skills-recognition aside b{color:var(--rust)}
+
 /* Summary */
 .portfolio-page-header{display:grid;grid-template-columns:1fr 75mm;gap:10mm;align-items:end;padding-bottom:6mm;border-bottom:.45mm solid var(--ink)}
 .portfolio-page-header h2{margin:1.5mm 0 0;font:740 24pt/1 "Geist Variable",sans-serif;letter-spacing:-.035em}
@@ -90,7 +149,7 @@
 .detail-media-gallery{height:82mm;display:grid;grid-template-rows:minmax(0,1fr) auto;margin-top:4mm;overflow:hidden;border:.25mm solid var(--line);background:#e8e8e5}
 .detail-media-gallery.media-count-1,.detail-media-gallery.media-count-2{height:100mm}
 .detail-media-gallery.media-count-5{height:86mm}
-.gallery-grid{display:grid;min-height:0;gap:1.4mm;padding:1.4mm;background:#efeee9}
+.gallery-grid{display:grid;min-height:0;gap:.8mm;padding:.8mm;background:#efeee9}
 .gallery-count-1{grid-template-columns:1fr}
 .gallery-count-2{grid-template-columns:1fr 1fr}
 .gallery-count-3{grid-template-columns:1.35fr 1fr;grid-template-rows:1fr 1fr}
@@ -100,7 +159,12 @@
 .gallery-count-5 figure:first-child{grid-row:1/3}
 .gallery-grid figure{display:grid;grid-template-rows:minmax(0,1fr) auto;min-width:0;min-height:0;margin:0;overflow:hidden;border:.2mm solid var(--line);background:#fff}
 .gallery-grid img{width:100%;height:100%;min-height:0;object-fit:contain;object-position:center;background:linear-gradient(135deg,#e3e6e4,#f5f4ef);filter:saturate(.93) contrast(1.02)}
-.media-count-1 .gallery-grid img,.media-count-2 .gallery-grid img{padding:2mm}
+.media-count-1 .gallery-grid img,.media-count-2 .gallery-grid img{padding:.6mm}
+.project-media-hydraulic-robot-rl .gallery-grid,.project-media-hazardous-process-automation .gallery-grid{grid-template-columns:72mm 1fr}
+.single-media-context{display:flex;min-width:0;flex-direction:column;justify-content:center;padding:8mm;background:linear-gradient(145deg,#17202a,#2c4658);color:#fff}
+.single-media-context>span{color:#ef8b66;font:750 7pt "Geist Mono Variable",monospace;letter-spacing:.12em}
+.single-media-context strong{margin-top:4mm;font:720 13pt/1.35 "Geist Variable",sans-serif}
+.single-media-context p{margin:4mm 0 0;color:#dfe5e8;font-size:8.3pt;line-height:1.55}
 .gallery-grid figcaption{overflow:hidden;padding:1mm 1.3mm;background:#fff;color:#5f6971;font-size:6.5pt;line-height:1;white-space:nowrap;text-overflow:ellipsis}
 .visual-caption{display:flex;align-items:center;justify-content:space-between;padding:2mm 3mm;background:#17202a;color:#fff}
 .visual-caption b{color:#ef8b66;font:700 8pt "Geist Mono Variable",monospace}

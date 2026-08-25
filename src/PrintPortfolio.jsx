@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { ArrowLeft, ExternalLink, Github, Mail, Printer } from 'lucide-react'
-import { awards, certifications, experience, profile, projects, toolGroups } from './data'
+import { awards, certifications, profile, projects } from './data'
 import './print-portfolio.css'
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
@@ -173,17 +173,99 @@ const detailBlueprints = [
 const detailProjects = detailBlueprints.map((blueprint) => ({
   ...projects.find((project) => project.slug === blueprint.slug),
   ...blueprint,
-}))
+})).sort((a, b) => Number(a.index) - Number(b.index))
+
+const educationActivities = [
+  {
+    period: '2026.01 — 현재',
+    title: 'SSAFY 15기 · Embedded Robotics Track',
+    organizer: 'Samsung Software AI Academy for Youth',
+    purpose: 'C/C++ 언어 및 알고리즘 역량을 강화하고, Python, Linux, ROS2와 같은 임베디드 소프트웨어 기술을 학습하여 로봇 및 시스템 소프트웨어 개발 역량을 높이는 것을 목표로 참여했습니다.',
+    achievement: '삼성 SW 역량 테스트 A형 취득 및 B형 대비 문제풀이 경험을 통해 C/C++ 알고리즘 역량을 강화했습니다. 중간·최종 관통 프로젝트에서 각각 1등·2등을 기록했으며, 공통 프로젝트 우수상(1등)을 수상했습니다.',
+  },
+  {
+    period: '2025.12.16 — 2025.12.19',
+    title: '심층강화학습 윈터스쿨',
+    organizer: '한국로봇학회',
+    purpose: '강화학습의 이론적 기반을 체계적으로 학습하고, 최신 시뮬레이터와 알고리즘을 활용한 실습 경험을 쌓기 위해 참여했습니다.',
+    achievement: 'MuJoCo, Isaac Sim, Isaac Lab, ManiSkill 등 대표 시뮬레이터를 활용한 환경 구축과 PPO 기반 학습 실습을 수행했습니다.',
+  },
+  {
+    period: '2022.06 — 2022.12',
+    title: 'KAIST 메타버스 아카데미 1기',
+    organizer: 'KAIST · 메타버스 인재양성 과정',
+    purpose: 'AI와 메타버스 기술을 프로젝트 형태로 적용하며 협업 개발 경험을 확장하기 위해 참여했습니다.',
+    achievement: 'Unity·VQA·Web 기술을 활용한 팀 프로젝트를 수행했고, 충청권 AI 전문가 멘토링에서 대전정보문화산업진흥원장상(최우수상)을 수상했습니다.',
+  },
+  {
+    period: '2020.01 — 2022.03',
+    title: '군 AI·SW 전문인력 양성교육',
+    organizer: '대한민국 육군',
+    purpose: '군 복무 중 SW·AI 전문 지식과 프로그래밍 실무 능력을 함께 강화하기 위해 참여했습니다.',
+    achievement: 'Python, 데이터 분석, AI 기초 교육과 팀 프로젝트를 수행했으며 국방부 장관 명의 수료증을 취득했습니다.',
+  },
+]
+
+const skillColumns = [
+  {
+    name: 'Robot / RL / Programming',
+    items: [
+      { name: 'ROS2 Humble', level: 4, description: '노드·토픽·서비스·launch와 실제 장비 통합 및 테스트 경험' },
+      { name: 'Isaac Lab / Isaac Sim', level: 4, description: '로봇 모델·환경·reward를 구성하고 PPO 학습과 rollout 분석 수행' },
+      { name: 'RSL-RL / PPO / PyTorch', level: 4, description: '정책 학습, W&B·TensorBoard 로그와 실패 행동을 함께 분석' },
+      { name: 'MoveIt / Nav2 / RoboDK', level: 3, description: '경로 계획, ROS2 이동, 로봇 공정 시뮬레이션에 적용' },
+      { name: 'Python', level: 4, description: 'ROS2, 강화학습, 비전, 자동화 스크립트의 주 개발 언어' },
+      { name: 'C / C++', level: 3, description: '임베디드 제어와 알고리즘 문제풀이, ROS2 구성 요소 구현 경험' },
+    ],
+  },
+  {
+    name: 'Vision / Control / Systems',
+    items: [
+      { name: 'PyQt5 / Qt Designer', level: 4, description: 'ROS2 상태 구독·명령 발행과 안전 조건을 반영한 제어 UI 구현' },
+      { name: 'YOLO / OpenCV / Roboflow', level: 4, description: '탐지·추적·영상 처리·데이터셋 관리 파이프라인 구성' },
+      { name: 'RGB-D / RealSense', level: 4, description: 'D435i·D455 입력을 SLAM·검사·원격 점검에 연결' },
+      { name: 'SLAM / RTAB-Map / RViz', level: 4, description: '3D 지도 생성, 센서 통합, 원격 GCS 시각화 경험' },
+      { name: 'Linux / Ubuntu', level: 4, description: '로봇 개발 환경, 장치 권한, 네트워크 및 런타임 진단' },
+      { name: 'Docker / NVIDIA Container', level: 3, description: 'GPU·ROS2 개발 환경 재현과 Jetson 배포 구성' },
+    ],
+  },
+  {
+    name: 'Hardware / Web / GitHub',
+    items: [
+      { name: 'Unitree / Jetson', level: 4, description: 'Go1·Jetson Orin NX 기반 SLAM·비전·원격 운용 통합' },
+      { name: 'Raspberry Pi / DYNAMIXEL', level: 3, description: 'Pi·LattePanda와 7축 액추에이터 제어·안전 계층 연동' },
+      { name: 'TurtleBot3 / Dobot / WebSocket', level: 3, description: 'Nav2 배송·조립 장비를 Vue·Django 관제와 연결' },
+      { name: 'SolidWorks / Onshape', level: 3, description: '전용 가이드·브래킷과 로봇 기구 설계 및 수정' },
+      { name: 'Git / GitHub / GitLab / Jira', level: 3, description: '공개 저장소, 협업 이력, 문서·이슈 기반 개발 관리' },
+      { name: 'Qwen-VL / Hugging Face / LangGraph', level: 3, description: 'VLM·모델 허브·에이전트 워크플로 실습 및 공개 프로젝트 경험' },
+    ],
+  },
+]
+
+const coverCapabilities = [
+  ['Robot Intelligence', 'Isaac Lab에서 PPO 정책을 학습하고 reward·rollout·실기체 적용 제약을 함께 검토합니다.'],
+  ['Robot Software', 'ROS2 제어권·명령 검증·안전 상태와 UI를 실제 모터 직전 경계까지 구현합니다.'],
+  ['System Integration', 'RGB-D·SLAM·비전·로봇·웹 관제를 하나의 실행 흐름과 검증 절차로 연결합니다.'],
+]
 
 function PageFooter({ page }) {
   return <footer className="portfolio-page-footer">
     <span>YOON JEONGMIN · ROBOT SOFTWARE PORTFOLIO</span>
-    <span>{String(page).padStart(2, '0')} / {String(detailProjects.length + 2).padStart(2, '0')}</span>
+    <span>{String(page).padStart(2, '0')} / {String(detailProjects.length + 4).padStart(2, '0')}</span>
   </footer>
 }
 
-function SkillGroup({ name, tools }) {
-  return <div className="portfolio-skill-group"><strong>{name}</strong><p>{tools.join(' · ')}</p></div>
+function SkillMeter({ level }) {
+  return <span className="skill-meter" aria-label={`5칸 중 ${level}칸`}>
+    {Array.from({ length: 5 }, (_, index) => <i className={index < level ? 'filled' : ''} key={index} />)}
+  </span>
+}
+
+function SkillCard({ name, level, description }) {
+  return <article className="portfolio-skill-card">
+    <div><strong>{name}</strong><SkillMeter level={level} /></div>
+    <p className="skill-description">{description}</p>
+  </article>
 }
 
 function RecognitionList({ items }) {
@@ -219,19 +301,38 @@ function ProjectGallery({ project }) {
 
   const galleryCount = Math.min(gallery.length, 5)
 
-  return <div className={`detail-media-gallery media-count-${galleryCount}`}>
+  const singleMediaContext = project.slug === 'hydraulic-robot-rl'
+    ? {
+        eyebrow: 'SIM-TO-REAL CHECK',
+        title: project.tagline,
+        body: '학습 화면만 확대하지 않고, 실제 유압 로봇과 policy 적용 전 확인해야 할 command limit·제어 주기·응답 지연을 함께 제시합니다.',
+      }
+    : project.slug === 'hazardous-process-automation'
+      ? {
+          eyebrow: 'SOFTWARE + FIXTURE',
+          title: '경로 코드와 전용 가이드를 함께 보정했습니다.',
+          body: '실기체 사진을 과도하게 잘라 채우지 않고, 접근 방향·작업물 기준 위치·SolidWorks 가이드가 함께 반복성을 만든다는 핵심을 설명합니다.',
+        }
+      : null
+
+  return <div className={`detail-media-gallery media-count-${galleryCount} project-media-${project.slug}`}>
     <div className={`gallery-grid gallery-count-${galleryCount}`}>
       {gallery.map((media) => <figure key={media.src}>
-        <img src={asset(media.src)} alt={media.alt} />
+        <img src={asset(media.src)} alt={media.alt} style={{ objectPosition: project.imagePosition || 'center' }} />
         <figcaption>{media.caption}</figcaption>
       </figure>)}
+      {singleMediaContext && galleryCount === 1 && <aside className="single-media-context">
+        <span>{singleMediaContext.eyebrow}</span>
+        <strong>{singleMediaContext.title}</strong>
+        <p>{singleMediaContext.body}</p>
+      </aside>}
     </div>
     <div className="visual-caption"><b>{project.index}</b><span>{project.stack.slice(0, 4).join(' / ')}</span></div>
   </div>
 }
 
 function CoverPage() {
-  return <section className="portfolio-sheet portfolio-cover" aria-label="프로필, 기술, 경험">
+  return <section className="portfolio-sheet portfolio-cover" aria-label="프로필과 포트폴리오 방향">
     <div className="cover-mark">ROBOT SOFTWARE<br/>PORTFOLIO / 2026</div>
     <header className="cover-header">
       <img src={asset('assets/profile/yoon-jeongmin.png')} alt="윤정민 프로필" />
@@ -248,30 +349,76 @@ function CoverPage() {
       <span>{profile.location}</span>
     </div>
 
-    <div className="cover-columns">
-      <div>
-        <div className="portfolio-section-title"><span>01</span><h3>Technical Skills</h3></div>
-        <div className="portfolio-skill-list">
-          {toolGroups.map((group) => <SkillGroup key={group.name} {...group} />)}
-        </div>
-      </div>
-      <div>
-        <div className="portfolio-section-title"><span>02</span><h3>Experience & Education</h3></div>
-        <div className="cover-timeline">
-          {experience.map((item) => <article key={item.period}>
-            <time>{item.period}</time>
-            <h4>{item.role}</h4>
-            <p>{item.place}</p>
-            <ul>{item.bullets.slice(0, 2).map((bullet) => <li key={bullet}>{bullet}</li>)}</ul>
-          </article>)}
-        </div>
-      </div>
+    <div className="cover-capabilities">
+      {coverCapabilities.map(([name, description], index) => <article key={name}>
+        <span>0{index + 1}</span><h3>{name}</h3><p>{description}</p>
+      </article>)}
     </div>
-    <div className="cover-recognition">
-      <div><strong>Recognition</strong><RecognitionList items={awards} /></div>
-      <div><strong>Certification</strong><RecognitionList items={certifications} /></div>
+    <div className="cover-evidence-strip">
+      <article><strong>{detailProjects.length}</strong><span>Detailed projects</span></article>
+      <article><strong>5</strong><span>ROS2 control & safety nodes</span></article>
+      <article><strong>16</strong><span>Public control test files</span></article>
+      <article><strong>{awards.length}</strong><span>Project awards</span></article>
+    </div>
+    <div className="cover-method">
+      <p className="portfolio-kicker">WORKING METHOD</p>
+      <div><span>환경·입력 정의</span><b>→</b><span>구현·학습</span><b>→</b><span>실패 원인 분리</span><b>→</b><span>실장비·E2E 검증</span></div>
     </div>
     <PageFooter page={1} />
+  </section>
+}
+
+function ExperienceEducationPage() {
+  return <section className="portfolio-sheet portfolio-experience" aria-label="경험과 교육 및 활동">
+    <header className="profile-page-header">
+      <div><p className="portfolio-kicker">EXPERIENCE & EDUCATION</p><h2>경험 · 교육 및 활동</h2></div>
+      <p>단순 참여 목록 대신 <b>왜 참여했고 무엇을 성취했는지</b>를 중심으로 정리했습니다.</p>
+    </header>
+
+    <div className="experience-foundation">
+      <article>
+        <span>ACADEMIC</span><time>2020.03 — 2026.02</time>
+        <h3>한국기술교육대학교 메카트로닉스공학부</h3>
+        <p>학사 졸업 · 학점 3.62 / 4.5</p>
+      </article>
+      <article>
+        <span>RESEARCH EXPERIENCE</span><time>2025.06 — 2025.12</time>
+        <h3>한국원자력연구원 로봇응용연구실 · 인턴연구원</h3>
+        <p>Isaac Lab/PPO 제어, MoveIt 기반 공정 자동화, PyQt5·ROS2 제어 UI 개선을 수행했습니다.</p>
+      </article>
+    </div>
+
+    <div className="education-grid">
+      {educationActivities.map((activity, index) => <article className={`education-card education-card-${index + 1}`} key={activity.title}>
+        <header><div><time>{activity.period}</time><h3>{activity.title}</h3></div><span>{activity.organizer}</span></header>
+        <p><b>참여 목적</b><span>{activity.purpose}</span></p>
+        <p><b>성취</b><span>{activity.achievement}</span></p>
+      </article>)}
+    </div>
+    <PageFooter page={2} />
+  </section>
+}
+
+function SkillsRecognitionPage() {
+  return <section className="portfolio-sheet portfolio-skills-page" aria-label="스킬, 자격증과 수상">
+    <header className="profile-page-header skills-page-header">
+      <div><p className="portfolio-kicker">SKILLS · CERTIFICATIONS · AWARDS</p><h2>Skills · 자격증 · 수상</h2></div>
+      <p>5칸은 단순 선호도가 아니라 <b>직접 구현·통합·검증한 경험 밀도</b>입니다. GitHub 공개 프로젝트의 사용 기술도 함께 반영했습니다.</p>
+    </header>
+
+    <div className="skills-columns">
+      {skillColumns.map((column) => <section className="skills-column" key={column.name}>
+        <h3>{column.name}</h3>
+        {column.items.map((skill) => <SkillCard key={skill.name} {...skill} />)}
+      </section>)}
+    </div>
+
+    <div className="skills-recognition">
+      <section><h3>수상</h3><RecognitionList items={awards} /></section>
+      <section><h3>자격 · 어학</h3><RecognitionList items={certifications} /></section>
+      <aside><h3>5칸 기준</h3><p><b>4칸</b> 프로젝트에서 직접 구현·통합</p><p><b>3칸</b> 기능 단위 실습·적용</p></aside>
+    </div>
+    <PageFooter page={3} />
   </section>
 }
 
@@ -285,7 +432,7 @@ function SummaryPage() {
       {detailProjects.map((project, index) => <article key={project.slug} className="summary-project">
         <div className="summary-number">{String(index + 1).padStart(2, '0')}</div>
         <div className="summary-main">
-          <div className="summary-title"><h3>{project.title}</h3><span>p.{index + 3}</span></div>
+          <div className="summary-title"><h3>{project.title}</h3><span>p.{index + 5}</span></div>
           <dl>
             <div><dt>기간</dt><dd>{project.period}</dd></div>
             <div><dt>참여</dt><dd>{project.type}</dd></div>
@@ -296,7 +443,7 @@ function SummaryPage() {
         </div>
       </article>)}
     </div>
-    <PageFooter page={2} />
+    <PageFooter page={4} />
   </section>
 }
 
@@ -362,13 +509,15 @@ export default function PrintPortfolio() {
   return <div className="print-portfolio-page">
     <div className="portfolio-toolbar" role="region" aria-label="포트폴리오 인쇄 도구">
       <a href="#/resume"><ArrowLeft size={17}/>포트폴리오 사이트</a>
-      <div className="print-guidance"><strong>A4 · {detailProjects.length + 2}페이지</strong><span>배경 그래픽 켜기 · 여백 없음 · 배율 100%</span></div>
+      <div className="print-guidance"><strong>A4 · {detailProjects.length + 4}페이지</strong><span>배경 그래픽 켜기 · 여백 없음 · 배율 100%</span></div>
       <button type="button" onClick={() => window.print()}><Printer size={17}/>PDF로 인쇄</button>
     </div>
     <main className="portfolio-document">
       <CoverPage />
+      <ExperienceEducationPage />
+      <SkillsRecognitionPage />
       <SummaryPage />
-      {detailProjects.map((project, index) => <DetailPage key={project.slug} project={project} page={index + 3} />)}
+      {detailProjects.map((project, index) => <DetailPage key={project.slug} project={project} page={index + 5} />)}
     </main>
   </div>
 }
