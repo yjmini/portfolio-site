@@ -198,8 +198,8 @@ const educationActivities = [
     achievement: '3ds Max, Unity, The Sandbox 기반 3D 에셋 구성과 인터랙션 구현 흐름을 학습해 시뮬레이션·가상환경 이해의 기반을 확보했습니다.',
   },
   {
-    period: '2020.01 — 2022.03',
-    title: '군 AI·SW 전문인력 양성교육',
+    period: '2023.03 — 2023.06',
+    title: '군 SW·AI 역량강화 교육',
     organizer: '대한민국 육군',
     purpose: '군 복무 중 SW·AI 전문 지식과 프로그래밍 실무 능력을 함께 강화하기 위해 참여했습니다.',
     achievement: 'Python, 데이터 분석, AI 기초 교육과 팀 프로젝트를 수행했으며 국방부 장관 명의 수료증을 취득했습니다.',

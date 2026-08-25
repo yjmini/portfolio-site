@@ -52,13 +52,13 @@ export const copyrightPolicy = {
   ],
   assetNotices: [
     {
-      asset: 'Nanum Gothic',
-      rightsHolder: 'NAVER Corporation',
+      asset: 'Pretendard',
+      rightsHolder: 'Kil Hyung-jin',
       license: 'SIL Open Font License 1.1',
-      source: 'https://hangeul.naver.com/font',
-      licenseUrl: 'https://openfontlicense.org/open-font-license-official-text/',
-      noticeUrl: 'assets/fonts/nanum-gothic/NOTICE.txt',
-      note: 'Google Fonts 공식 저장소의 Naver Nanum Gothic Regular·Bold 원본을 WOFF2로 압축해 웹사이트와 출력용 포트폴리오에 사용합니다.',
+      source: 'https://cactus.tistory.com/306',
+      licenseUrl: 'https://github.com/orioncactus/pretendard/blob/main/LICENSE.txt',
+      noticeUrl: 'assets/fonts/pretendard/NOTICE.txt',
+      note: '공식 Pretendard v1.3.9 배포본의 Regular·Medium·SemiBold·Bold·ExtraBold WOFF2 원본을 자체 호스팅해 웹사이트와 출력용 포트폴리오에 사용합니다.',
     },
     {
       asset: 'Simple Icons 기술 브랜드 아이콘',

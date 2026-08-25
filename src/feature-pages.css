@@ -21,7 +21,7 @@
 .thing-hero h1 {
   max-width: 760px;
   margin: 18px 0 0;
-  font: 600 clamp(2.9rem, 8vw, 6.2rem)/.9 "NanumGothic", sans-serif;
+  font: 800 clamp(2.9rem, 8vw, 6.2rem)/.9 "Pretendard", sans-serif;
   letter-spacing: -.055em;
 }
 
@@ -38,7 +38,7 @@
   background: transparent;
   padding: 0;
   color: var(--muted);
-  font: 14px "NanumGothic", monospace;
+  font: 14px "Pretendard", monospace;
 }
 
 .source-inline:hover {
@@ -56,7 +56,7 @@
   align-self: center;
   border: 1px solid var(--line);
   border-radius: 14px;
-  background: #07090a;
+  background: #080808;
   box-shadow: var(--shadow-float);
 }
 
@@ -64,7 +64,7 @@
 .thing-demo-media video {
   display: block;
   width: 100%;
-  background: #07090a;
+  background: #080808;
   object-fit: contain;
   object-position: center;
 }
@@ -89,7 +89,7 @@
 .thing-demo-card small,
 .thing-license > div > span {
   color: var(--ember);
-  font: 10px "NanumGothic", monospace;
+  font: 10px "Pretendard", monospace;
   letter-spacing: .16em;
   text-transform: uppercase;
 }
@@ -115,14 +115,14 @@
 }
 
 .thing-facts dt {
-  font: 600 clamp(1.6rem, 5vw, 2.5rem)/1 "NanumGothic", sans-serif;
+  font: 600 clamp(1.6rem, 5vw, 2.5rem)/1 "Pretendard", sans-serif;
   letter-spacing: -.03em;
 }
 
 .thing-facts dd {
   margin: 8px 0 0;
   color: var(--muted);
-  font: 10px "NanumGothic", monospace;
+  font: 10px "Pretendard", monospace;
   letter-spacing: .08em;
   text-transform: uppercase;
 }
@@ -138,7 +138,7 @@
 .legal-section h2,
 .legal-english h2 {
   margin: 18px 0 0;
-  font: 600 clamp(2rem, 5vw, 3.35rem)/1.02 "NanumGothic", sans-serif;
+  font: 800 clamp(2rem, 5vw, 3.35rem)/1.02 "Pretendard", sans-serif;
   letter-spacing: -.035em;
 }
 
@@ -170,7 +170,7 @@
 
 .thing-pdr span {
   color: var(--ember);
-  font: 11px "NanumGothic", monospace;
+  font: 11px "Pretendard", monospace;
   letter-spacing: .12em;
   text-transform: uppercase;
 }
@@ -214,11 +214,11 @@
   width: 34px;
   height: 34px;
   place-items: center;
-  border: 1px solid rgba(237, 232, 220, .28);
+  border: 1px solid rgba(245, 245, 240, .28);
   border-radius: 50%;
-  background: rgba(11, 13, 15, .72);
+  background: rgba(8, 8, 8, .72);
   color: var(--bone);
-  font: 10px "NanumGothic", monospace;
+  font: 10px "Pretendard", monospace;
   backdrop-filter: blur(8px);
 }
 
@@ -228,7 +228,7 @@
 
 .thing-demo-card h3 {
   margin: 8px 0 0;
-  font: 600 22px "NanumGothic", sans-serif;
+  font: 600 22px "Pretendard", sans-serif;
 }
 
 .thing-demo-card p {
@@ -247,7 +247,7 @@
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: #07090a;
+  background: #080808;
 }
 
 .thing-evidence-grid img {
@@ -260,7 +260,7 @@
   padding: 14px 18px;
   border-top: 1px solid var(--line);
   color: var(--muted);
-  font: 11px "NanumGothic", monospace;
+  font: 11px "Pretendard", monospace;
 }
 
 .thing-pipeline {
@@ -280,12 +280,12 @@
   grid-row: 1 / span 2;
   padding-top: 5px;
   color: var(--ember);
-  font: 11px "NanumGothic", monospace;
+  font: 11px "Pretendard", monospace;
 }
 
 .thing-pipeline h3 {
   margin: 0;
-  font: 600 21px "NanumGothic", sans-serif;
+  font: 600 21px "Pretendard", sans-serif;
 }
 
 .thing-pipeline p {
@@ -331,9 +331,9 @@
 
 .thing-verification {
   padding: 32px;
-  border: 1px solid rgba(123, 155, 130, .32);
+  border: 1px solid rgba(232, 255, 71, .32);
   border-radius: 12px;
-  background: linear-gradient(145deg, rgba(123, 155, 130, .1), rgba(18, 21, 24, .5));
+  background: linear-gradient(145deg, rgba(232, 255, 71, .1), rgba(15, 15, 15, .5));
 }
 
 .thing-license {
@@ -349,7 +349,7 @@
 .thing-license strong {
   display: block;
   margin-top: 8px;
-  font: 500 16px "NanumGothic", monospace;
+  font: 500 16px "Pretendard", monospace;
 }
 
 .thing-license p {
@@ -373,7 +373,7 @@
   align-items: center;
   gap: 5px;
   color: var(--bone-dim);
-  font: 11px "NanumGothic", monospace;
+  font: 11px "Pretendard", monospace;
 }
 
 .thing-license nav a:hover,
@@ -393,7 +393,7 @@
 
 .legal-hero h1 {
   margin: 22px 0 0;
-  font: 600 clamp(3.2rem, 10vw, 6.8rem)/.88 "NanumGothic", sans-serif;
+  font: 800 clamp(3.2rem, 10vw, 6.8rem)/.88 "Pretendard", sans-serif;
   letter-spacing: -.055em;
 }
 
@@ -420,7 +420,7 @@
   gap: 20px;
   padding: 12px 0;
   border-bottom: 1px solid var(--line);
-  font: 12px "NanumGothic", monospace;
+  font: 12px "Pretendard", monospace;
 }
 
 .legal-summary dt {
@@ -446,7 +446,7 @@
 
 .legal-section > div:first-child > span {
   color: var(--ember);
-  font: 11px "NanumGothic", monospace;
+  font: 11px "Pretendard", monospace;
 }
 
 .legal-section > div:first-child h2 {
@@ -468,7 +468,7 @@
   border-radius: 8px;
   background: color-mix(in srgb, var(--ember) 7%, var(--surface));
   color: var(--bone);
-  font: 500 14px/1.7 "NanumGothic", monospace;
+  font: 500 14px/1.7 "Pretendard", monospace;
   overflow-wrap: anywhere;
 }
 
@@ -511,13 +511,13 @@
 }
 
 .project-notices strong {
-  font: 600 24px "NanumGothic", sans-serif;
+  font: 600 24px "Pretendard", sans-serif;
 }
 
 .project-notices span {
   margin-top: 6px;
   color: var(--ember);
-  font: 11px "NanumGothic", monospace;
+  font: 11px "Pretendard", monospace;
 }
 
 .project-notices p {
@@ -546,11 +546,11 @@
 
 .legal-english .eyebrow,
 .legal-english .eyebrow > span {
-  color: #5f6467;
+  color: #888888;
 }
 
 .legal-english .eyebrow > span {
-  background: #5f6467;
+  background: #888888;
 }
 
 .legal-english h2 {
@@ -560,7 +560,7 @@
 .legal-english p {
   max-width: 860px;
   margin: 24px 0 0;
-  color: #353a3d;
+  color: #2a2a2a;
   font-size: 16px;
   line-height: 1.75;
 }
@@ -568,7 +568,7 @@
 .legal-english strong {
   display: block;
   margin-top: 24px;
-  font: 500 12px "NanumGothic", monospace;
+  font: 500 12px "Pretendard", monospace;
 }
 
 @media (min-width: 640px) {
@@ -696,6 +696,6 @@
   }
 
   .legal-english {
-    border: 1px solid #aaa;
+    border: 1px solid #b7b7b2;
   }
 }

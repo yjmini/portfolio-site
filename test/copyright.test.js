@@ -38,17 +38,17 @@ test('copyright policy separates Smart Assembly source-code and team-media right
   assert.match(notice, /EXIF.*GPS.*제거/u)
 })
 
-test('copyright policy links the official Nanum Gothic notice and OFL text publicly', () => {
-  const font = copyrightPolicy.assetNotices.find((item) => item.asset === 'Nanum Gothic')
+test('copyright policy links the official Pretendard notice and OFL text publicly', () => {
+  const font = copyrightPolicy.assetNotices.find((item) => item.asset === 'Pretendard')
   assert.ok(font)
   const notice = readFileSync(new URL(`../public/${font.noticeUrl}`, import.meta.url), 'utf8')
-  const license = readFileSync(new URL('../public/assets/fonts/nanum-gothic/LICENSE.txt', import.meta.url), 'utf8')
+  const license = readFileSync(new URL('../public/assets/fonts/pretendard/LICENSE.txt', import.meta.url), 'utf8')
 
-  assert.equal(font.rightsHolder, 'NAVER Corporation')
+  assert.equal(font.rightsHolder, 'Kil Hyung-jin')
   assert.equal(font.license, 'SIL Open Font License 1.1')
-  assert.equal(font.source, 'https://hangeul.naver.com/font')
-  assert.match(font.noticeUrl, /^assets\/fonts\/nanum-gothic\/NOTICE\.txt$/u)
-  assert.match(notice, /NAVER.*Nanum Gothic/u)
+  assert.equal(font.source, 'https://cactus.tistory.com/306')
+  assert.match(font.noticeUrl, /^assets\/fonts\/pretendard\/NOTICE\.txt$/u)
+  assert.match(notice, /Pretendard.*1\.3\.9/u)
   assert.match(license, /SIL OPEN FONT LICENSE Version 1\.1/u)
 })
 
@@ -75,7 +75,7 @@ test('copyright UI renders every project and asset notice with a base-safe publi
     assert.doesNotThrow(() => readFileSync(new URL(`../public/${item.noticeUrl}`, import.meta.url), 'utf8'))
   }
   assert.equal(resolvePublicAsset('./', '/assets/projects/smart-assembly/NOTICE.txt'), './assets/projects/smart-assembly/NOTICE.txt')
-  assert.equal(resolvePublicAsset('/portfolio-site/', 'assets/fonts/nanum-gothic/NOTICE.txt'), '/portfolio-site/assets/fonts/nanum-gothic/NOTICE.txt')
+  assert.equal(resolvePublicAsset('/portfolio-site/', 'assets/fonts/pretendard/NOTICE.txt'), '/portfolio-site/assets/fonts/pretendard/NOTICE.txt')
   assert.match(appSource, /\.\.\.copyrightPolicy\.projectNotices, \.\.\.copyrightPolicy\.assetNotices/u)
   assert.match(appSource, /href=\{publicAsset\(item\.noticeUrl\)\}/u)
 })

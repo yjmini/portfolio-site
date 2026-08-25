@@ -53,7 +53,7 @@ test('print media hides only the site footer and preserves portfolio page footer
   assert.doesNotMatch(siteCss, /@media print\{\.site-header,footer,/u)
 })
 
-test('print portfolio uses multi-image project galleries that fill each media cell', () => {
+test('print portfolio preserves complete project images without internal padding or cropping', () => {
   const thing = projects.find((project) => project.slug === 'thing-robot-hand')
   const smartAssembly = projects.find((project) => project.slug === 'smart-assembly-transport')
 
@@ -61,18 +61,20 @@ test('print portfolio uses multi-image project galleries that fill each media ce
   assert.ok(smartAssembly.printGallery?.length >= 5)
   assert.match(printSource, /project\.printGallery/u)
   assert.match(printSource, /detail-media-gallery/u)
-  assert.match(printCss, /\.gallery-grid img\{[^}]*object-fit:cover/u)
+  assert.match(printCss, /\.gallery-grid img\{[^}]*object-fit:contain[^}]*padding:0/u)
+  assert.doesNotMatch(printCss, /\.gallery-grid img\{[^}]*object-fit:cover/u)
 })
 
-test('Nanum Gothic is self-hosted and applied to the website and print portfolio', () => {
-  assert.ok(existsSync(new URL('../src/assets/fonts/nanum-gothic/NanumGothic-Regular.woff2', import.meta.url)))
-  assert.ok(existsSync(new URL('../src/assets/fonts/nanum-gothic/NanumGothic-Bold.woff2', import.meta.url)))
-  assert.equal(existsSync(new URL('../src/assets/fonts/nanum-gothic/NanumGothic-ExtraBold.woff2', import.meta.url)), false)
-  assert.match(siteCss, /font-family:"NanumGothic"/u)
-  assert.match(siteCss, /NanumGothic-Regular\.woff2/u)
-  assert.match(siteCss, /font-family:"NanumGothic"[^;]*!important/u)
-  assert.match(printCss, /\.print-portfolio-page\{[^}]*font-family:"NanumGothic"/u)
-  assert.doesNotMatch(siteCss, /font-family:"Paperlogy"|font-family:"GyeonggiTitle"/u)
+test('Pretendard 400 through 800 is self-hosted and applied to the website and print portfolio', () => {
+  for (const weight of ['Regular', 'Medium', 'SemiBold', 'Bold', 'ExtraBold']) {
+    assert.ok(existsSync(new URL(`../src/assets/fonts/pretendard/Pretendard-${weight}.woff2`, import.meta.url)))
+  }
+  assert.match(siteCss, /font-family:"Pretendard"/u)
+  assert.match(siteCss, /Pretendard-Regular\.woff2/u)
+  assert.match(siteCss, /Pretendard-ExtraBold\.woff2/u)
+  assert.match(siteCss, /font-family:"Pretendard"[^;]*!important/u)
+  assert.match(printCss, /\.print-portfolio-page\{[^}]*font-family:"Pretendard"/u)
+  assert.doesNotMatch(siteCss, /font-family:"Paperlogy"|font-family:"GyeonggiTitle"|font-family:"NanumGothic"/u)
   assert.doesNotMatch(`${siteCss}\n${featureCss}`, /Geist (?:Mono )?Variable/u)
 })
 
@@ -112,7 +114,7 @@ test('SSAFY education records only the verified common project first-place award
 test('education activities are presented in reverse chronological order', () => {
   const winterSchool = printSource.indexOf("title: '심층강화학습 윈터스쿨'")
   const metaverse = printSource.indexOf("title: '메타버스 아카데미 1기 · 콘텐츠 창작자 과정'")
-  const military = printSource.indexOf("title: '군 AI·SW 전문인력 양성교육'")
+  const military = printSource.indexOf("title: '군 SW·AI 역량강화 교육'")
   assert.ok(winterSchool >= 0 && metaverse > winterSchool && military > metaverse)
 })
 
@@ -121,6 +123,8 @@ test('academic and education facts match the corrected source records', () => {
   assert.match(printSource, /학점 4\.12 \/ 4\.5/u)
   assert.match(printSource, /period: '2024\.12 — 2025\.02'[\s\S]*title: '심층강화학습 윈터스쿨'[\s\S]*organizer: '한국기술교육대학교'/u)
   assert.match(printSource, /title: '메타버스 아카데미 1기 · 콘텐츠 창작자 과정'[\s\S]*organizer: '한국전파진흥협회'/u)
+  assert.match(printSource, /period: '2023\.03 — 2023\.06'[\s\S]*title: '군 SW·AI 역량강화 교육'[\s\S]*organizer: '대한민국 육군'/u)
+  assert.doesNotMatch(printSource, /군 AI·SW 전문인력 양성교육/u)
   assert.doesNotMatch(printSource, /메카트로닉스공학부|학점 3\.62|한국로봇학회|KAIST 메타버스/u)
 })
 
@@ -140,6 +144,8 @@ test('skills page uses five-cell meters and conventional software stacks', () =>
   assert.match(printSource, /function SkillMeter\(/u)
   assert.match(printSource, /length:\s*5/u)
   assert.match(printSource, /className="skill-description"/u)
+  assert.match(printCss, /\.skill-meter\{[^}]*grid-template-columns:repeat\(5,2\.8mm\)/u)
+  assert.match(printCss, /\.skill-meter i\{[^}]*height:2\.8mm/u)
   const skillsBlock = printSource.match(/const skillColumns = \[([\s\S]*?)\n\]\n\nconst coverCapabilities/u)?.[1]
   assert.ok(skillsBlock)
   assert.doesNotMatch(skillsBlock, /Unitree|DYNAMIXEL|TurtleBot3|Dobot/u)
@@ -172,27 +178,36 @@ test('each skill card renders local brand icons and omits the meter legend block
   assert.doesNotMatch(printSource, /3칸 기능 단위 실습·적용/u)
 })
 
-test('print galleries remove image padding and fill their media cells', () => {
+test('print galleries remove internal image padding and preserve complete images', () => {
   assert.match(printSource, /project-media-\$\{project\.slug\}/u)
   assert.match(printCss, /\.project-media-hydraulic-robot-rl/u)
   assert.match(printCss, /\.project-media-hazardous-process-automation/u)
   assert.match(printCss, /\.gallery-grid\{[^}]*gap:0[^}]*padding:0/u)
-  assert.match(printCss, /\.gallery-grid img\{[^}]*object-fit:cover[^}]*padding:0[^}]*filter:none/u)
+  assert.match(printCss, /\.gallery-grid img\{[^}]*object-fit:contain[^}]*padding:0[^}]*background:#fff[^}]*filter:none/u)
+  assert.match(printCss, /\.detail-media-gallery\.media-count-2\{height:75mm\}/u)
+  assert.match(printCss, /\.gallery-count-3\{grid-template-columns:2\.7fr 1fr/u)
+  assert.match(printCss, /\.gallery-count-5\{grid-template-columns:repeat\(12,1fr\)/u)
   assert.doesNotMatch(printCss, /\.media-count-1 \.gallery-grid img,\.media-count-2 \.gallery-grid img\{padding:/u)
 })
 
-test('website and print portfolio use a restrained industrial sage palette', () => {
-  assert.match(siteCss, /--ember:#7b9b82/u)
-  assert.match(printCss, /--rust:#5f8068/u)
-  assert.match(favicon, /#7b9b82/u)
-  assert.doesNotMatch(`${siteCss}\n${favicon}\n${smartAssemblyDiagram}`, /#d9663d|#e8794e|#8e3e24|#3894e0|#63b3ed|rgba\(217,102,61|rgba\(56,148,224/u)
+test('website uses black and electric-yellow while print keeps white A4 paper with yellow accents', () => {
+  assert.match(siteCss, /--ink:#080808/u)
+  assert.match(siteCss, /--ember:#e8ff47/u)
+  assert.match(siteCss, /html,body,#root\{overflow-x:clip\}/u)
+  assert.match(siteCss, /@media print\{[\s\S]*html,body,#root\{[^}]*overflow:visible!important/u)
+  assert.match(printCss, /--paper:#fff/u)
+  assert.match(printCss, /--yellow:#e8ff47/u)
+  assert.match(favicon, /#e8ff47/u)
+  assert.doesNotMatch(`${siteCss}\n${favicon}\n${smartAssemblyDiagram}`, /#7b9b82|#9ab7a0|#5f8068|#335a43|#91b99a|rgba\(123,155,130/u)
   assert.doesNotMatch(appSource, /#d9663d|#e8794e|#3894e0/u)
   assert.doesNotMatch(printCss, /#b94f2d|#ef8b66|#2f8fd5|#6ec1f2/u)
 })
 
-test('Nanum Gothic headings and emphasis avoid extra-bold weights', () => {
-  assert.doesNotMatch(siteCss, /font(?:-weight)?:8\d\d/u)
-  assert.doesNotMatch(printCss, /font(?:-weight)?:8\d\d/u)
+test('Pretendard uses ExtraBold only up to weight 800', () => {
+  assert.match(siteCss, /font-weight:800|font:800/u)
+  assert.match(printCss, /font:800/u)
+  assert.doesNotMatch(siteCss, /font(?:-weight)?:9\d\d/u)
+  assert.doesNotMatch(printCss, /font(?:-weight)?:9\d\d/u)
   assert.match(siteCss, /font-weight:700/u)
   assert.match(printCss, /font:700/u)
 })
@@ -225,6 +240,11 @@ test('THING repository links point to the owner repository', () => {
   assert.equal(thing.links[0].href, 'https://github.com/yjmini/THING')
   assert.equal(thing.repository.href, 'https://github.com/yjmini/THING')
   assert.doesNotMatch(JSON.stringify(thing), /SeMinKong/u)
+})
+
+test('Smart Assembly project uses the verified May to June 2026 period', () => {
+  const smartAssembly = projects.find((project) => project.slug === 'smart-assembly-transport')
+  assert.equal(smartAssembly.period, '2026.05 — 2026.06')
 })
 
 test('print detail pages follow the public project index order', () => {

@@ -128,29 +128,29 @@ function RobotScene() {
       <svg viewBox="0 0 520 440" role="img" aria-labelledby="robotTitle">
         <title id="robotTitle">센서, 인식, 계획, 제어 계층으로 연결된 로봇 시스템</title>
         <defs>
-          <linearGradient id="arm" x1="0" x2="1"><stop offset="0" stopColor="#3a4b42"/><stop offset="1" stopColor="#151d19"/></linearGradient>
+          <linearGradient id="arm" x1="0" x2="1"><stop offset="0" stopColor="#3c3c3c"/><stop offset="1" stopColor="#101010"/></linearGradient>
           <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
         </defs>
-        <circle cx="260" cy="214" r="142" fill="none" stroke="#2b3b33" strokeDasharray="3 8"/>
-        <circle cx="260" cy="214" r="104" fill="#121b17" stroke="#7b9b82" strokeOpacity=".35"/>
-        <circle cx="260" cy="214" r="62" fill="#7b9b82" fillOpacity=".08" filter="url(#soft)"/>
+        <circle cx="260" cy="214" r="142" fill="none" stroke="#2a2a2a" strokeDasharray="3 8"/>
+        <circle cx="260" cy="214" r="104" fill="#0f0f0f" stroke="#e8ff47" strokeOpacity=".35"/>
+        <circle cx="260" cy="214" r="62" fill="#e8ff47" fillOpacity=".08" filter="url(#soft)"/>
         <g className="robot-arm-svg">
-          <rect x="226" y="183" width="68" height="70" rx="14" fill="url(#arm)" stroke="#5f686f"/>
-          <circle cx="260" cy="218" r="18" fill="#7b9b82" fillOpacity=".85"/>
+          <rect x="226" y="183" width="68" height="70" rx="14" fill="url(#arm)" stroke="#888888"/>
+          <circle cx="260" cy="218" r="18" fill="#e8ff47" fillOpacity=".85"/>
           <path d="M229 204 L165 158 L119 193" fill="none" stroke="url(#arm)" strokeWidth="24" strokeLinecap="round" strokeLinejoin="round"/>
           <path d="M291 204 L355 149 L405 187" fill="none" stroke="url(#arm)" strokeWidth="24" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="165" cy="158" r="16" fill="#7b9b82"/><circle cx="355" cy="149" r="16" fill="#7b9b82"/>
-          <path d="M119 193 L104 268 M405 187 L422 263" stroke="#35443b" strokeWidth="20" strokeLinecap="round"/>
-          <path d="M94 267 l-20 34 M111 269 l6 40 M412 263 l-6 42 M430 261 l20 35" stroke="#8a929b" strokeWidth="8" strokeLinecap="round"/>
+          <circle cx="165" cy="158" r="16" fill="#e8ff47"/><circle cx="355" cy="149" r="16" fill="#e8ff47"/>
+          <path d="M119 193 L104 268 M405 187 L422 263" stroke="#2a2a2a" strokeWidth="20" strokeLinecap="round"/>
+          <path d="M94 267 l-20 34 M111 269 l6 40 M412 263 l-6 42 M430 261 l20 35" stroke="#888888" strokeWidth="8" strokeLinecap="round"/>
         </g>
-        <g className="sensor-lines" fill="none" stroke="#7b9b82" strokeOpacity=".62">
+        <g className="sensor-lines" fill="none" stroke="#e8ff47" strokeOpacity=".62">
           <path d="M260 112 V48 H370"/><path d="M157 214 H66 V119"/><path d="M363 214 H459 V320"/><path d="M260 317 V382 H148"/>
         </g>
-        <g fill="#c8d0ca" fontFamily="NanumGothic" fontSize="12">
+        <g fill="#d0d0c9" fontFamily="Pretendard" fontSize="12">
           <text x="379" y="51">SENSOR</text><text x="42" y="111">PERCEPTION</text>
           <text x="421" y="339">CONTROL</text><text x="83" y="399">SIMULATION</text>
         </g>
-        <g fill="#7b9b82"><circle cx="260" cy="48" r="4"/><circle cx="66" cy="119" r="4"/><circle cx="459" cy="320" r="4"/><circle cx="148" cy="382" r="4"/></g>
+        <g fill="#e8ff47"><circle cx="260" cy="48" r="4"/><circle cx="66" cy="119" r="4"/><circle cx="459" cy="320" r="4"/><circle cx="148" cy="382" r="4"/></g>
       </svg>
       <div className="robot-readout"><span><b>ROS2</b> orchestration</span><span><b>PPO</b> policy</span><span><b>RGB-D</b> perception</span></div>
     </div>

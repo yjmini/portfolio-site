@@ -132,7 +132,7 @@ export const projects = [
     stack: ['ROS2', 'Python', 'Django', 'Vue', 'YOLO', 'Nav2', 'WebSocket'],
     metrics: [{ value: 'E2E', label: 'integrated flow' }, { value: 'Mock-first', label: 'hardware-safe test' }],
     role: '시스템 아키텍처·FSM·로봇/웹 통합·검증',
-    period: '2026.05 — 현재',
+    period: '2026.05 — 2026.06',
     problem: '여러 로봇과 웹 서비스가 순차적으로 협업해야 하지만, 장비 가용성과 네트워크 상태에 따라 전체 흐름 검증이 쉽게 막혔습니다.',
     decision: '각 장비를 동일 인터페이스의 Mock으로 먼저 대체하고, ROS2 FSM이 실제/Mock 구현을 바꾸어 끼울 수 있게 경계를 분리했습니다.',
     result: '음성 명령에서 조립·검사·배송·관제까지 전체 상태 전이를 반복 실행할 수 있는 검증 가능한 통합 구조를 만들었습니다.',
