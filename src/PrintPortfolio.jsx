@@ -179,9 +179,9 @@ const educationActivities = [
   {
     period: '2026.01 — 현재',
     title: 'SSAFY 15기 · Embedded Robotics Track',
-    organizer: 'Samsung Software AI Academy for Youth',
+    organizer: '삼성 청년 SW·AI 아카데미',
     purpose: 'C/C++ 언어 및 알고리즘 역량을 강화하고, Python, Linux, ROS2와 같은 임베디드 소프트웨어 기술을 학습하여 로봇 및 시스템 소프트웨어 개발 역량을 높이는 것을 목표로 참여했습니다.',
-    achievement: '삼성 SW 역량 테스트 A형 취득 및 B형 대비 문제풀이를 통해 C/C++ 알고리즘 역량을 강화했습니다. 공통 프로젝트 우수상(1등)을 수상했습니다.',
+    achievement: '삼성 SW 역량 테스트 A형 취득 및 B형 대비 문제풀이를 통해 C/C++ 알고리즘 역량을 강화했습니다. 삼성 청년 SW·AI 아카데미 공통프로젝트 우수상(1등)을 수상했습니다.',
   },
   {
     period: '2024.12 — 2025.02',

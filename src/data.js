@@ -356,7 +356,7 @@ export const projects = [
 export const experience = [
   {
     period: '2026.01 — 현재',
-    place: 'Samsung Software AI Academy for Youth',
+    place: '삼성 청년 SW·AI 아카데미',
     role: 'SSAFY 15기 · Embedded Robotics Track',
     location: 'Gwangju · Full-time training',
     current: true,
@@ -397,7 +397,7 @@ export const toolGroups = [
 ]
 
 export const awards = [
-  ['삼성 청년 SW 아카데미 공통 프로젝트 우수상(1등)', 'Samsung · 2026'],
+  ['삼성 청년 SW·AI 아카데미 공통프로젝트 우수상(1등)', 'Samsung · 2026'],
   ['AI Festa 경진대회 우수상', 'KOREATECH · 2025'],
   ['졸업연구작품 우수상', 'KOREATECH · 2025'],
   ['충청권 AI 전문가 멘토링 최우수상', 'DICIA · 2022'],

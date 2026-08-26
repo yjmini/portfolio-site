@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from 'node:fs'
 import { awards, certifications, projects } from '../src/data.js'
 
 const printSource = readFileSync(new URL('../src/PrintPortfolio.jsx', import.meta.url), 'utf8')
+const dataSource = readFileSync(new URL('../src/data.js', import.meta.url), 'utf8')
 const printCss = readFileSync(new URL('../src/print-portfolio.css', import.meta.url), 'utf8')
 const siteCss = readFileSync(new URL('../src/styles.css', import.meta.url), 'utf8')
 const featureCss = readFileSync(new URL('../src/feature-pages.css', import.meta.url), 'utf8')
@@ -17,7 +18,7 @@ test('recognition and certification render as structured lists', () => {
   assert.match(printSource, /<ul[^>]*className="recognition-list"/u)
   assert.ok(awards.length >= 4)
   assert.ok(certifications.length >= 4)
-  assert.ok(awards.some(([name]) => name === '삼성 청년 SW 아카데미 공통 프로젝트 우수상(1등)'))
+  assert.ok(awards.some(([name]) => name === '삼성 청년 SW·AI 아카데미 공통프로젝트 우수상(1등)'))
   assert.doesNotMatch(printSource, /experience\.slice\(/u)
 })
 
@@ -28,11 +29,17 @@ test('TOEIC Speaking IH is included in the shared certifications data', () => {
   )
 })
 
-test('Samsung is shown as the organizer of the common project award', () => {
+test('the common project award uses the official academy name', () => {
   assert.deepEqual(
-    awards.find(([name]) => name === '삼성 청년 SW 아카데미 공통 프로젝트 우수상(1등)'),
-    ['삼성 청년 SW 아카데미 공통 프로젝트 우수상(1등)', 'Samsung · 2026'],
+    awards.find(([name]) => name === '삼성 청년 SW·AI 아카데미 공통프로젝트 우수상(1등)'),
+    ['삼성 청년 SW·AI 아카데미 공통프로젝트 우수상(1등)', 'Samsung · 2026'],
   )
+})
+
+test('website and print portfolio use only the official academy name or SSAFY', () => {
+  assert.match(dataSource, /place: '삼성 청년 SW·AI 아카데미'/u)
+  assert.match(printSource, /organizer: '삼성 청년 SW·AI 아카데미'/u)
+  assert.doesNotMatch(`${dataSource}\n${printSource}`, /Samsung Software AI Academy for Youth|삼성 청년 SW 아카데미/u)
 })
 
 test('print portfolio reserves compact cover spacing above its page footer', () => {
@@ -106,7 +113,7 @@ test('education activities include participation purpose and achievement evidenc
 })
 
 test('SSAFY education records only the verified common project first-place award', () => {
-  assert.match(printSource, /공통 프로젝트 우수상\(1등\)/u)
+  assert.match(printSource, /삼성 청년 SW·AI 아카데미 공통프로젝트 우수상\(1등\)/u)
   assert.doesNotMatch(printSource, /중간·최종 관통 프로젝트/u)
   assert.doesNotMatch(printSource, /각각 1등·2등/u)
 })
