@@ -86,7 +86,8 @@ test('Pretendard 400 through 800 is self-hosted and applied to the website and p
 })
 
 test('project detail content supports explicit emphasis and in-flow metadata', () => {
-  assert.match(printSource, /className="detail-bottom"/u)
+  assert.match(printSource, /className="detail-environment"/u)
+  assert.match(printSource, /className="detail-repo"/u)
   assert.match(printSource, /className="contribution-highlight"/u)
   assert.doesNotMatch(printCss, /\.detail-stack\s*\{[^}]*position\s*:\s*absolute/u)
 })
@@ -96,11 +97,11 @@ test('print portfolio gives experience-education and skills-recognition their ow
   assert.match(printSource, /function SkillsRecognitionPage\(/u)
   assert.match(
     printSource,
-    /<CoverPage\s*\/?>[\s\S]*<ExperienceEducationPage\s*\/?>[\s\S]*<SkillsRecognitionPage\s*\/?>[\s\S]*<SummaryPage\s*\/?>/u,
+    /<ExperienceEducationPage\s*\/?>[\s\S]*<CoverPage\s*\/?>[\s\S]*<SkillsRecognitionPage\s*\/?>[\s\S]*<SummaryPage\s*\/?>/u,
   )
-  assert.match(printSource, /detailProjects\.length \+ 4/u)
-  assert.match(printSource, /p\.\{index \+ 5\}/u)
-  assert.match(printSource, /page=\{index \+ 5\}/u)
+  assert.match(printSource, /totalPortfolioPages\(detailProjects\.length\)/u)
+  assert.match(printSource, /firstProjectPage\(index\)/u)
+  assert.match(printSource, /page=\{startPage \+ 1\}/u)
 })
 
 test('education activities include participation purpose and achievement evidence', () => {
@@ -119,10 +120,10 @@ test('SSAFY education records only the verified common project first-place award
 })
 
 test('education activities are presented in reverse chronological order', () => {
-  const winterSchool = printSource.indexOf("title: '심층강화학습 윈터스쿨'")
-  const metaverse = printSource.indexOf("title: '메타버스 아카데미 1기 · 콘텐츠 창작자 과정'")
-  const military = printSource.indexOf("title: '군 SW·AI 역량강화 교육'")
-  assert.ok(winterSchool >= 0 && metaverse > winterSchool && military > metaverse)
+  const metaversePosition = printSource.indexOf("title: '메타버스 아카데미 1기 · 콘텐츠 창작자 과정'")
+  const armyPosition = printSource.indexOf("title: '군 SW·AI 역량강화 교육'")
+
+  assert.ok(armyPosition >= 0 && metaversePosition > armyPosition)
 })
 
 test('academic and education facts match the corrected source records', () => {
@@ -191,7 +192,7 @@ test('print galleries remove internal image padding and preserve complete images
   assert.match(printCss, /\.project-media-hazardous-process-automation/u)
   assert.match(printCss, /\.gallery-grid\{[^}]*gap:0[^}]*padding:0/u)
   assert.match(printCss, /\.gallery-grid img\{[^}]*object-fit:contain[^}]*padding:0[^}]*background:#fff[^}]*filter:none/u)
-  assert.match(printCss, /\.detail-media-gallery\.media-count-2\{height:75mm\}/u)
+  assert.match(printCss, /\.detail-media-gallery\.media-count-2\{height:88mm\}/u)
   assert.match(printCss, /\.gallery-count-3\{grid-template-columns:2\.7fr 1fr/u)
   assert.match(printCss, /\.gallery-count-5\{grid-template-columns:repeat\(12,1fr\)/u)
   assert.doesNotMatch(printCss, /\.media-count-1 \.gallery-grid img,\.media-count-2 \.gallery-grid img\{padding:/u)

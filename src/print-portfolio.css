@@ -84,7 +84,7 @@
 .cover-ai article>p{margin:2.2mm 0 0;color:var(--ink-soft);font-size:8.1pt;line-height:1.62}
 
 /* Experience & education */
-.profile-page-header{display:grid;grid-template-columns:1fr 70mm;gap:9mm;align-items:end;padding-bottom:5mm;border-bottom:.45mm solid var(--ink)}
+.profile-page-header{display:block;padding-bottom:5mm;border-bottom:.45mm solid var(--ink)}
 .profile-page-header h2{margin:1.5mm 0 0;font:800 24pt/1 "Pretendard",sans-serif;letter-spacing:-.035em}
 .profile-page-header>p{margin:0;color:var(--ink-soft);font-size:9.2pt;line-height:1.55}
 .profile-page-header>p b{color:var(--rust)}
@@ -104,7 +104,7 @@
 .education-card>p>b{color:var(--rust);font:700 7pt "Pretendard",sans-serif}
 
 /* Skills, certifications & awards */
-.skills-page-header{grid-template-columns:1fr 78mm}
+.skills-page-header{display:block}
 .skills-columns{display:grid;grid-template-columns:repeat(3,1fr);gap:4mm;margin-top:5mm}
 .skills-column{display:flex;min-height:140mm;flex-direction:column;padding:3.8mm;border:.25mm solid var(--line);background:#fff}
 .skills-column>h3{margin:0 0 2mm;padding-bottom:2.5mm;border-bottom:.4mm solid var(--ink);color:var(--rust);font:700 7.6pt "Pretendard",sans-serif;letter-spacing:.05em;text-transform:uppercase}
@@ -129,7 +129,7 @@
 .skills-recognition aside b{color:var(--rust)}
 
 /* Summary */
-.portfolio-page-header{display:grid;grid-template-columns:1fr 75mm;gap:10mm;align-items:end;padding-bottom:6mm;border-bottom:.45mm solid var(--ink)}
+.portfolio-page-header{display:block;padding-bottom:6mm;border-bottom:.45mm solid var(--ink)}
 .portfolio-page-header h2{margin:1.5mm 0 0;font:800 24pt/1 "Pretendard",sans-serif;letter-spacing:-.035em}
 .portfolio-page-header>p{margin:0;color:var(--ink-soft);font-size:9.4pt;line-height:1.58}
 .summary-list{margin-top:4.5mm}
@@ -146,17 +146,23 @@
 .summary-main dt{display:flex;align-items:center;justify-content:center;background:var(--paper-2);color:#888888;font:700 7.3pt "Pretendard",sans-serif;text-align:center}
 .summary-main dd{display:flex;align-items:center;color:var(--ink-soft);font-size:7.9pt;line-height:1.38}
 
-/* Detail pages */
-.detail-header{padding-bottom:4.5mm;border-bottom:.45mm solid var(--ink)}
-.detail-header h2{margin:2mm 0 0;font:800 24pt/1.05 "Pretendard",sans-serif;letter-spacing:-.035em}
-.detail-meta{display:flex;align-items:center;flex-wrap:wrap;gap:2.5mm 5mm;margin-top:2.5mm;color:#888888;font-size:8.8pt}
-.detail-meta strong{color:var(--blue);font-size:9.2pt}
-.detail-meta span{position:relative;padding-left:4mm;font:600 8pt "Pretendard",sans-serif}
+/* Project detail pages: two A4 sheets per project */
+.detail-header{padding-bottom:3.5mm;border-bottom:.45mm solid var(--ink)}
+.detail-header h2{margin:1.7mm 0 0;font:800 23pt/1.05 "Pretendard",sans-serif;letter-spacing:-.035em}
+.detail-recognition{display:flex;flex-wrap:wrap;gap:1.5mm 4mm;margin-top:2.2mm;color:var(--rust)}
+.detail-recognition strong{font:700 8.2pt/1.35 "Pretendard",sans-serif}
+.detail-meta{display:flex;align-items:center;flex-wrap:wrap;gap:2.5mm 5mm;margin-top:2.2mm;color:#888888;font-size:8.4pt}
+.detail-meta strong{color:var(--blue);font-size:8.8pt;letter-spacing:.04em}
+.detail-meta span{position:relative;padding-left:4mm;font:600 7.7pt "Pretendard",sans-serif}
 .detail-meta span::before{content:"";position:absolute;left:0;top:50%;width:1.5mm;height:1.5mm;border-radius:50%;background:var(--rust);transform:translateY(-50%)}
-.detail-media-gallery{height:82mm;display:grid;grid-template-rows:minmax(0,1fr) auto;margin-top:4mm;overflow:hidden;border:.25mm solid var(--line);background:#f4f4f0}
-.detail-media-gallery.media-count-1{height:100mm}
-.detail-media-gallery.media-count-2{height:75mm}
-.detail-media-gallery.media-count-5{height:86mm}
+.detail-environment{display:grid;grid-template-columns:24mm 1fr;gap:3mm;align-items:center;margin-top:3mm;padding:2.5mm 3mm;border:.25mm solid var(--ink);background:var(--paper-2)}
+.detail-environment>strong{color:var(--rust);font:700 7.6pt "Pretendard",sans-serif;letter-spacing:.08em}
+.detail-environment>div{display:flex;flex-wrap:wrap;gap:1.2mm}
+.detail-environment span{padding:.8mm 1.8mm;border:.2mm solid #b8b8b0;background:#fff;color:#4f4f4a;font:650 6.9pt "Pretendard",sans-serif}
+.detail-media-gallery{height:91mm;display:grid;grid-template-rows:minmax(0,1fr) auto;margin-top:3mm;overflow:hidden;border:.25mm solid var(--line);background:#f4f4f0}
+.detail-media-gallery.media-count-1{height:96mm}
+.detail-media-gallery.media-count-2{height:88mm}
+.detail-media-gallery.media-count-5{height:94mm}
 .gallery-grid{display:grid;min-height:0;gap:0;padding:0;background:#f4f4f0}
 .gallery-count-1{grid-template-columns:1fr}
 .gallery-count-2{grid-template-columns:1fr 1fr}
@@ -181,40 +187,50 @@
 .visual-caption{display:flex;align-items:center;justify-content:space-between;padding:2mm 3mm;background:#161616;color:#fff}
 .visual-caption b{color:#e8ff47;font:700 8pt "Pretendard",sans-serif}
 .visual-caption span{font:500 7.3pt "Pretendard",sans-serif;letter-spacing:.04em}
-.detail-overview{display:grid;grid-template-columns:1.4fr .6fr;gap:7mm;margin-top:4mm}
-.detail-overview h3,.detail-body h3{margin:0 0 2mm;font:700 11pt "Pretendard",sans-serif;letter-spacing:-.015em}
-.detail-overview h3::before,.detail-body h3::before{content:"";display:inline-block;width:2mm;height:4.3mm;margin-right:2mm;border-radius:.5mm;background:var(--rust);vertical-align:-.7mm}
-.detail-overview p{margin:0;color:var(--ink-soft);font-size:9pt;line-height:1.58}
-.project-role-list{display:grid;gap:.8mm;margin:0;padding:0;list-style:none;color:var(--ink-soft);font-size:8.5pt;line-height:1.42}
+.detail-focus-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:4mm;margin-top:3.5mm}
+.detail-focus-grid>div{padding:3mm 3.5mm;border:.25mm solid var(--line)}
+.detail-focus-grid .project-scope{background:var(--paper-2);border-color:#b8b8b0}
+.detail-focus-grid h3,.detail-achievement-grid h3{margin:0 0 1.8mm;font:700 10.5pt "Pretendard",sans-serif;letter-spacing:-.015em}
+.detail-focus-grid h3::before,.detail-achievement-grid h3::before{content:"";display:inline-block;width:2mm;height:4.1mm;margin-right:2mm;border-radius:.5mm;background:var(--rust);vertical-align:-.7mm}
+.project-goal p{margin:0;color:var(--ink-soft);font-size:8.5pt;line-height:1.5}
+.project-role-list{display:grid;gap:1.1mm;margin:0;padding:0;list-style:none;color:var(--ink-soft);font-size:8.35pt;line-height:1.42}
 .project-role-list li{position:relative;padding-left:3mm}
 .project-role-list li::before{content:"•";position:absolute;left:0;color:var(--rust);font-weight:700}
 .project-role-list.compact{display:flex;flex-wrap:wrap;gap:.4mm 2.6mm;font-size:7.7pt;line-height:1.32}
 .project-role-list.compact li{padding-left:2.4mm}
-.project-flow{display:flex;align-items:center;justify-content:space-between;gap:1mm;margin-top:3.5mm;padding:2.3mm 3mm;border-top:.3mm solid var(--ink);border-bottom:.3mm solid var(--ink);background:var(--paper-2)}
+.project-flow{display:flex;align-items:center;justify-content:space-between;gap:1mm;margin-top:3mm;padding:2.3mm 3mm;border-top:.3mm solid var(--ink);border-bottom:.3mm solid var(--ink);background:var(--paper-2)}
 .project-flow div{display:flex;align-items:center;gap:1.5mm;color:var(--blue);font:700 7.1pt "Pretendard",sans-serif;text-align:center}
 .project-flow b{color:var(--rust);font-weight:500}
-.detail-body{display:grid;grid-template-columns:.86fr 1.14fr;gap:7mm;margin-top:4mm}
+.detail-achievement-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:4mm;margin-top:3mm}
+.detail-achievement-grid>section{padding:3mm;border:.25mm solid var(--line)}
 .contribution-list{margin:0;padding:0;list-style:none}
-.contribution-list li{position:relative;margin:0 0 2.2mm;padding-left:4mm;color:var(--ink-soft);font-size:8.5pt;line-height:1.52}
+.contribution-list li{position:relative;margin:0 0 2.2mm;padding-left:4mm;color:var(--ink-soft);font-size:8.2pt;line-height:1.5}
+.contribution-list li:last-child{margin-bottom:0}
 .contribution-list li::before{content:"";position:absolute;left:0;top:1.7mm;width:1.5mm;height:1.5mm;background:var(--rust)}
 .contribution-highlight{color:var(--ink);font-weight:700}
-.evidence-box{margin-top:3mm;padding:3mm;background:var(--paper-2)}
-.evidence-box strong{color:var(--rust);font:700 7.5pt "Pretendard",sans-serif;text-transform:uppercase;letter-spacing:.08em}
-.evidence-box ul{display:grid;grid-template-columns:1fr 1fr;gap:1mm 2mm;margin:1.4mm 0 0;padding:0;list-style:none}
-.evidence-box li{position:relative;padding-left:2.6mm;color:var(--ink-soft);font-size:7.4pt;line-height:1.34}
+.evidence-box{margin:0;background:var(--paper-2)}
+.evidence-box>strong{color:var(--rust);font:700 7.5pt "Pretendard",sans-serif;text-transform:uppercase;letter-spacing:.08em}
+.evidence-box ul{display:grid;gap:1.6mm;margin:2mm 0 0;padding:0;list-style:none}
+.evidence-box li{position:relative;padding-left:3.2mm;color:var(--ink-soft);font-size:7.8pt;line-height:1.4}
 .evidence-box li::before{content:"✓";position:absolute;left:0;color:var(--rust);font-weight:700}
-.detail-body h3 small{margin-left:2mm;color:var(--rust);font:700 7pt "Pretendard",sans-serif}
-.troubleshooting-list{display:grid;gap:2.8mm}
-.troubleshooting-list article{padding-bottom:2.8mm;border-bottom:.25mm solid var(--line)}
-.troubleshooting-list article:last-child{padding-bottom:0;border-bottom:0}
-.troubleshooting-list h4{margin:0 0 1.4mm;font:700 9.2pt/1.35 "Pretendard",sans-serif}
-.troubleshooting-list p{display:grid;grid-template-columns:10mm 1fr;gap:1mm;margin:.7mm 0;color:var(--ink-soft);font-size:7.75pt;line-height:1.42}
-.troubleshooting-list p b{color:var(--rust);font:700 7.2pt "Pretendard",sans-serif}
-.detail-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:4mm;margin-top:3.5mm;padding-top:2.5mm;border-top:.25mm solid var(--line)}
-.detail-stack{display:flex;align-items:center;flex-wrap:wrap;gap:1.5mm}
-.detail-stack>strong{margin-right:1.5mm;color:var(--rust);font:700 7.5pt "Pretendard",sans-serif;text-transform:uppercase;letter-spacing:.08em}
-.detail-stack span{padding:1.2mm 2.4mm;border:.25mm solid #b8b8b0;border-radius:99mm;color:#4f4f4a;font:650 7.3pt "Pretendard",sans-serif}
-.detail-repo{display:flex;flex:0 0 auto;align-items:center;gap:1.2mm;color:var(--blue);font:650 7.5pt "Pretendard",sans-serif}
+.portfolio-detail-overview>.detail-repo{position:absolute;right:15mm;bottom:15mm;display:flex;align-items:center;gap:1.2mm;color:var(--blue);font:650 7.5pt "Pretendard",sans-serif}
+.troubleshooting-intro{display:grid;grid-template-columns:1fr 68mm;gap:6mm;align-items:center;margin-top:4mm;padding:4mm 5mm;background:var(--paper-2);border-left:1.2mm solid var(--rust)}
+.troubleshooting-intro span{display:block;color:var(--rust);font:700 7.2pt "Pretendard",sans-serif;letter-spacing:.09em}
+.troubleshooting-intro strong{display:block;margin-top:1.5mm;font:700 11pt/1.35 "Pretendard",sans-serif}
+.troubleshooting-intro p{margin:0;color:var(--ink-soft);font-size:8.3pt;line-height:1.55}
+.troubleshooting-list.expanded{display:grid;gap:4mm;margin-top:4.5mm}
+.troubleshooting-list.expanded article{padding:4mm 4.3mm;border:.25mm solid var(--line);background:#fff}
+.troubleshooting-list.expanded article>header{display:grid;grid-template-columns:9mm 1fr;gap:2mm;align-items:start;padding-bottom:2mm;border-bottom:.3mm solid var(--ink)}
+.troubleshooting-list.expanded article>header span{color:var(--rust);font:700 9pt "Pretendard",sans-serif}
+.troubleshooting-list.expanded h3{margin:0;font:700 10.5pt/1.38 "Pretendard",sans-serif;letter-spacing:-.01em}
+.troubleshooting-list.expanded blockquote{display:grid;grid-template-columns:11mm 1fr;gap:2mm;align-items:start;margin:2.3mm 0;padding:2.2mm 3mm;border-left:.8mm solid var(--yellow);background:#fafafa;color:var(--ink);font:650 8.4pt/1.52 "Pretendard",sans-serif}
+.troubleshooting-question strong{color:var(--rust);font:700 7.3pt "Pretendard",sans-serif}
+.troubleshooting-question span{display:block}
+.troubleshooting-list.expanded dl{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:0;border-top:.2mm solid var(--line);border-left:.2mm solid var(--line)}
+.troubleshooting-list.expanded dl>div{display:grid;grid-template-columns:11mm 1fr;min-height:17mm;border-right:.2mm solid var(--line);border-bottom:.2mm solid var(--line)}
+.troubleshooting-list.expanded dt,.troubleshooting-list.expanded dd{margin:0;padding:2mm}
+.troubleshooting-list.expanded dt{display:flex;align-items:flex-start;justify-content:center;background:var(--paper-2);color:var(--rust);font:700 7.3pt "Pretendard",sans-serif}
+.troubleshooting-list.expanded dd{color:var(--ink-soft);font-size:8.1pt;line-height:1.52}
 
 @media(max-width:900px){
   .portfolio-toolbar{width:calc(100% - 24px);margin-bottom:16px}.print-guidance span{display:none}
