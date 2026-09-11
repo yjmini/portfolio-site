@@ -16,12 +16,14 @@ const detailProjects = detailBlueprints
   .map((blueprint) => ({ ...blueprint, index: blueprint.index }))
   .sort((a, b) => Number(a.index) - Number(b.index))
 
-test('experience and education becomes page 1 while the former cover becomes page 2', () => {
+test('profile cover is page 1 and experience and education is page 2', () => {
   const experiencePosition = printSource.indexOf('<ExperienceEducationPage />')
   const coverPosition = printSource.indexOf('<CoverPage />')
 
-  assert.ok(experiencePosition >= 0)
-  assert.ok(coverPosition > experiencePosition)
+  assert.ok(coverPosition >= 0)
+  assert.ok(experiencePosition > coverPosition)
+  assert.match(printSource, /function CoverPage\([\s\S]*?<PageFooter page=\{1\} \/>/u)
+  assert.match(printSource, /function ExperienceEducationPage\([\s\S]*?<PageFooter page=\{2\} \/>/u)
 })
 
 test('profile location is not rendered in the print portfolio', () => {

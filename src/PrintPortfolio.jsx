@@ -238,7 +238,7 @@ function CoverPage() {
         <p>{item.description}</p>
       </article>)}</div>
     </div>
-    <PageFooter page={2} />
+    <PageFooter page={1} />
   </section>
 }
 
@@ -268,7 +268,7 @@ function ExperienceEducationPage() {
         <p><b>성취</b><span>{activity.achievement}</span></p>
       </article>)}
     </div>
-    <PageFooter page={1} />
+    <PageFooter page={2} />
   </section>
 }
 
@@ -406,8 +406,8 @@ export default function PrintPortfolio() {
       <button type="button" onClick={() => window.print()}><Printer size={17}/>PDF로 인쇄</button>
     </div>
     <main className="portfolio-document">
-      <ExperienceEducationPage />
       <CoverPage />
+      <ExperienceEducationPage />
       <SkillsRecognitionPage />
       <SummaryPage />
       {detailProjects.flatMap((project, index) => {

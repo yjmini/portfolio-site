@@ -97,7 +97,7 @@ test('print portfolio gives experience-education and skills-recognition their ow
   assert.match(printSource, /function SkillsRecognitionPage\(/u)
   assert.match(
     printSource,
-    /<ExperienceEducationPage\s*\/?>[\s\S]*<CoverPage\s*\/?>[\s\S]*<SkillsRecognitionPage\s*\/?>[\s\S]*<SummaryPage\s*\/?>/u,
+    /<CoverPage\s*\/?>[\s\S]*<ExperienceEducationPage\s*\/?>[\s\S]*<SkillsRecognitionPage\s*\/?>[\s\S]*<SummaryPage\s*\/?>/u,
   )
   assert.match(printSource, /totalPortfolioPages\(detailProjects\.length\)/u)
   assert.match(printSource, /firstProjectPage\(index\)/u)
