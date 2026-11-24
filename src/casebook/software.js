@@ -1,0 +1,83 @@
+export default {
+  'websocket-live-streaming': {
+    image: 'assets/casebook/software/ws.png',
+    alt: '수신 탭에 표시된 송출 탭의 공유 화면과 두 닉네임이 주고받은 채팅 세 줄',
+    caption: '다른 탭에서 본 송출 화면. 화면 속에 같은 앱이 작게 반복되는 것은 송출 탭이 자기 미리보기까지 캡처했기 때문이다.',
+    overview: '두 브라우저가 같은 WebSocket 서버에 접속해 채팅과 화면을 공유한다. 영상을 통째로 전송하지 않고, 송출 탭이 화면을 연속된 JPEG로 만들어 보낸다. 수신 탭은 닉네임별로 가장 최근 프레임만 표시한다.',
+    steps: [
+      '송출 탭에서 공유할 화면을 선택하면 getDisplayMedia가 오디오 없는 영상 트랙을 연다.',
+      '200ms마다 캔버스에 가로 640px로 그린 뒤 JPEG를 stream 메시지에 담는다. 서버는 송신자를 제외한 접속자에게 메시지를 전달한다.',
+      '수신 탭은 같은 닉네임의 이미지를 교체한다. 송출을 중지하면 stream_stop을 받아 미리보기만 지우고 채팅은 남긴다.',
+    ],
+    trouble: {
+      title: '서버에는 undefined, 수신 탭에는 정상 화면',
+      symptom: '공유 중 서버 로그에 «송출: undefined»가 반복됐지만 상대 탭의 화면은 계속 바뀌었다.',
+      cause: '로그가 image 타입만 따로 처리한다. 실제 프레임 타입은 stream이고 데이터는 content에 있어서 나머지 분기가 읽는 text 값은 없다.',
+      response: '서버 로그와 전송 결과를 나눠 확인했다. 수신 이미지의 JPEG 형식과 폭, 연속 프레임의 값 변화, 중지 후 이미지 제거를 각각 검사했다.',
+    },
+    run: '격리된 가상 화면에서 실제 Chromium 두 탭과 원본 Node 서버를 실행했다. 양방향 채팅, 640×450 JPEG 갱신, 송출 중지를 확인했다. 인터넷 구간의 지연과 다수 접속 성능은 측정하지 않았다.',
+    source: 'yjmini/websocket_live_streaming/client/src/App.vue · server/index.mjs',
+  },
+  'langchain-todo': {
+    image: 'assets/casebook/software/todo.png',
+    alt: '왼쪽에는 회의록 정리 추가 및 3번 완료 명령, 오른쪽에는 완료 체크된 TASK-3과 펼쳐진 상세 항목',
+    caption: '«회의록 정리 추가해줘»로 생긴 TASK-3을 «3번 완료해»로 체크한 화면. 채팅의 [SYSTEM] 문구는 모델 응답이 아니라 브라우저가 출력한 처리 결과다.',
+    overview: '채팅 답변과 할 일 변경은 서로 다른 경로를 쓴다. Express 서버는 LangChain을 통해 로컬 Ollama에 답변을 요청하고, 브라우저는 사용자가 입력한 문장의 키워드와 번호로 할 일 배열을 갱신한다.',
+    steps: [
+      '명령을 보내면 채팅창에 입력 문장이 남고, 클라이언트는 시스템 메시지와 사용자 메시지를 /api/v1/chat에 보낸다.',
+      '서버는 입력을 검사한 뒤 qwen3:14b를 호출한다. 클라이언트는 응답을 받거나 오류를 처리한 다음 원래 명령에서 추가·완료·삭제 키워드를 찾는다.',
+      '추가 시 새 번호를 발급하고, 완료·삭제 시 입력에서 읽은 번호로 해당 항목을 찾는다. 변경한 목록과 체크 상태를 다시 그린다.',
+    ],
+    trouble: {
+      title: '채팅 요청이 실패했는데도 할 일이 바뀐 이유',
+      symptom: 'Ollama가 없는 환경에서 채팅 API는 500을 반환했지만, TASK-3은 화면에 추가됐고 완료와 삭제도 가능했다.',
+      cause: '클라이언트는 요청 실패를 처리한 뒤에도 키워드 분기를 실행한다. 목록 변경에는 모델 응답이나 서버 저장소가 필요하지 않다.',
+      response: 'HTTP 응답 코드와 화면 상태를 따로 검사했다. 체크박스와 목록 길이의 변화는 할 일 기능의 결과로만 기록하고, 모델이 명령을 이해했다는 근거로 쓰지 않았다.',
+    },
+    run: '실제 브라우저와 Express 서버에서 추가·완료·상세 펼치기·삭제를 확인했다. 빈 배열, 공백 문자열, 숫자 입력은 각각 HTTP 400이었다. 모델 추론과 영속 저장은 검증하지 않았다.',
+    source: 'yjmini/Langchain_based_todolist/client/app.js · client/index.html · server/index.mjs',
+  },
+  'langgraph-cuso': {
+    image: 'assets/casebook/software/cuso.png',
+    alt: '타이머 종료 이벤트가 Listen, Macro, HandleAlert, Draft, Speak를 거치는 실행 로그와 요리 확인 알림',
+    caption: '타이머 종료 신호 한 건의 실행 기록. Macro가 interrupt를 선택하고 Speak가 «타이머가 종료되었습니다»를 출력했다.',
+    overview: '요리 도우미 CuSo는 사용자 질문과 타이머 알림을 구분한다. 질문은 장보기·타이머·레시피로 분류하지만, 타이머 종료 신호는 질문으로 해석하지 않고 곧바로 알림 문구를 만드는 노드로 보낸다.',
+    steps: [
+      '타이머 작업은 지정된 시간이 지나면 system_interrupt와 «타이머 종료 신호»를 넣어 그래프를 다시 호출한다.',
+      'Listen이 입력을 받고 Macro가 모델을 호출하지 않고 interrupt를 반환한다. 조건부 간선이 HandleAlert를 선택한다.',
+      'HandleAlert가 만든 한국어 알림을 Draft가 넘기고 Speak가 콘솔에 출력한다. 이 분기의 출력은 합성 음성이 아니라 텍스트다.',
+    ],
+    trouble: {
+      title: '같은 thread_id로도 실행 뒤 상태를 읽을 수 없었다',
+      symptom: '알림은 출력됐지만 같은 thread_id로 get_state를 호출하면 «No checkpointer set»이 나왔다.',
+      cause: '모듈로 불러올 때 사용하는 app은 체크포인터 없이 컴파일된다. MemorySaver를 붙이는 코드는 파일을 직접 실행할 때만 동작한다.',
+      response: '저장된 이력을 조회하는 대신 실행 중의 노드별 업데이트를 수집했다. 알림 전달과 대화 기억은 별개로 보고, 이번 결과에는 알림 경로만 포함했다.',
+    },
+    run: '원본 서버 그래프에서 다섯 노드의 순서를 검사했고, 대기 시간을 0초로 준 타이머 작업도 동일한 알림을 출력했다. 모델 연결 시도는 없었다. 마이크 입력, 음성 인식, 모델 기반 요리 답변은 실행하지 않았다.',
+    source: 'yjmini/LangGraph-CookingSupporter-CuSo/serverAI/main.py',
+  },
+  'early-software-projects': {
+    image: 'assets/casebook/software/dalmuti.png',
+    alt: 'C, A, D, B 순서로 손패를 비운 테스트 입력과 C는 왕, A는 귀족, D는 평민, B는 노예로 출력된 결과',
+    caption: '달무티의 순위 함수를 호출한 테스트. 영문 줄은 입력과 반환 상태를 기록한 것이고, 한글 계급표는 게임의 결과 출력 함수가 쓴 것이다.',
+    extra: [{
+      image: 'assets/casebook/software/catsgo-title.png',
+      alt: '검은 고양이와 발자국, CAT’S GO 제목이 그려진 게임 원본 배경',
+      caption: 'CatsGo 저장소의 타이틀 배경 원본(Assets/Image/IMG_Back.PNG). Unity 플레이 화면을 캡처한 것이 아니다.',
+    }],
+    overview: 'CatsGo는 시작·탐색·캣타워·길들이기를 Unity 씬으로 나눈 3D 게임이다. 달무티는 네 사람의 손패를 C 구조체로 관리하는 콘솔 카드 게임이다. 전자는 버튼과 마우스 입력이 씬과 게이지에 연결되는 방식을, 후자는 손패 상태가 순위와 계급으로 바뀌는 규칙을 보여준다.',
+    steps: [
+      'CatsGo의 빌드 설정에는 StartScene, MainScene, CatTowerScene, TamingScene이 등록돼 있다. 시작 버튼 이벤트는 첫 번째 씬에서 인덱스 1의 MainScene을 불러온다.',
+      '길들이기 씬에는 HealthGauge 오브젝트가 있다. 같은 이름의 스크립트는 값을 0에서 시작해 왼쪽 클릭마다 25를 더하고, 100으로 나눈 값을 게이지에 반영한다.',
+      '달무티는 카드 제출 후 손패 13칸을 검사한다. 모두 0이고 아직 순위가 없으면 도착 순서대로 왕·귀족·평민·노예를 배정하고, 마지막에 이름별 계급을 출력한다.',
+    ],
+    trouble: {
+      title: 'Windows 콘솔 없이 달무티의 순위 규칙 확인하기',
+      symptom: 'Linux에서 순위 모듈을 그대로 컴파일하자 windows.h를 찾지 못해 중단됐다.',
+      cause: '순위 계산과 결과 출력 파일도 Windows 헤더를 포함한다. 이 두 함수 안에서는 Windows API를 호출하지 않는다.',
+      response: '테스트 빌드에만 빈 호환 헤더를 제공하고, 원본 두 함수를 작은 C 테스트에서 호출했다. 카드가 남은 경우와 이미 순위가 정해진 경우에 다음 순위가 소모되지 않는지도 확인했다.',
+    },
+    run: '달무티는 순위 재편성과 결과 출력만 실행했다. 배분·조공·전체 라운드는 미실행이다. CatsGo는 지정된 Unity 2021.3.6f1 에디터가 없어 플레이하지 않았다. 대신 원본 씬 파일의 빌드 순서와 오브젝트를 읽고 저장소의 타이틀 이미지를 실었다.',
+    source: 'yjmini/The-Great-Dalmuti/Dalmuti_Finally/Reorganize_Class.c · Print_Game_Result.c / yjmini/MTVS2022_CatsGo/Assets/Scripts/HealthGauge.cs · SceneCtrl.asset · Assets/Image/IMG_Back.PNG',
+  },
+};

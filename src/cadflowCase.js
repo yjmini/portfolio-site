@@ -18,7 +18,7 @@ const identity = {
 
 export const cadflowProject = {
   ...identity,
-  index: '14', year: '2026', shortTitle: 'CADFlow', status: '팀 프로젝트',
+  index: '14', year: '2026', shortTitle: 'CADFlow', status: '팀 프로젝트', affiliation: '삼성전자 연계 프로젝트',
   tagline: '부품 설명서의 핀 하나를 회로도와 기판에서 다시 찾기',
   summary: '전자부품을 설계에 쓰려면 회로도에 연결할 단자와 기판에 납땜할 자리를 같은 핀 번호로 등록해야 합니다. 팀은 데이터시트에서 두 도형의 초안을 만드는 도구를 개발했고, 그중 원문에서 값을 읽고 생성 결과를 대조하는 부분을 맡았습니다.',
   image: viewer.src, imageAlt: viewer.alt, printImage: viewer.src, printGallery: [viewer, compare, figure], imagePosition: 'center',

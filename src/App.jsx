@@ -10,6 +10,7 @@ import { copyrightPolicy } from './legal'
 import { resolvePublicAsset } from './publicAsset'
 import PrintPortfolio from './PrintPortfolio'
 import FieldCase from './FieldCase'
+import ProjectCasebook from './ProjectCasebook'
 import { ProjectsExplorer } from './InteractiveHome'
 import ImmersiveHome from './kinetic/ImmersiveHome'
 import VantageHome from './VantageHome'
@@ -419,7 +420,7 @@ function App() {
   else if (route === '/lab-archive') page = <ImmersiveHome/>
   else if (route === '/projects') page = <ProjectsExplorer/>
   else if (route.startsWith('/projects/')) {
-    const p = projects.find(item => item.slug === route.split('/')[2]); page = p ? <ProjectDetail project={p}/> : <NotFound/>
+    const p = projects.find(item => item.slug === route.split('/')[2]); page = p ? <ProjectCasebook key={p.slug} project={p} next={projects[(projects.indexOf(p)+1)%projects.length]}/> : <NotFound/>
   } else if (route === '/work') page = <WorkPage/>
   else if (route === '/about') page = <AboutPage/>
   else if (route === '/resume') page = <ResumePage/>

@@ -118,6 +118,7 @@ export default function InteractiveHome() {
   </main>
 }
 
+import {caseCover, shortDescriptions} from './casebook'
 export function ProjectsExplorer() {
   const [category, setCategory] = useState('all')
   const [query, setQuery] = useState('')
@@ -126,7 +127,7 @@ export function ProjectsExplorer() {
     <SectionLabel number="INDEX">PROJECT ARCHIVE</SectionLabel><div className="archive-heading"><h1>Built to<br/><em>move.</em></h1><p>모델, 로봇,<br/>그리고 그 사이의 시스템.</p></div>
     <div className="archive-toolbar"><div className="archive-filters" role="group" aria-label="프로젝트 분야">{projectCategories.map(c => <button key={c.id} aria-pressed={c.id === category} onClick={() => setCategory(c.id)}>{c.label}</button>)}</div><label className="archive-search"><Search size={17}/><input type="search" value={query} onChange={e => setQuery(e.target.value)} placeholder="프로젝트 · 기술 검색" aria-label="프로젝트 검색"/></label></div>
     <p className="archive-count" role="status">{String(results.length).padStart(2, '0')} PROJECTS</p>
-    <div className="archive-grid">{results.map((p, i) => <a href={`#/projects/${p.slug}`} className="archive-card" key={p.slug}><div className="archive-image">{p.image ? <img src={asset(p.printImage || p.image)} alt={`${p.title} 프로젝트 자료`} loading={i > 1 ? 'lazy' : 'eager'}/> : <div className="archive-placeholder">{p.shortTitle}</div>}<span className="archive-card-arrow"><ArrowUpRight size={24}/></span></div><div className="archive-card-meta"><span>{categoryLabel(p)}</span><span>{p.year}</span></div><h2>{p.title}</h2><p>{p.tagline}</p><div className="archive-stack">{p.stack.slice(0, 4).join(' / ')}</div></a>)}</div>
+    <div className="archive-grid">{results.map((p, i) => <a href={`#/projects/${p.slug}`} className="archive-card" key={p.slug}><div className="archive-image"><img src={asset(caseCover(p.slug).image)} alt={caseCover(p.slug).alt} loading={i > 1 ? 'lazy' : 'eager'}/><span className="archive-card-arrow"><ArrowUpRight size={24}/></span></div><div className="archive-card-meta"><span>{categoryLabel(p)}</span><span>{p.year}</span></div><h2>{p.title}</h2><p>{shortDescriptions[p.slug] || p.tagline}</p><div className="archive-stack">{p.stack.slice(0, 4).join(' / ')}</div></a>)}</div>
     {!results.length && <div className="archive-empty"><h2>일치하는 프로젝트가 없습니다.</h2><button className="studio-secondary" onClick={() => { setCategory('all'); setQuery('') }}>필터 초기화<ArrowRight size={16}/></button></div>}
     <a href="#/" className="archive-return">처음으로 <ArrowUpRight size={17}/></a>
   </main>
