@@ -89,6 +89,50 @@ git push -u origin main
 
 Hash routing을 사용하므로 프로젝트 저장소 Pages 주소(`https://yjmini.github.io/portfolio-site/`)에서도 새로고침 404가 발생하지 않습니다.
 
+## Kinetic Playground — 인터랙티브 포트폴리오
+
+- **Full-screen hero**: 대형 타이포와 GPU 입자 조형. 포인터 위치에서 다른 타이포가 드러나고, 입자는 밀려나며 클릭하면 충격파가 전파됩니다.
+- **Orbit / Wave / Grid**: 실제 입자 형태 전환. 모션을 꺼도 정적인 형태 선택은 가능합니다.
+- **Scroll choreography**: 화면이 고정된 동안 제목·입자·카메라가 함께 전환됩니다. 기본 브라우저 스크롤을 사용하며 스크롤을 강제 가로채지 않습니다.
+- **Selected work**: 실제 프로젝트 자료를 큰 카드로 표시하며, 드래그·스와이프·좌우 버튼·방향키·Home/End로 탐색합니다.
+- **Playground**: 기술 키워드를 직접 드래그하거나 방향키로 이동하고 초기화할 수 있습니다.
+- **Contact**: 포인터를 따라가는 눈, 자석 링크, 이메일 복사.
+- **Accessibility/performance**: 모션 끄기, OS reduced-motion, 키보드 대안, 화면 밖 렌더링 정지, WebGL 실패 대체 화면 및 비활성 컨트롤, route 이탈 시 GPU context 해제.
+- 조형은 인터랙티브 시각 디자인이며 실제 로봇 CAD·실시간 하드웨어 데이터가 아닙니다.
+- 원본 프로젝트 데이터·상세 경로·이력서·10페이지 인쇄 소스는 유지합니다.
+
+### 구현 파일
+
+- `src/kinetic/ImmersiveHome.jsx`, `immersive-home.css`: 페이지 구성, Anime.js 타이포, Motion 스크롤/드래그/자석 효과
+- `src/kinetic/ParticleStage.jsx`, `particleStage.js`, `particle-stage.css`: 지연 로드하는 Three.js 입자 조형
+- `src/kinetic/KineticProjects.jsx`, `kinetic-projects.css`: 가로 드래그 프로젝트 갤러리
+- `src/InteractiveHome.jsx`의 ProjectsExplorer: 전체 프로젝트 검색·분야 필터
+- 이전 RobotLab 및 관련 검증 스크립트는 보존되어 있지만 현재 홈에서는 사용하지 않습니다.
+
+### 참고 자료와 비용
+
+- MotionSites의 **Pricing → Free**에서 `Interactive Discovery`, `3D Portfolio`의 인터랙션 방향을 확인했습니다. 외부 프로젝트 이미지나 유료 템플릿을 복사하지 않았습니다.
+- [Motion](https://motion.dev/) 14 및 [Anime.js](https://animejs.com/) 4 기본 라이브러리는 MIT. 라이선스 원문은 `public/assets/interactive/`와 Copyright 페이지에서 제공합니다.
+- [OriginKit](https://www.originkit.dev/)은 무료/유료 혼합이며 자체 라이선스입니다. 무료 인터랙션 방향만 조사했고, 다운로드·소스 재사용은 하지 않았습니다.
+
+### 브라우저 회귀 검사
+
+```bash
+npm ci
+npx playwright install chromium
+npm run dev -- --host 127.0.0.1 --port 4187 --strictPort
+# 별도 터미널
+npm run test:browser
+```
+
+실제 배포 하위 경로를 검사할 때:
+
+```bash
+PORTFOLIO_URL=http://127.0.0.1:4188/portfolio-site/ npm run test:browser
+```
+
+`verify-kinetic.mjs`, `verify-kinetic-interactions.mjs`, `verify-kinetic-failures.mjs`가 실제 화면 변화, sticky 위치, 마우스 드래그, 모바일 터치, 키보드, clipboard, reduced-motion, WebGL 실패/해제, 기존 경로와 접근성을 검사합니다. 캡처·보고서 기본 경로는 `/tmp/portfolio-kinetic-qa/`, 변경은 `QA_OUTPUT`입니다.
+
 ## 콘텐츠 수정
 
 프로젝트·경력·기술 데이터는 `src/data.js`에 모여 있습니다.

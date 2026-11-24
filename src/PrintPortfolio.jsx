@@ -1,391 +1,156 @@
 import { useEffect } from 'react'
 import { ArrowLeft, ExternalLink, Github, Mail, Printer } from 'lucide-react'
-import { awards, certifications, profile, projects } from './data'
-import {
-  detailBlueprints,
-  firstProjectPage,
-  totalPortfolioPages,
-} from './portfolioPrintPlan'
+import { awards, certifications, profile } from './data'
+import { editorialProjects, supportProjects, coreSkills, supportSkills } from './portfolioEditorial'
+import { kinderbotEditorial } from './kinderbotCase'
+import { cadflowEditorialProject } from './cadflowCase'
 import './print-portfolio.css'
+import './vantage-print.css'
+import CaseMeasurements from './CaseMeasurements'
 
 const asset = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`
-
-const detailProjects = detailBlueprints.map((blueprint) => ({
-  ...projects.find((project) => project.slug === blueprint.slug),
-  ...blueprint,
-})).sort((a, b) => Number(a.index) - Number(b.index))
-
+const printProjects = [...editorialProjects, kinderbotEditorial, cadflowEditorialProject]
+const totalPages = 2 + printProjects.length * 2 + 2
+const skillIconFiles = { ROS2: 'ros', Python: 'python', 'Isaac Lab': 'nvidia', PyTorch: 'pytorch', 'RTAB-Map': 'ros', YOLOv10: 'yolo', PyQt5: 'qt' }
+const projectNames = Object.fromEntries([...editorialProjects, ...supportProjects].map(project => [project.slug, project.title]))
 const educationActivities = [
-  {
-    period: '2026.01 — 현재',
-    title: 'SSAFY 15기 · Embedded Robotics Track',
-    organizer: '삼성 청년 SW·AI 아카데미',
-    purpose: 'C/C++ 알고리즘과 Python·Linux·ROS2 기반 임베디드·로봇 SW 개발 역량 강화',
-    achievement: '삼성 SW 역량 테스트 A형 취득 · B형 대비 C/C++ 문제풀이 · 삼성 청년 SW·AI 아카데미 공통프로젝트 우수상(1등) 수상',
-  },
-  {
-    period: '2024.12 — 2025.02',
-    title: '심층강화학습 윈터스쿨',
-    organizer: '한국기술교육대학교',
-    purpose: 'PPO·보상 설계·observation/action space의 로봇 제어 문제 적용',
-    achievement: 'Unity ML-Agents·Hugging Face Deep RL Course 기반 강화학습 구조 발표 및 후속 Isaac Lab 프로젝트 연결',
-  },
-  {
-    period: '2023.03 — 2023.06',
-    title: '군 SW·AI 역량강화 교육',
-    organizer: '대한민국 육군',
-    purpose: '군 복무 중 SW·AI 전문 지식과 프로그래밍 실무 역량 강화',
-    achievement: 'Python·데이터 분석·AI 기초 교육과 팀 프로젝트 수행 · 국방부 장관 명의 수료증 취득',
-  },
-  {
-    period: '2022.05 — 2022.12',
-    title: '메타버스 아카데미 1기 · 콘텐츠 창작자 과정',
-    organizer: '한국전파진흥협회',
-    purpose: '3D 콘텐츠 제작·실시간 인터랙션 구현과 가상환경 제작 흐름 습득',
-    achievement: '3ds Max, Unity, The Sandbox 기반 3D 에셋·인터랙션 구현 및 시뮬레이션 이해 기반 확보',
-  },
-]
-
-const skillColumns = [
-  {
-    name: 'Robotics / Simulation / RL',
-    items: [
-      { name: 'ROS2 Humble', level: 4, icons: [['ros', 'ROS']], description: '노드·토픽·서비스·launch와 실제 장비 통합 및 테스트 경험' },
-      { name: 'Isaac Lab / Isaac Sim', level: 4, icons: [['nvidia', 'NVIDIA']], description: '로봇 모델·환경·reward를 구성하고 PPO 학습과 rollout 분석 수행' },
-      { name: 'RSL-RL / PPO / PyTorch', level: 4, icons: [['pytorch', 'PyTorch'], ['weightsandbiases', 'Weights & Biases']], description: '정책 학습, W&B·TensorBoard 로그와 실패 행동을 함께 분석' },
-      { name: 'MoveIt / Nav2 / RoboDK', level: 3, icons: [['ros', 'ROS']], description: '경로 계획, ROS2 이동, 로봇 공정 시뮬레이션에 적용' },
-      { name: 'SLAM / RTAB-Map / RViz', level: 4, icons: [['ros', 'ROS']], description: '3D 지도 생성, 센서 통합, 원격 GCS 시각화 경험' },
-    ],
-  },
-  {
-    name: 'Programming / Vision / UI',
-    items: [
-      { name: 'Python', level: 4, icons: [['python', 'Python']], description: 'ROS2, 강화학습, 비전, 자동화 스크립트의 주 개발 언어' },
-      { name: 'C / C++', level: 3, icons: [['c', 'C'], ['cplusplus', 'C++']], description: '임베디드 제어와 알고리즘 문제풀이, ROS2 구성 요소 구현 경험' },
-      { name: 'PyQt5 / Qt Designer', level: 4, icons: [['qt', 'Qt']], description: 'ROS2 상태 구독·명령 발행과 안전 조건을 반영한 제어 UI 구현' },
-      { name: 'YOLO / OpenCV / Roboflow', level: 4, icons: [['yolo', 'YOLO'], ['opencv', 'OpenCV'], ['roboflow', 'Roboflow']], description: '탐지·추적·영상 처리·데이터셋 관리 파이프라인 구성' },
-      { name: 'RGB-D / Point Cloud', level: 4, icons: [['intel', 'Intel RealSense'], ['opencv', 'OpenCV']], description: 'RGB-D 입력과 3D 좌표를 SLAM·검사·원격 점검에 연결' },
-    ],
-  },
-  {
-    name: 'Infrastructure / Web / AI',
-    items: [
-      { name: 'Linux / Ubuntu', level: 4, icons: [['linux', 'Linux'], ['ubuntu', 'Ubuntu']], description: '로봇 개발 환경, 장치 권한, 네트워크 및 런타임 진단' },
-      { name: 'Docker / NVIDIA Container', level: 3, icons: [['docker', 'Docker'], ['nvidia', 'NVIDIA']], description: 'GPU·ROS2 개발 환경 재현과 배포 구성' },
-      { name: 'Django / Vue / WebSocket', level: 3, icons: [['django', 'Django'], ['vuedotjs', 'Vue.js']], description: '로봇 상태 API·실시간 이벤트·관제 화면을 연결' },
-      { name: 'Git / GitHub / GitLab / Jira', level: 3, icons: [['git', 'Git'], ['github', 'GitHub'], ['gitlab', 'GitLab']], description: '공개 저장소, 협업 이력, 문서·이슈 기반 개발 관리' },
-      { name: 'Qwen-VL / Hugging Face / LangGraph', level: 3, icons: [['qwen', 'Qwen'], ['huggingface', 'Hugging Face'], ['langchain', 'LangChain']], description: 'VLM·모델 허브·에이전트 워크플로 실습 및 공개 프로젝트 경험' },
-    ],
-  },
-]
-
-const coverCapabilities = [
-  ['Robot Intelligence', 'Isaac Lab PPO 정책 학습과 reward·rollout·실기체 적용 제약의 동시 검토'],
-  ['Robot Software', 'ROS2 제어권·명령 검증·안전 상태·UI의 실제 모터 직전 경계 구현'],
-  ['System Integration', 'RGB-D·SLAM·비전·로봇·웹 관제의 단일 실행 흐름과 검증 절차 연결'],
-]
-
-const aiUsage = [
-  {
-    name: 'Hermes Agent',
-    icons: [['hermes-agent', 'Hermes Agent']],
-    description: '조사 → 파일 수정 → 테스트·빌드 → 브라우저·PDF 검증의 도구 호출 연결과 메모리·스킬 기반 맥락 유지',
-  },
-  {
-    name: 'Codex · AI-assisted coding',
-    icons: [['openai.png', 'OpenAI']],
-    description: '기능 구현·오류 원인 분리·테스트 우선 변경·코드 리뷰 활용 후 실제 명령과 렌더링 결과 재검증',
-  },
-  {
-    name: 'Qwen-VL · Hugging Face · LangGraph',
-    icons: [['qwen', 'Qwen'], ['huggingface', 'Hugging Face'], ['langchain', 'LangChain']],
-    description: 'VLM 실험·모델 허브 활용·상태 기반 에이전트 워크플로의 공개 프로젝트·실습 적용',
-  },
+  { period: '2026.01 — 현재', title: 'SSAFY 15기 Embedded Robotics Track', organizer: '삼성 청년 SW·AI 아카데미', detail: 'C/C++, Python, Linux, ROS2 기반 로봇 프로젝트. 삼성 SW 역량 테스트 A형 취득.' },
+  { period: '2024.12 — 2025.02', title: '심층강화학습 윈터스쿨', organizer: '한국기술교육대학교', detail: 'Unity ML-Agents와 Hugging Face Deep RL Course 기반 학습 및 강화학습 구조 발표.' },
+  { period: '2023.03 — 2023.06', title: '군 SW·AI 역량강화 교육', organizer: '대한민국 육군', detail: 'Python, 데이터 분석, AI 기초 교육과 팀 프로젝트. 국방부 장관 명의 수료증.' },
+  { period: '2022.05 — 2022.12', title: '메타버스 아카데미 1기 · 콘텐츠 창작자 과정', organizer: '한국전파진흥협회', detail: '3ds Max, Unity, The Sandbox 기반 3D 에셋과 인터랙션 제작.' },
 ]
 
 function PageFooter({ page }) {
-  return <footer className="portfolio-page-footer">
-    <span>YOON JEONGMIN · ROBOT SOFTWARE PORTFOLIO</span>
-    <span>{String(page).padStart(2, '0')} / {String(totalPortfolioPages(detailProjects.length)).padStart(2, '0')}</span>
-  </footer>
+  return <footer className="portfolio-page-footer"><span>윤정민 / ROBOT SOFTWARE</span><span>{String(page).padStart(2, '0')} / {String(totalPages).padStart(2, '0')}</span></footer>
 }
 
-function SkillMeter({ level }) {
-  return <span className="skill-meter" aria-label={`5칸 중 ${level}칸`}>
-    {Array.from({ length: 5 }, (_, index) => <i className={index < level ? 'filled' : ''} key={index} />)}
-  </span>
-}
-
-function SkillIcons({ icons }) {
-  return <span className="skill-icons">
-    {icons.map(([file, label]) => {
-      const filename = file.includes('.') ? file : `${file}.svg`
-      return <img src={asset(`assets/tech-icons/${filename}`)} alt="" aria-hidden="true" title={label} key={file} />
-    })}
-  </span>
-}
-
-function SkillCard({ name, level, icons, description }) {
-  return <article className="portfolio-skill-card">
-    <div className="skill-card-heading"><SkillIcons icons={icons} /><SkillMeter level={level} /></div>
-    <strong>{name}</strong>
-    <p className="skill-description">{description}</p>
-  </article>
+function Sheet({ page, label, className = '', children }) {
+  return <section className={`portfolio-sheet ${className}`} aria-label={label} data-page={page}>
+    <div className="sheet-content">{children}</div><PageFooter page={page} />
+  </section>
 }
 
 function RecognitionList({ items }) {
-  return <ul className="recognition-list">
-    {items.map(([name, meta]) => <li key={`${name}-${meta}`}><b>{name}</b><span>{meta}</span></li>)}
-  </ul>
+  return <ul className="recognition-list">{items.map(([name, meta]) => <li key={name}><span>{name}</span><small>{meta}</small></li>)}</ul>
 }
 
-function ProjectRoleList({ role, compact = false }) {
-  const items = role.split('·').map((item) => item.trim()).filter(Boolean)
-  return <ul className={`project-role-list${compact ? ' compact' : ''}`}>
-    {items.map((item) => <li key={item}>{item}</li>)}
-  </ul>
-}
-
-function EmphasizedText({ text, phrases = [] }) {
-  const matches = phrases
-    .map((phrase) => ({ phrase, start: text.indexOf(phrase) }))
-    .filter(({ start }) => start >= 0)
-    .sort((a, b) => a.start - b.start)
-
-  if (!matches.length) return text
-
-  const parts = []
-  let cursor = 0
-  matches.forEach(({ phrase, start }, index) => {
-    if (start < cursor) return
-    if (start > cursor) parts.push(text.slice(cursor, start))
-    parts.push(<strong className="contribution-highlight" key={`${phrase}-${index}`}>{phrase}</strong>)
-    cursor = start + phrase.length
-  })
-  if (cursor < text.length) parts.push(text.slice(cursor))
-  return parts
-}
-
-function ProjectGallery({ project }) {
-  const gallery = project.printGallery?.length
-    ? project.printGallery
-    : [{ src: project.printImage || project.image, alt: `${project.title} 프로젝트 이미지`, caption: project.title }]
-
-  const galleryCount = Math.min(gallery.length, 5)
-
-  const singleMediaContext = project.slug === 'hydraulic-robot-rl'
-    ? {
-        eyebrow: 'SIM-TO-REAL CHECK',
-        title: project.tagline,
-        body: '실제 유압 로봇 policy 적용 전 command limit·제어 주기·응답 지연의 통합 점검',
-      }
-    : project.slug === 'hazardous-process-automation'
-      ? {
-          eyebrow: 'SOFTWARE + FIXTURE',
-          title: '경로 코드와 전용 가이드의 동시 보정',
-          body: '접근 방향·작업물 기준 위치·SolidWorks 가이드의 반복성 조건 통합 검토',
-        }
-      : null
-
-  return <div className={`detail-media-gallery media-count-${galleryCount} project-media-${project.slug}`}>
-    <div className={`gallery-grid gallery-count-${galleryCount}`}>
-      {gallery.map((media) => <figure key={media.src}>
-        <img src={asset(media.src)} alt={media.alt} style={{ objectPosition: project.imagePosition || 'center' }} />
-        <figcaption>{media.caption}</figcaption>
-      </figure>)}
-      {singleMediaContext && galleryCount === 1 && <aside className="single-media-context">
-        <span>{singleMediaContext.eyebrow}</span>
-        <strong>{singleMediaContext.title}</strong>
-        <p>{singleMediaContext.body}</p>
-      </aside>}
+function ProfilePage() {
+  return <Sheet page={1} label="자기소개와 주요 이력" className="profile-sheet">
+    <header className="profile-header vp-cover">
+      <div><p className="eyebrow">Robot software engineer</p><h1>윤정민 <small>Yoon Jeongmin</small></h1><h2>학습한 동작을 실제 로봇에서 구현하는 개발자</h2></div>
+      <figure className="vp-cover-figure vp-frame">
+        <img src={asset('assets/vantage/arm-cloud.svg')} alt="SO-101 로봇팔의 3D 메시를 점으로 표현한 일러스트" />
+        <figcaption>SO-101 <span>/ 메시 일러스트</span></figcaption>
+      </figure>
+    </header>
+    <div className="vp-profile-summary">
+    <img className="vp-portrait" src={asset('assets/profile/yoon-jeongmin.png')} alt="윤정민 프로필" />
+    <p className="profile-intro">Isaac Lab에서 유압 로봇의 PPO 정책을 학습하고 실제 로봇에 적용했습니다.<br />ROS2 로봇 손 프로젝트에서는 명령 중재와 안전 상태 관리를 맡았습니다.<br />로봇이 의도와 다르게 움직일 때, 모델부터 명령 처리와 구동계까지 원인을 찾아 수정합니다.</p>
+    <div className="profile-contact"><a href={`mailto:${profile.email}`}><Mail size={14} />{profile.email}</a><a href={profile.github}><Github size={14} />github.com/yjmini</a></div>
     </div>
-    <div className="visual-caption"><b>{project.index}</b><span>PROJECT MEDIA</span></div>
+    <section className="profile-strengths"><h3>핵심 강점</h3><dl>
+      <div><dt>학습 기반 제어</dt><dd>물리 모델과 보상을 구성하고, 로그와 실제 동작을 비교해 정책을 수정합니다.</dd></div>
+      <div><dt>로봇 제어 소프트웨어</dt><dd>제어권 충돌, 통신 단절, 비상 정지 상황을 명령 처리와 상태 전이에 반영합니다.</dd></div>
+      <div><dt>장비와 소프트웨어 통합</dt><dd>센서, 온보드 컴퓨터, 원격 화면을 연결하고 실제 장비에서 문제를 확인합니다.</dd></div>
+    </dl></section>
+    <section className="profile-background"><h3>학력 및 연구 경험</h3>
+      <div className="timeline-row"><time>2025.06 — 2025.12</time><div><strong>한국원자력연구원 로봇응용연구실 / 인턴연구원</strong><p>유압 로봇 강화학습, MoveIt 공정 자동화, PyQt5 로봇 제어 UI 개선</p></div></div>
+      <div className="timeline-row"><time>2020.03 — 2026.02</time><div><strong>한국기술교육대학교 컴퓨터공학부</strong><p>학사 졸업 / 학점 4.12 / 4.5</p></div></div>
+    </section>
+    <section className="profile-education"><h3>교육 및 활동</h3>{educationActivities.map(item => <div className="timeline-row" key={item.title}><time>{item.period}</time><div><strong>{item.title}</strong><span className="organizer">{item.organizer}</span><p>{item.detail}</p></div></div>)}</section>
+    <section className="profile-awards"><h3>수상</h3><RecognitionList items={awards} /></section>
+  </Sheet>
+}
+
+function SkillsPage() {
+  return <Sheet page={2} label="핵심 기술과 활용 근거" className="skills-sheet">
+    <header className="section-heading"><p className="eyebrow">TECHNICAL SKILLS</p><h2>핵심 기술과 구현 경험</h2></header>
+    <p className="skill-definition"><b>구현</b> 직접 기능을 작성하고 문제를 수정한 기술 / <b>활용</b> 기존 도구를 설정하고 프로젝트에 적용한 기술</p>
+    <div className="editorial-skills">{coreSkills.map(skill => <article key={skill.name}>
+      <div className="skill-name"><img src={asset(`assets/tech-icons/${skillIconFiles[skill.name]}.svg`)} alt="" aria-hidden="true" /><strong>{skill.name}</strong><span>{skill.level}</span></div>
+      <div><p>{skill.evidence}</p><small>{projectNames[skill.project]}</small></div>
+    </article>)}</div>
+    <section className="support-skills"><h3>보조 기술</h3><p>{supportSkills.join(', ')}</p></section>
+    <section className="ai-tool-note"><h3>개발 보조 도구</h3><p>Hermes Agent와 Codex를 자료 조사, 구현 초안, 테스트 작성과 코드 리뷰에 활용합니다. 생성된 변경은 실행 결과와 테스트, 화면 출력을 확인한 뒤 반영합니다.</p></section>
+    <section className="qualifications"><h3>자격 및 어학</h3><RecognitionList items={certifications.map(([name, meta]) => [name === 'Samsung SW Competency A' ? '삼성 SW 역량 테스트 A형' : name, meta])} /></section>
+  </Sheet>
+}
+
+function ProjectLinks({ project }) {
+  return project.links?.length > 0 && <div className="project-links">{project.links.map(link => <a key={link.href} href={link.href}><ExternalLink size={12} /><span>{link.label} / {link.href.replace('https://', '')}</span></a>)}</div>
+}
+
+function Gallery({ project }) {
+  return <div className={`evidence-gallery media-${project.gallery.length}`}>
+    {project.gallery.map((media, index) => <figure key={media.src}>
+      <div className="vp-frame"><img src={asset(media.src)} alt={media.alt} /></div>
+      <figcaption><b>그림 {index + 1}.</b> {media.caption}</figcaption>
+    </figure>)}
   </div>
-}
-
-function CoverPage() {
-  return <section className="portfolio-sheet portfolio-cover" aria-label="프로필과 포트폴리오 방향">
-    <header className="cover-header">
-      <img src={asset('assets/profile/yoon-jeongmin.png')} alt="윤정민 프로필" />
-      <div>
-        <p className="portfolio-kicker">PHYSICAL AI · ROBOT SYSTEMS</p>
-        <h1>윤정민 <small>Yoon Jeongmin</small></h1>
-        <h2>로봇 지능의 실제 시스템 연결과 검증</h2>
-      </div>
-    </header>
-    <p className="cover-summary">Isaac Lab/PPO 정책 학습 · ROS2 제어 · RGB-D 비전·SLAM · 실제 하드웨어 통합 경험<br />모델 성능뿐 아니라 <b>입력–상태–출력 · 실패 조건 · 반복 가능한 확인 절차</b>까지 기록</p>
-    <div className="cover-contact">
-      <span><Mail size={15} />{profile.email}</span>
-      <a href={profile.github}><Github size={15} />github.com/yjmini</a>
-    </div>
-
-    <div className="cover-capabilities">
-      {coverCapabilities.map(([name, description], index) => <article key={name}>
-        <span>0{index + 1}</span><h3>{name}</h3><p>{description}</p>
-      </article>)}
-    </div>
-    <div className="cover-evidence-strip">
-      <article><strong>{detailProjects.length}</strong><span>Detailed projects</span></article>
-      <article><strong>5</strong><span>ROS2 control & safety nodes</span></article>
-      <article><strong>16</strong><span>Control test files</span></article>
-      <article><strong>{awards.length}</strong><span>Project awards</span></article>
-    </div>
-    <div className="cover-ai">
-      <p className="portfolio-kicker">AI-ASSISTED ENGINEERING · AI 활용 방식</p>
-      <div>{aiUsage.map((item) => <article key={item.name}>
-        <SkillIcons icons={item.icons} />
-        <strong>{item.name}</strong>
-        <p>{item.description}</p>
-      </article>)}</div>
-    </div>
-    <PageFooter page={1} />
-  </section>
-}
-
-function ExperienceEducationPage() {
-  return <section className="portfolio-sheet portfolio-experience" aria-label="경험과 교육 및 활동">
-    <header className="profile-page-header">
-      <div><p className="portfolio-kicker">EXPERIENCE & EDUCATION</p><h2>경험 · 교육 및 활동</h2></div>
-    </header>
-
-    <div className="experience-foundation">
-      <article>
-        <span>ACADEMIC</span><time>2020.03 — 2026.02</time>
-        <h3>한국기술교육대학교 컴퓨터공학부</h3>
-        <p>학사 졸업 · 학점 4.12 / 4.5</p>
-      </article>
-      <article>
-        <span>RESEARCH EXPERIENCE</span><time>2025.06 — 2025.12</time>
-        <h3>한국원자력연구원 로봇응용연구실 · 인턴연구원</h3>
-        <p>Isaac Lab/PPO 제어 · MoveIt 기반 공정 자동화 · PyQt5·ROS2 제어 UI 개선 수행</p>
-      </article>
-    </div>
-
-    <div className="education-grid">
-      {educationActivities.map((activity, index) => <article className={`education-card education-card-${index + 1}`} key={activity.title}>
-        <header><div><time>{activity.period}</time><h3>{activity.title}</h3></div><span>{activity.organizer}</span></header>
-        <p><b>참여 목적</b><span>{activity.purpose}</span></p>
-        <p><b>성취</b><span>{activity.achievement}</span></p>
-      </article>)}
-    </div>
-    <PageFooter page={2} />
-  </section>
-}
-
-function SkillsRecognitionPage() {
-  return <section className="portfolio-sheet portfolio-skills-page" aria-label="스킬, 자격증과 수상">
-    <header className="profile-page-header skills-page-header">
-      <div><p className="portfolio-kicker">SKILLS · CERTIFICATIONS · AWARDS</p><h2>Skills · 자격증 · 수상</h2></div>
-    </header>
-
-    <div className="skills-columns">
-      {skillColumns.map((column) => <section className="skills-column" key={column.name}>
-        <h3>{column.name}</h3>
-        {column.items.map((skill) => <SkillCard key={skill.name} {...skill} />)}
-      </section>)}
-    </div>
-
-    <div className="skills-recognition">
-      <section><h3>수상</h3><RecognitionList items={awards} /></section>
-      <section><h3>자격 · 어학</h3><RecognitionList items={certifications} /></section>
-    </div>
-    <PageFooter page={3} />
-  </section>
-}
-
-function SummaryPage() {
-  return <section className="portfolio-sheet portfolio-summary" aria-label="프로젝트 요약">
-    <header className="portfolio-page-header">
-      <div><p className="portfolio-kicker">PROJECT INDEX</p><h2>Projects Summary</h2></div>
-    </header>
-    <div className="summary-list">
-      {detailProjects.map((project, index) => <article key={project.slug} className="summary-project">
-        <div className="summary-number">{String(index + 1).padStart(2, '0')}</div>
-        <div className="summary-main">
-          <div className="summary-title"><h3>{project.title}</h3><span>p.{firstProjectPage(index)}–{firstProjectPage(index) + 1}</span></div>
-          <dl>
-            <div><dt>기간</dt><dd>{project.period}</dd></div>
-            <div><dt>참여</dt><dd>{project.type}</dd></div>
-            <div className="wide"><dt>개요</dt><dd>{project.tagline}</dd></div>
-            <div className="wide"><dt>기술 환경</dt><dd>{project.stack.join(', ')}</dd></div>
-            <div className="wide"><dt>담당 역할</dt><dd><ProjectRoleList role={project.role} compact /></dd></div>
-          </dl>
-        </div>
-      </article>)}
-    </div>
-    <PageFooter page={4} />
-  </section>
 }
 
 function Flow({ items }) {
-  return <div className="project-flow" aria-label="시스템 흐름">
-    {items.map((item, index) => <div key={item}><span>{item}</span>{index < items.length - 1 && <b aria-hidden="true">→</b>}</div>)}
-  </div>
+  return <section className="flow-section"><h3>시스템 흐름</h3><ol className="project-flow">{items.map((item, index) => <li key={item}><span>{item}</span>{index < items.length - 1 && <b aria-hidden="true">→</b>}</li>)}</ol></section>
 }
 
-function ProjectHeader({ project, section }) {
-  return <header className="detail-header">
-    <p className="portfolio-kicker">{project.eyebrow}</p>
-    <h2>{project.title}</h2>
-    {project.recognition?.length > 0 && <div className="detail-recognition">
-      {project.recognition.map((item) => <strong key={item}>🏆 {item}</strong>)}
-    </div>}
-    <div className="detail-meta"><strong>{section}</strong><span>{project.type}</span><span>{project.period}</span></div>
-  </header>
+function Contributions({ project }) {
+  return <section className="contributions"><h3>내가 구현한 기능</h3>{project.contributions.map((item, index) => <article key={item.title}>
+    <h4><span>{String(index + 1).padStart(2, '0')}</span>{item.title}</h4><p>{item.body}</p><p className="evidence-reference">{item.proof}</p>
+  </article>)}</section>
 }
 
-function DetailEnvironment({ project }) {
-  return <section className="detail-environment" aria-label="개발 환경">
-    <strong>개발 환경</strong>
-    <div>{project.stack.map((item) => <span key={item}>{item}</span>)}</div>
-  </section>
-}
-
-function ProjectOverviewPage({ project, page }) {
-  return <section className="portfolio-sheet portfolio-detail portfolio-detail-overview" aria-label={`${project.title} 프로젝트 상세 1/2`}>
-    <ProjectHeader project={project} section="PROJECT OVERVIEW · 1 / 2" />
-    <DetailEnvironment project={project} />
-    <ProjectGallery project={project} />
-
-    <div className="detail-focus-grid">
-      <div className="project-goal"><h3>프로젝트 목표</h3><p>{project.tagline}</p></div>
-      <div className="project-scope"><h3>담당 범위</h3><ProjectRoleList role={project.role} /></div>
-    </div>
-
+function ProjectOverviewPage({ project, page, index }) {
+  return <Sheet page={page} label={`${project.title} 개요와 구현`} className={`overview-sheet project-${project.slug}`}>
+    <header className="project-header"><p className="eyebrow">PROJECT {String(index + 1).padStart(2, '0')} / 개요와 구현</p><h2>{project.title}</h2><p>{project.period}</p></header>
+    <div className="project-meta"><p><b>팀 구성</b><span>{project.team}</span></p><p><b>담당 역할</b><span>{project.role}</span></p><p><b>개발 환경</b><span>{project.stack.join(', ')}</span></p></div>
+    <div className="project-context"><section><h3>배경과 목표</h3><p>{project.background}</p><p>{project.goal}</p></section><section><h3>주요 기능</h3><ul>{project.features.map(item => <li key={item}>{item}</li>)}</ul></section></div>
+    <Gallery project={project} />
     <Flow items={project.flow} />
-
-    <div className="detail-achievement-grid">
-      <section>
-        <h3>기여한 부분 및 성과</h3>
-        <ul className="contribution-list">{project.contribution.map((item) => <li key={item}><EmphasizedText text={item} phrases={project.emphasis} /></li>)}</ul>
-      </section>
-      <section className="evidence-box"><strong>검증 근거</strong><ul>{project.evidence.map((item) => <li key={item}>{item}</li>)}</ul></section>
-    </div>
-
-    {project.private !== true && project.links?.[0] && <a className="detail-repo" href={project.links[0].href}><Github size={14}/>{project.links[0].href.replace('https://', '')}<ExternalLink size={12}/></a>}
-    <PageFooter page={page} />
-  </section>
+    <Contributions project={project} />
+    <ProjectLinks project={project} />
+  </Sheet>
 }
 
-function ProjectTroubleshootingPage({ project, page }) {
-  return <section className="portfolio-sheet portfolio-detail portfolio-troubleshooting" aria-label={`${project.title} 프로젝트 상세 2/2`}>
-    <ProjectHeader project={project} section="DEVELOPMENT PROCESS · 2 / 2" />
-    <div className="troubleshooting-intro">
-      <div><span>질문에서 시작한 문제 해결</span><strong>증상 나열이 아닌 문제 → 원인 → 해결 → 결과 기록</strong></div>
-      <p>정상 동작만 제시하지 않고, 무엇을 의심하고 어떤 순서로 원인을 좁혔는지 중심의 개발 과정</p>
-    </div>
-    <div className="troubleshooting-list expanded">{project.troubleshooting.map((item, index) => <article key={item.title}>
-      <header><span>{String(index + 1).padStart(2, '0')}</span><h3>{item.title}</h3></header>
-      <blockquote className="troubleshooting-question"><strong>질문</strong><span>{item.question}</span></blockquote>
-      <dl>
-        <div><dt>문제</dt><dd>{item.problem}</dd></div>
-        <div><dt>원인</dt><dd>{item.cause}</dd></div>
-        <div><dt>해결</dt><dd>{item.action}</dd></div>
-        <div><dt>결과</dt><dd>{item.result}</dd></div>
-      </dl>
-    </article>)}</div>
-    <PageFooter page={page} />
-  </section>
+function CaseStudy({ item, index }) {
+  return <article className="case-study"><h3><span>{String(index + 1).padStart(2, '0')}</span>{item.title}</h3>
+    <dl><div><dt>문제 현상</dt><dd>{item.before}</dd></div><div><dt>원인</dt><dd>{item.cause}</dd></div><div className="case-action"><dt>수정한 내용</dt><dd>{item.action}</dd></div><div className="case-after"><dt>관찰한 변화</dt><dd>{item.after}</dd></div></dl>
+  </article>
+}
+
+function Outcome({ project }) {
+  return <section className="project-outcome"><h3>성과와 회고</h3><dl><div><dt>성과</dt><dd>{project.outcome}</dd></div><div><dt>회고</dt><dd>{project.reflection}</dd></div><div><dt>다음에는</dt><dd>{project.nextStep}</dd></div></dl></section>
+}
+
+function ProjectTroubleshootingPage({ project, page, index }) {
+  return <Sheet page={page} label={`${project.title} 문제 해결과 회고`} className="troubleshooting-sheet">
+    <header className="continuation-header"><p className="eyebrow">PROJECT {String(index + 1).padStart(2, '0')} / {project.title}</p><h2>문제 해결과 회고</h2></header>
+    <div className="case-list">{project.cases.map((item, index) => <CaseStudy item={item} index={index} key={item.title} />)}</div>
+    <CaseMeasurements slug={project.slug}/>
+    <Outcome project={project} />
+  </Sheet>
+}
+
+function SupportingPage({ project, page }) {
+  return <Sheet page={page} label={`${project.title} 추가 경험`} className="supporting-sheet">
+    <header className="project-header"><p className="eyebrow">ADDITIONAL EXPERIENCE / 시스템 통합</p><h2>{project.title}</h2><p>{project.period}</p></header>
+    <p className="support-role"><b>담당 역할</b> {project.role}</p><p>{project.background}</p>
+    <Gallery project={project} /><Contributions project={project} />
+    {project.cases.map((item, index) => <CaseStudy item={item} index={index} key={item.title} />)}
+    <Outcome project={project} /><ProjectLinks project={project} />
+  </Sheet>
+}
+
+function ResearchExtrasPage({ page }) {
+  return <Sheet page={page} label="연구 인턴 추가 경험" className="research-extras-sheet">
+    <header className="section-heading"><p className="eyebrow">ADDITIONAL EXPERIENCE / KAERI</p><h2>공정 자동화와 로봇 제어 UI</h2></header>
+    {supportProjects.slice(1).map(project => <article className="research-extra" key={project.slug}>
+      <header><h3>{project.title}</h3><span>{project.period}</span></header>
+      <p className="support-role"><b>담당 역할</b> {project.role}</p>
+      <div className="extra-content"><Gallery project={project} /><div><p>{project.background}</p>{project.contributions.map(item => <p key={item.title}><b>{item.title}</b><br />{item.body}</p>)}</div></div>
+      {project.cases.map(item => <dl className="extra-case" key={item.title}><div><dt>문제</dt><dd>{item.before}</dd></div><div><dt>수정</dt><dd>{item.action}</dd></div><div><dt>결과</dt><dd>{item.after}</dd></div></dl>)}
+      <p className="extra-reflection"><b>회고</b> {project.reflection} <span>{project.nextStep}</span></p>
+    </article>)}
+  </Sheet>
 }
 
 export default function PrintPortfolio() {
@@ -393,30 +158,19 @@ export default function PrintPortfolio() {
     const previousTitle = document.title
     document.title = '윤정민 로봇 소프트웨어 포트폴리오'
     document.body.classList.add('print-portfolio-active')
-    return () => {
-      document.title = previousTitle
-      document.body.classList.remove('print-portfolio-active')
-    }
+    return () => { document.title = previousTitle; document.body.classList.remove('print-portfolio-active') }
   }, [])
-
   return <div className="print-portfolio-page">
-    <div className="portfolio-toolbar" role="region" aria-label="포트폴리오 인쇄 도구">
-      <a href="#/resume"><ArrowLeft size={17}/>포트폴리오 사이트</a>
-      <div className="print-guidance"><strong>A4 · {totalPortfolioPages(detailProjects.length)}페이지</strong><span>배경 그래픽 켜기 · 여백 없음 · 배율 100%</span></div>
-      <button type="button" onClick={() => window.print()}><Printer size={17}/>PDF로 인쇄</button>
-    </div>
+    <div className="portfolio-toolbar" role="region" aria-label="포트폴리오 인쇄 도구"><a href="#/resume"><ArrowLeft size={17} />포트폴리오 사이트</a><div><strong>A4 / {totalPages}페이지</strong><span>배경 그래픽 켜기 · 여백 없음 · 배율 100%</span></div><button type="button" data-print onClick={() => window.print()}><Printer size={17} />PDF로 인쇄</button></div>
     <main className="portfolio-document">
-      <CoverPage />
-      <ExperienceEducationPage />
-      <SkillsRecognitionPage />
-      <SummaryPage />
-      {detailProjects.flatMap((project, index) => {
-        const startPage = firstProjectPage(index)
-        return [
-          <ProjectOverviewPage key={`${project.slug}-overview`} project={project} page={startPage} />,
-          <ProjectTroubleshootingPage key={`${project.slug}-troubleshooting`} project={project} page={startPage + 1} />,
-        ]
+      <ProfilePage />
+      <SkillsPage />
+      {printProjects.flatMap((project, index) => {
+        const startPage = 3 + index * 2
+        return [<ProjectOverviewPage key={`${project.slug}-overview`} project={project} index={index} page={startPage} />, <ProjectTroubleshootingPage key={`${project.slug}-cases`} project={project} index={index} page={startPage + 1} />]
       })}
+      <SupportingPage project={supportProjects[0]} page={totalPages - 1} />
+      <ResearchExtrasPage page={totalPages} />
     </main>
   </div>
 }

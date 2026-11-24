@@ -1,0 +1,77 @@
+.robot-lab {
+  --robot-lab-accent: #e8ff47;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  color: #eeeee6;
+  background: radial-gradient(ellipse at 50% 35%, #30312a 0%, #1d1e1a 43%, #151613 76%);
+  border: 1px solid #ffffff16;
+  border-radius: 6px;
+  overflow: hidden;
+  font-family: inherit;
+}
+.robot-lab *, .robot-lab *::before, .robot-lab *::after { box-sizing: border-box; }
+.robot-lab-heading { position: absolute; z-index: 2; inset: 24px 25px auto; display: flex; justify-content: space-between; align-items: center; gap: 12px; pointer-events: none; }
+.robot-lab-eyebrow { display: inline-flex; align-items: center; gap: 9px; color: #d7d9c8; font: 10px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: 1.8px; }
+.robot-lab-eyebrow i { display: inline-block; width: 5px; height: 5px; background: var(--robot-lab-accent); border-radius: 50%; box-shadow: 0 0 10px #e8ff4733; }
+.robot-lab-caption { color: #a7a99c; font-size: 10px; letter-spacing: .03em; }
+.robot-lab-stage { position: relative; height: clamp(420px, 36vw, 500px); min-height: 420px; }
+.robot-lab-grid { position: absolute; inset: 0; opacity: .19; background-image: linear-gradient(#a9ae8615 1px, transparent 1px), linear-gradient(90deg, #a9ae8615 1px, transparent 1px); background-size: 52px 52px; mask-image: radial-gradient(ellipse at center, #000 5%, transparent 75%); pointer-events: none; }
+.robot-lab-canvas { position: relative; z-index: 1; display: block; width: 100%; height: 100%; opacity: 0; touch-action: pan-y; cursor: grab; -webkit-user-select: none; user-select: none; }
+.robot-lab-canvas-ready { opacity: 1; }
+.robot-lab-canvas:active { cursor: grabbing; }
+.robot-lab-spec { position: absolute; z-index: 2; pointer-events: none; font: 8px/1.8 ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: 1.3px; color: #a4a795; }
+.robot-lab-spec-top { top: 70px; left: 25px; }
+.robot-lab-spec-bottom { bottom: 20px; left: 25px; }
+.robot-lab-orbit { display: flex; align-items: center; gap: 4px; position: absolute; z-index: 2; right: 18px; bottom: 10px; }
+.robot-lab-orbit span { color: #abae9b; font: 8px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: 1px; }
+.robot-lab button { font-family: inherit; cursor: pointer; border: 0; transition: color .15s ease, background .15s ease; }
+.robot-lab-orbit button { width: 40px; min-height: 40px; background: transparent; color: #d5d9c1; font-size: 20px; border-radius: 4px; }
+.robot-lab button:hover { color: var(--robot-lab-accent); background-color: #e8ff470c; }
+.robot-lab button:focus-visible, .robot-lab input:focus-visible { outline: 2px solid var(--robot-lab-accent); outline-offset: 3px; }
+.robot-lab-panel { position: relative; z-index: 2; padding: 0 24px 17px; background: linear-gradient(180deg, transparent, #13141066); }
+.robot-lab-toolbar { display: flex; gap: 10px; justify-content: space-between; align-items: center; padding: 15px 0 12px; border-top: 1px solid #ffffff17; }
+.robot-lab-modes { display: flex; padding: 3px; border: 1px solid #ffffff14; border-radius: 4px; background: #0a0c0880; }
+.robot-lab-modes button { padding: 9px 13px; min-height: 36px; background: transparent; color: #b7baac; text-transform: capitalize; font-size: 11px; border-radius: 2px; }
+.robot-lab-modes button[aria-pressed="true"] { background: var(--robot-lab-accent); color: #202412; font-weight: 650; }
+.robot-lab-actions { display: flex; gap: 8px; align-items: center; }
+.robot-lab-actions button { min-height: 40px; color: #b8bcab; font-size: 11px; background: transparent; border-radius: 3px; display: inline-flex; gap: 6px; align-items: center; padding: 0 7px; }
+.robot-lab-actions .robot-lab-motion > span:first-child { color: var(--robot-lab-accent); font: 17px ui-monospace, SFMono-Regular, Consolas, monospace; }
+.robot-lab-actions button:disabled { cursor: not-allowed; opacity: .4; background: transparent; }
+.robot-lab-joint { display: grid; grid-template-columns: 116px minmax(40px, 1fr) 42px; align-items: center; gap: 14px; min-height: 32px; }
+.robot-lab-joint label { display: flex; gap: 12px; align-items: center; font: 10px ui-monospace, SFMono-Regular, Consolas, monospace; color: #d0d2c1; }
+.robot-lab-joint label span { font: 10px/1.4 system-ui, sans-serif; color: #aaae9f; }
+.robot-lab-joint input { width: 100%; margin: 0; min-height: 30px; accent-color: var(--robot-lab-accent); cursor: ew-resize; }
+.robot-lab-joint output { text-align: right; color: var(--robot-lab-accent); font: 11px ui-monospace, SFMono-Regular, Consolas, monospace; font-variant-numeric: tabular-nums; }
+.robot-lab-hint { margin: 9px 0 0; color: #9c9f90; font-size: 10px; line-height: 1.5; letter-spacing: .02em; }
+.robot-lab-fallback { position: absolute; inset: 45px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.robot-lab-static { display: block; width: min(100%, 470px); max-height: 80%; }
+.robot-lab-fallback p { max-width: 90%; text-align: center; color: #b6baa7; font-size: 11px; line-height: 1.6; }
+@media (max-width: 600px) {
+  .robot-lab-stage { height: 320px; min-height: 320px; }
+  .robot-lab-heading { inset: 18px 17px auto; }
+  .robot-lab-eyebrow { font-size: 8px; letter-spacing: 1.2px; }
+  .robot-lab-caption { font-size: 9px; }
+  .robot-lab-spec-top { top: 54px; left: 17px; font-size: 7px; }
+  .robot-lab-spec-bottom { left: 17px; bottom: 19px; font-size: 7px; }
+  .robot-lab-panel { padding: 0 15px 13px; }
+  .robot-lab-toolbar { gap: 4px; padding: 11px 0 9px; }
+  .robot-lab-modes button { padding: 8px 10px; min-height: 36px; font-size: 10px; }
+  .robot-lab-actions { gap: 2px; }
+  .robot-lab-actions button { padding: 0 6px; font-size: 10px; }
+  .robot-lab-joint { grid-template-columns: 100px minmax(30px, 1fr) 34px; gap: 8px; }
+  .robot-lab-joint label { gap: 8px; }
+  .robot-lab-hint { font-size: 9px; }
+}
+@media (max-width: 360px) {
+  .robot-lab-actions .robot-lab-reset span { display: none; }
+  .robot-lab-modes button { padding-inline: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .robot-lab button { transition: none; }
+}
+@media print {
+  .robot-lab { break-inside: avoid; }
+  .robot-lab-panel, .robot-lab-orbit { display: none; }
+}

@@ -1,0 +1,8 @@
+Interactive robotics study
+
+The procedural particle field is adapted from ThreeUI Structure Flow by Meng To (MIT).
+Source: https://github.com/MengTo/threeui/blob/main/src/shaders/structure-flow/structureFlowRenderer.ts
+Changes: robot-study integration, yellow palette, point-count/performance controls, interactive scene composition.
+The robot geometry is an original procedural visual study, not a CAD model of a specific project or a live hardware connection.
+The ThreeUI MIT license is included in THREEUI-LICENSE.txt.
+Three.js is MIT licensed; its license is included in THREE-LICENSE.txt.

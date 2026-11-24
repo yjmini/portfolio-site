@@ -1,0 +1,91 @@
+/* The base print sheet owns all page geometry. This layer is ink, framing and hierarchy. */
+.print-portfolio-page {
+  --ink: #17282f;
+  --muted: #4e626c;
+  --accent: #385767;
+  --line: #ccd4d8;
+  --vp-steel: #15252f;
+  --vp-wash: #f1f5f6;
+  --vp-tick: #8b9ca5;
+  --vp-lime: #b9e95f;
+  font-variant-numeric: tabular-nums;
+}
+
+.print-portfolio-page .vp-frame { position: relative; }
+.print-portfolio-page .vp-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border: .25mm solid var(--vp-tick);
+  /* Keep the four short corner ticks; leave the image edges open. */
+  mask: linear-gradient(to right, #000 2.5mm, transparent 2.5mm calc(100% - 2.5mm), #000 0),
+        linear-gradient(to bottom, #000 2.5mm, transparent 2.5mm calc(100% - 2.5mm), #000 0);
+  mask-composite: intersect;
+}
+
+.print-portfolio-page .vp-cover {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 58mm;
+  gap: 4mm;
+  padding: 3mm 3mm 3mm 5mm;
+  border: 0;
+  color: #f1f5f6;
+  background: var(--vp-steel);
+}
+.print-portfolio-page .eyebrow {
+  font-family: inherit;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.print-portfolio-page .vp-cover .eyebrow { color: #c4d0d5; }
+.print-portfolio-page .vp-cover .eyebrow::before {
+  content: '';
+  width: 1.5mm;
+  height: 1.5mm;
+  border-radius: 50%;
+  background: var(--vp-lime);
+}
+.print-portfolio-page .vp-cover h1 { font-weight: 500; letter-spacing: -.035em; }
+.print-portfolio-page .vp-cover h1 small { color: #c4d0d5; letter-spacing: 0; }
+.print-portfolio-page .vp-cover h2 { font-size: 13pt; font-weight: 500; }
+.print-portfolio-page .vp-cover-figure { padding: 1mm 2mm; text-align: right; }
+.print-portfolio-page .vp-cover-figure img { display: block; width: 100%; height: 31mm; object-fit: contain; }
+.print-portfolio-page .vp-cover-figure figcaption { font-size: 7.5pt; color: #e0e9ec; }
+.print-portfolio-page .vp-cover-figure figcaption span { color: #b7c6ce; }
+.print-portfolio-page .vp-profile-summary {
+  display: grid;
+  grid-template-columns: 19mm 1fr;
+  column-gap: 4mm;
+  align-items: center;
+  margin-top: 3mm;
+  padding-bottom: 2.5mm;
+  border-bottom: .25mm solid var(--line);
+}
+.print-portfolio-page .vp-portrait { grid-row: span 2; width: 19mm; height: 25mm; object-fit: contain; }
+.print-portfolio-page .vp-profile-summary .profile-intro { margin: 0; font-size: 10pt; line-height: 1.6; }
+.print-portfolio-page .vp-profile-summary .profile-contact { padding: 0; border: 0; }
+
+.print-portfolio-page :is(.project-header, .continuation-header, .section-heading) { border-bottom: .25mm solid var(--vp-tick); }
+.print-portfolio-page :is(.project-header, .continuation-header, .section-heading) h2 { font-weight: 500; }
+.print-portfolio-page :is(.project-header, .continuation-header, .section-heading) .eyebrow::before {
+  content: '';
+  width: 3mm;
+  height: 1.5mm;
+  border-left: .3mm solid var(--accent);
+  border-bottom: .3mm solid var(--accent);
+}
+.print-portfolio-page .evidence-gallery figcaption b { color: var(--ink); }
+.print-portfolio-page .project-flow li > span { background: var(--vp-wash); border: 0; border-block: .2mm solid var(--line); }
+.print-portfolio-page :is(.case-study > h3, .contributions h4) > span {
+  padding-right: 2.5mm;
+  border-right: .25mm solid var(--vp-tick);
+  font-weight: 500;
+}
+.print-portfolio-page .case-study .case-after { background: var(--vp-wash); }
+.print-portfolio-page .project-outcome { border-top: .25mm solid var(--vp-tick); }
+.print-portfolio-page .portfolio-page-footer { letter-spacing: 0; }
+.print-portfolio-page .portfolio-page-footer span:last-child { color: var(--ink); }
+.print-portfolio-page .portfolio-toolbar button { background: var(--vp-steel); color: #edf3f5; }
+.print-portfolio-page .portfolio-toolbar button:hover { background: var(--accent); }

@@ -9,6 +9,10 @@ import { hideCursor, positionCursor } from './cursor'
 import { copyrightPolicy } from './legal'
 import { resolvePublicAsset } from './publicAsset'
 import PrintPortfolio from './PrintPortfolio'
+import FieldCase from './FieldCase'
+import { ProjectsExplorer } from './InteractiveHome'
+import ImmersiveHome from './kinetic/ImmersiveHome'
+import VantageHome from './VantageHome'
 
 const publicAsset = (path) => resolvePublicAsset(import.meta.env.BASE_URL, path)
 
@@ -44,10 +48,6 @@ const Link = forwardRef(function Link({ to, children, className = '', onClick, .
 
 function Eyebrow({ children }) {
   return <div className="eyebrow"><span aria-hidden="true" />{children}</div>
-}
-
-function Status({ children, current = false }) {
-  return <div className="status"><span className={`status-dot${current ? ' ping' : ''}`} />{children}</div>
 }
 
 function CTA({ to, children, secondary = false, external = false, download = false, asset = false }) {
@@ -106,68 +106,6 @@ function ProjectPlaceholder({ project }) {
       <span>{project.shortTitle}</span>
       <small>{project.stack.slice(0, 3).join(' / ')}</small>
     </div>
-  </div>
-}
-
-function ProjectCard({ project, delay = 0 }) {
-  return <Reveal delay={delay}>
-    <Link to={`/projects/${project.slug}`} className="project-card">
-      <VisualFrame project={project} compact />
-      <div className="project-card-meta"><span>{project.year}</span><Status>{project.status}</Status></div>
-      <h3>{project.title}</h3>
-      <p>{project.tagline}</p>
-    </Link>
-  </Reveal>
-}
-
-function RobotScene() {
-  return <div className="robot-scene" aria-label="로봇 소프트웨어 시스템을 표현한 그래픽">
-    <div className="hero-orbit orbit-one" /><div className="hero-orbit orbit-two" />
-    <div className="robot-card grain">
-      <div className="robot-card-top"><span>ROBOT_STACK / LIVE</span><span className="live-mark">●</span></div>
-      <svg viewBox="0 0 520 440" role="img" aria-labelledby="robotTitle">
-        <title id="robotTitle">센서, 인식, 계획, 제어 계층으로 연결된 로봇 시스템</title>
-        <defs>
-          <linearGradient id="arm" x1="0" x2="1"><stop offset="0" stopColor="#3c3c3c"/><stop offset="1" stopColor="#101010"/></linearGradient>
-          <filter id="soft"><feGaussianBlur stdDeviation="8"/></filter>
-        </defs>
-        <circle cx="260" cy="214" r="142" fill="none" stroke="#2a2a2a" strokeDasharray="3 8"/>
-        <circle cx="260" cy="214" r="104" fill="#0f0f0f" stroke="#e8ff47" strokeOpacity=".35"/>
-        <circle cx="260" cy="214" r="62" fill="#e8ff47" fillOpacity=".08" filter="url(#soft)"/>
-        <g className="robot-arm-svg">
-          <rect x="226" y="183" width="68" height="70" rx="14" fill="url(#arm)" stroke="#888888"/>
-          <circle cx="260" cy="218" r="18" fill="#e8ff47" fillOpacity=".85"/>
-          <path d="M229 204 L165 158 L119 193" fill="none" stroke="url(#arm)" strokeWidth="24" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M291 204 L355 149 L405 187" fill="none" stroke="url(#arm)" strokeWidth="24" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="165" cy="158" r="16" fill="#e8ff47"/><circle cx="355" cy="149" r="16" fill="#e8ff47"/>
-          <path d="M119 193 L104 268 M405 187 L422 263" stroke="#2a2a2a" strokeWidth="20" strokeLinecap="round"/>
-          <path d="M94 267 l-20 34 M111 269 l6 40 M412 263 l-6 42 M430 261 l20 35" stroke="#888888" strokeWidth="8" strokeLinecap="round"/>
-        </g>
-        <g className="sensor-lines" fill="none" stroke="#e8ff47" strokeOpacity=".62">
-          <path d="M260 112 V48 H370"/><path d="M157 214 H66 V119"/><path d="M363 214 H459 V320"/><path d="M260 317 V382 H148"/>
-        </g>
-        <g fill="#d0d0c9" fontFamily="Pretendard" fontSize="12">
-          <text x="379" y="51">SENSOR</text><text x="42" y="111">PERCEPTION</text>
-          <text x="421" y="339">CONTROL</text><text x="83" y="399">SIMULATION</text>
-        </g>
-        <g fill="#e8ff47"><circle cx="260" cy="48" r="4"/><circle cx="66" cy="119" r="4"/><circle cx="459" cy="320" r="4"/><circle cx="148" cy="382" r="4"/></g>
-      </svg>
-      <div className="robot-readout"><span><b>ROS2</b> orchestration</span><span><b>PPO</b> policy</span><span><b>RGB-D</b> perception</span></div>
-    </div>
-  </div>
-}
-
-function TerminalPanel() {
-  const lines = [
-    '$ ros2 launch system bringup.launch.py',
-    '✓ sensors / perception / control',
-    '✓ policy latency within test budget',
-    '✓ state transition verified',
-    'robot@edge:~$ ready_',
-  ]
-  return <div className="terminal-panel grain" aria-label="로봇 시스템 터미널 상태">
-    <div className="terminal-title"><span /><span /><span /><b>jeongmin@robot-stack</b></div>
-    <div className="terminal-lines">{lines.map((line, i) => <div key={line} style={{ '--line': i }}>{line}</div>)}</div>
   </div>
 }
 
@@ -276,65 +214,6 @@ function CustomCursor() {
   return <><span ref={dot} className="cursor-dot"/><span ref={ring} className="cursor-ring"/></>
 }
 
-function HomePage() {
-  const selected = projects.filter(p => p.featured).slice(0, 3)
-  return <main id="main-content" tabIndex="-1" className="page-enter">
-    <section className="hero">
-      <div className="hero-glow"/><div className="container hero-grid">
-        <div className="hero-copy">
-          <Status current>로봇 소프트웨어 직무를 찾고 있습니다</Status>
-          <h1>로봇 지능을,<br/>실제로 <em>움직이게.</em></h1>
-          <p>시뮬레이션에서 학습한 정책을 <strong>ROS2 제어</strong>, 센서·비전, 실제 하드웨어 제약까지 연결합니다. 구현한 기능은 로그와 상태 전이, 반복 실행으로 검증합니다.</p>
-          <div className="hero-actions"><CTA to="/projects">프로젝트 보기</CTA><CTA to="/resume" secondary>Résumé</CTA></div>
-        </div>
-        <div className="hero-visual"><RobotScene/><TerminalPanel/></div>
-      </div>
-      <div className="scroll-cue"><span>SCROLL TO EXPLORE</span><ChevronDown size={16}/></div>
-    </section>
-
-    <section className="section"><div className="container">
-      <div className="section-heading"><div><Eyebrow>Selected work</Eyebrow><h2>끝까지 연결해 본 작업.</h2></div><CTA to="/projects" secondary>모든 프로젝트</CTA></div>
-      <div className="project-grid">{selected.map((p, i) => <ProjectCard key={p.slug} project={p} delay={i*.08}/>)}</div>
-    </div></section>
-
-    <section className="section"><div className="container"><Eyebrow>What I do</Eyebrow>
-      <div className="capabilities">
-        {[
-          ['01','Robot intelligence','PPO 정책 학습, reward 설계, 실패 로그 분석을 통해 시뮬레이션 안의 성능을 설명 가능한 실험으로 만듭니다.'],
-          ['02','System integration','ROS2 topic·FSM·WebSocket으로 센서, 인식, 제어, 관제 화면의 경계를 연결하고 실제 실행 흐름을 확인합니다.'],
-          ['03','Hardware-aware delivery','제어 주기, 추론 지연, 좌표계, 통신과 기구 오차를 기능의 일부로 보고 Mock부터 실장비까지 단계적으로 검증합니다.'],
-        ].map((item, i) => <Reveal key={item[0]} delay={i*.06} className="capability-row"><h3><span>{item[0]}</span>{item[1]}</h3><p>{item[2]}</p></Reveal>)}
-      </div>
-    </div></section>
-
-    <section className="section currently"><div className="container current-row"><div><Eyebrow>Recently completed</Eyebrow><h2>THING · 7축 텐던 로봇 손</h2><p>손동작 인식부터 fail-closed 제어·안전 검증, 실제 모터 구동과 데이터 기록까지 하나의 ROS2 시스템으로 통합했습니다.</p></div><CTA to="/projects/thing-robot-hand" secondary>Case study</CTA></div></section>
-    <ClosingCTA/>
-  </main>
-}
-
-function ProjectsPage() {
-  const featured = projects.filter(p => p.featured)
-  const more = projects.filter(p => !p.featured)
-  return <main id="main-content" tabIndex="-1" className="page-standard page-enter"><div className="container">
-    <Eyebrow>Projects</Eyebrow><h1 className="page-title">모델, 로봇, 그리고<br/>그 사이의 시스템.</h1>
-    <p className="page-lead">대표 연구 과제부터 공개 저장소와 초기 소프트웨어 프로젝트까지, 제가 직접 맡은 범위와 검증 근거를 기준으로 정리했습니다.</p>
-    <div className="featured-list">
-      {featured.map((project, i) => <Reveal key={project.slug}><article className={`featured-project${i%2 ? ' reverse' : ''}`}>
-        <Link to={`/projects/${project.slug}`} className="featured-visual"><VisualFrame project={project}/></Link>
-        <div className="featured-copy"><div className="project-index"><b>{project.index}</b><span>{project.year}</span><i/>{project.status}</div>
-          <Link to={`/projects/${project.slug}`}><h2>{project.title}</h2></Link><p className="tagline">{project.tagline}</p><p className="description">{project.summary}</p>
-          <div className="tag-list">{project.stack.map(s => <span key={s}>{s}</span>)}</div>
-          <div className="metric-list">{project.metrics?.map(m => <div key={m.label}><b>{m.value}</b><span>{m.label}</span></div>)}</div>
-          <div className="project-actions"><CTA to={`/projects/${project.slug}`} secondary>Case study</CTA>{project.links?.map(l => <CTA key={l.href} to={l.href} secondary external>{l.label}</CTA>)}</div>
-        </div>
-      </article></Reveal>)}
-    </div>
-    <section className="more-work"><div className="subsection-heading"><Eyebrow>More work</Eyebrow><p>공개 코드, 기술 실험, 초기 구현까지.</p></div>
-      <div className="more-grid">{more.map((p, i) => <ProjectCard key={p.slug} project={p} delay={(i%3)*.06}/>)}</div>
-    </section>
-  </div></main>
-}
-
 function ThingProjectDetail({ project }) {
   const current = projects.indexOf(project), next = projects[(current + 1) % projects.length]
   return <main id="main-content" tabIndex="-1" className="detail-page thing-detail page-enter">
@@ -411,6 +290,7 @@ function ThingProjectDetail({ project }) {
 function ProjectDetail({ project }) {
   if (project.slug === 'thing-robot-hand') return <ThingProjectDetail project={project}/>
   const current = projects.indexOf(project), next = projects[(current+1)%projects.length]
+  if (/KinderBot|CADFlow/i.test(project.title)) return <FieldCase project={project} next={next}/>
   return <main id="main-content" tabIndex="-1" className="detail-page page-enter"><div className="container">
     <Link to="/projects" className="back-link"><ArrowLeft size={15}/> 프로젝트 목록</Link>
     <div className="detail-meta"><b>{project.year}</b><i/>{project.period}<i/>{project.status}</div>
@@ -450,8 +330,8 @@ function AboutPage() {
 
 function ResumePage() {
   return <main id="main-content" tabIndex="-1" className="page-standard page-enter"><div className="container">
-    <div className="resume-top"><div><Eyebrow>Résumé</Eyebrow><h1 className="page-title">경험을 한 장의<br/>실행 흐름으로.</h1><p className="page-lead">공개용 이력서에는 연락 가능한 이메일과 GitHub만 포함하며 상세 주소와 전화번호는 제외했습니다.</p></div>
-      <div className="resume-actions"><CTA to="/portfolio-pdf">제출용 포트폴리오</CTA><CTA to="resume/yoon-jeongmin-resume-public.pdf" asset download>이력서 PDF</CTA><CTA to="resume/yoon-jeongmin-resume-public.pdf" asset secondary external>새 탭에서 열기</CTA></div></div>
+    <div className="resume-top"><div><Eyebrow>Résumé</Eyebrow><h1 className="page-title">윤정민 이력서</h1><p className="page-lead">공개용 이력서에는 연락 가능한 이메일과 GitHub만 포함하며 상세 주소와 전화번호는 제외했습니다.</p></div>
+      <div className="resume-actions"><CTA to="resume/Yoon_Jeongmin_Portfolio.pdf" asset download>포트폴리오 PDF 다운로드</CTA><CTA to="/portfolio-pdf" secondary>인쇄 미리보기</CTA><CTA to="resume/yoon-jeongmin-resume-public.pdf" asset download>이력서 PDF</CTA><CTA to="resume/yoon-jeongmin-resume-public.pdf" asset secondary external>새 탭에서 열기</CTA></div></div>
     <div className="resume-preview"><img src={publicAsset('resume/yoon-jeongmin-resume-page-1.png')} alt="윤정민 공개용 이력서 1페이지 미리보기"/></div>
   </div></main>
 }
@@ -472,7 +352,7 @@ function ContactPage() {
     setStatus('메일 앱을 열었습니다. 전송 버튼을 눌러 주세요.')
     window.location.href = `mailto:${profile.email}?subject=${subject}&body=${body}`
   }
-  return <main id="main-content" tabIndex="-1" className="contact-page page-enter"><div className="container"><Eyebrow>Contact</Eyebrow><h1>같이 움직일<br/>시스템이 있나요?</h1>
+  return <main id="main-content" tabIndex="-1" className="contact-page page-enter"><div className="container"><Eyebrow>Contact</Eyebrow><h1>연락처</h1>
     <div className="contact-grid"><div><p className="contact-copy">로봇 소프트웨어, 강화학습 시뮬레이션, 비전·센서 통합에 관해 이야기하고 싶다면 편하게 연락해 주세요.</p><Link to={`mailto:${profile.email}`} className="email-link"><Mail size={22}/>{profile.email}</Link>
       <div className="social-list"><Link to={profile.github}><Github size={17}/>GitHub <ArrowUpRight size={14}/></Link><span><MapPin size={17}/>{profile.location}</span></div>
       <div className="contact-bot" aria-hidden="true"><span className="antenna"/><span className="bot-eye left"/><span className="bot-eye right"/><span className="bot-base"/></div>
@@ -522,10 +402,6 @@ function CopyrightPage() {
   </main>
 }
 
-function ClosingCTA() {
-  return <section className="closing-cta section"><div className="container"><h2>시뮬레이션을 넘어,<br/>실제로 움직이는 로봇까지.</h2><p>제가 맡은 범위와 검증 과정을 더 자세히 이야기해 보겠습니다.</p><CTA to="/contact">연락하기</CTA></div></section>
-}
-
 function Footer() {
   return <footer className="site-footer"><div className="container"><div className="footer-top"><div><Link to="/" className="logo">jeongmin<span>.</span>yoon</Link><p>{profile.location}</p></div><nav aria-label="하단 메뉴"><Link to="/projects">Projects</Link><Link to="/work">Work</Link><Link to="/about">About</Link><Link to="/copyright">Copyright</Link></nav><div className="footer-social"><Link to={profile.github}>GitHub</Link><Link to={`mailto:${profile.email}`}>Email</Link></div></div><div className="footer-bottom"><span>{copyrightPolicy.notice}</span><span>Built with React · Deployed on GitHub Pages</span></div></div></footer>
 }
@@ -539,8 +415,9 @@ function App() {
   }, [])
   if (route === '/portfolio-pdf') return <PrintPortfolio/>
   let page
-  if (route === '/') page = <HomePage/>
-  else if (route === '/projects') page = <ProjectsPage/>
+  if (route === '/') page = <VantageHome/>
+  else if (route === '/lab-archive') page = <ImmersiveHome/>
+  else if (route === '/projects') page = <ProjectsExplorer/>
   else if (route.startsWith('/projects/')) {
     const p = projects.find(item => item.slug === route.split('/')[2]); page = p ? <ProjectDetail project={p}/> : <NotFound/>
   } else if (route === '/work') page = <WorkPage/>
@@ -549,7 +426,7 @@ function App() {
   else if (route === '/contact') page = <ContactPage/>
   else if (route === '/copyright') page = <CopyrightPage/>
   else page = <NotFound/>
-  return <><a className="skip-link" href="#main-content">본문으로 건너뛰기</a><Header route={route} onSearch={() => setPaletteOpen(true)}/><CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)}/><CustomCursor/>{page}<Footer/></>
+  return <div className={route === '/lab-archive' ? 'kinetic-shell' : 'vantage-shell'}><a className="skip-link" href="#main-content" onClick={e => { e.preventDefault(); document.getElementById('main-content')?.focus(); }}>본문으로 건너뛰기</a><Header route={route} onSearch={() => setPaletteOpen(true)}/><CommandPalette open={paletteOpen} onClose={() => setPaletteOpen(false)}/>{route === '/lab-archive' && <CustomCursor/>}{page}<Footer/></div>
 }
 
 function NotFound() {

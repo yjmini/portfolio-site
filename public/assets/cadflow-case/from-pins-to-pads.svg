@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="430" viewBox="0 0 1000 430" role="img" aria-labelledby="title desc" xml:lang="ko">
+  <title id="title">핀 표에서 심볼과 풋프린트로 · 개념도</title>
+  <desc id="desc">실제 도면이 아닌 가상의 4핀 부품이다. 데이터시트의 1번 A가 회로 심볼의 입력 단자와 기판의 왼쪽 위 패드로 대응된다. 점선은 부품 몸체의 경계다.</desc>
+  <style>text{font-family:'Noto Sans CJK KR','Malgun Gothic',sans-serif;fill:#24342f}.k{font-size:22px;font-weight:650}.cap{font-size:19px}.mono{font:18px monospace}.ink{fill:none;stroke:#34473f;stroke-width:2}.guide{fill:none;stroke:#a6b1a8;stroke-width:1.5}.accent{fill:#13614e}.paper{fill:#fffefa;stroke:#acb7ae;stroke-width:1.5}</style>
+  <rect width="1000" height="430" fill="#f7f7f0"/>
+  <g transform="translate(34 0)"><text y="47" font-size="29" font-weight="700">같은 핀, 두 가지 표현</text><text x="932" y="44" text-anchor="end" class="cap">개념도 · 합성 4핀 부품</text><path d="M0 67h932" class="guide"/></g>
+  <text x="45" y="107" class="k">입력 / 데이터시트</text><text x="377" y="107" class="k">출력 / 회로 심볼</text><text x="696" y="107" class="k">출력 / 기판 풋프린트</text>
+  <!-- A synthetic pin table and package sketch, not a document capture. -->
+  <path d="M54 132h225l22 22v150H54z" class="paper"/><path d="M279 132v22h22" class="guide"/>
+  <g class="mono"><rect x="67" y="155" width="70" height="31" fill="#d4e9dd"/><text x="78" y="177" class="accent">1 : A</text><text x="78" y="211">2 : B</text><text x="78" y="245">3 : C</text><text x="78" y="279">4 : D</text></g>
+  <path d="M156 157v130" class="guide"/><rect x="197" y="194" width="50" height="62" class="ink"/><path d="M182 204h15m50 0h15m-80 39h15m50 0h15" class="ink"/><circle cx="205" cy="203" r="3" fill="#13614e"/><path d="M182 170v21m80-21v21m-80-13h80m-80 0 6-3m-6 3 6 3m74-3-6-3m6 3-6 3" class="guide"/>
+  <path d="M319 219h34l-8-6m8 6-8 6" class="ink"/>
+  <rect x="438" y="159" width="116" height="116" class="paper"/><g class="ink"><path d="M394 185h44m-44 64h44m116-64h43m-43 64h43"/></g><circle cx="394" cy="185" r="6" fill="#13614e"/><g class="mono"><text x="407" y="177" class="accent">1</text><text x="407" y="241">2</text><text x="571" y="177">4</text><text x="571" y="241">3</text><text x="450" y="191" class="accent">A</text><text x="450" y="255">B</text><text x="531" y="191">D</text><text x="531" y="255">C</text></g>
+  <path d="M645 142v162" class="guide"/>
+  <rect x="750" y="155" width="114" height="123" rx="3" class="ink" stroke-dasharray="6 5"/><g fill="#dde2d9" stroke="#53655b" stroke-width="1.5"><rect x="724" y="173" width="53" height="29" rx="3" fill="#13614e"/><rect x="724" y="234" width="53" height="29" rx="3"/><rect x="837" y="234" width="53" height="29" rx="3"/><rect x="837" y="173" width="53" height="29" rx="3"/></g><g class="mono" text-anchor="middle"><text x="751" y="194" style="fill:white">1</text><text x="751" y="255">2</text><text x="864" y="255">3</text><text x="864" y="194">4</text></g>
+  <text x="45" y="344" class="cap">핀 번호·이름, 부품의 치수</text><text x="377" y="344" class="cap">회로에서 신호가 연결될 단자</text><text x="696" y="344" class="cap">기판에 납땜할 패드의 위치</text>
+  <path d="M34 366h932" class="guide"/><rect x="45" y="386" width="14" height="14" rx="2" fill="#13614e"/><text x="70" y="400" class="cap">강조색: 같은 1번 핀</text><text x="966" y="400" text-anchor="end" class="cap">점선: 부품 몸체의 경계</text>
+</svg>

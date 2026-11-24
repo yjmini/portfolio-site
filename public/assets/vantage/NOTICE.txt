@@ -1,0 +1,6 @@
+SO-101 model illustration, 2026-11-24
+arm-cloud.svg is an original surface-point rendering of the SO-101 model, not a sensor scan. Meshes were posed, sampled, projected and recolored for this illustration. No original meshes are redistributed.
+Source: The Robot Studio SO-101, MuJoCo Menagerie model, https://github.com/google-deepmind/mujoco_menagerie/tree/eea4c7431b63da8278b0ff31638e0b0e941cec0e/robotstudio_so101
+License: see SO101-LICENSE.txt (Apache-2.0).
+Typography: Geologica (Google Fonts), licensed under SIL Open Font License; see Geologica-OFL.txt.
+Visual reference: Vantage by Hallmark, https://github.com/Nutlope/hallmark/blob/04977e15f3dfd6ee4b74c887dac3eb52665d6c92/skills/hallmark/references/themes/vantage.md . Design adaptation; not the Hallmark demo artwork.

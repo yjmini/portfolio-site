@@ -1,3 +1,6 @@
+import { kinderbotProject } from './kinderbotCase.js'
+import { cadflowProject } from './cadflowCase.js'
+
 export const profile = {
   name: '윤정민',
   nameEn: 'Yoon Jeongmin',
@@ -351,6 +354,8 @@ export const projects = [
       { label: 'Dalmuti', href: 'https://github.com/yjmini/The-Great-Dalmuti' },
     ],
   },
+  kinderbotProject,
+  { ...cadflowProject, index: '15' },
 ]
 
 export const experience = [
